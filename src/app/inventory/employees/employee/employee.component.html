@@ -1,0 +1,370 @@
+<mat-card class="create-client-card">
+    <div class="form-container">
+      <mat-horizontal-stepper>
+        <mat-step [stepControl]="personForm">
+          <form [formGroup]="personForm">
+            <ng-template matStepLabel>Información básica</ng-template>
+            <div>
+
+              
+              <div class="mat-table">
+                <div class="mat-row">
+                  <div class="mat-cell">
+                    <mat-form-field>
+                      <mat-select
+                      formControlName="documentType"
+                      matInput
+                      placeholder="Tipo documento"
+                      required
+                      >
+                      <ng-container *ngFor="let documentType of documentTypes">
+                        <mat-option [value]="documentType.code">{{ documentType.description }}</mat-option>
+                      </ng-container>
+                    </mat-select>
+                  </mat-form-field>
+
+                  </div>
+                  <div class="mat-cell">
+                    
+                    <mat-form-field>
+                      <input formControlName="document" matInput placeholder="Documento" required />
+                  </mat-form-field>
+                 </div>
+                </div>
+              </div>
+
+
+              <div class="mat-table">
+                <div class="mat-row">
+                  
+                  <div class="mat-cell">
+                    <mat-form-field id="firstName">
+                      <input formControlName="firstName" matInput placeholder="Nombre" required />
+                    </mat-form-field>
+                  </div>
+                  <div class="mat-cell">
+                    <mat-form-field id="lastName">
+                      <input formControlName="lastName" matInput placeholder="Apellido" required />
+                    </mat-form-field>
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="mat-table">
+                <div class="mat-row">
+                  
+                  <div class="mat-cell">
+                    <mat-form-field>
+                      <mat-select
+                      formControlName="civilState"
+                      matInput
+                      placeholder="Estado Cívil"
+                      required
+                      >
+                      <ng-container *ngFor="let civilState of civilStates">
+                        <mat-option [value]="civilState.code">{{ civilState.description }}</mat-option>
+                      </ng-container>
+                    </mat-select>
+                  </mat-form-field>
+
+                  </div>
+                  <div class="mat-cell">
+                    <mat-form-field id="address">
+                      <input formControlName="address" matInput placeholder="direccion" />
+                    </mat-form-field>
+      
+                  </div>
+
+                </div>
+              </div>
+
+
+              <div class="mat-table">
+                <div class="mat-row">
+                
+                  <div class="mat-cell">
+          
+                      <mat-form-field id="country">
+                        <input formControlName="country" matInput placeholder="Pais de Residencia" required />
+                      </mat-form-field>
+  
+                  </div>
+                  <div class="mat-cell">
+                    <mat-form-field id="department">
+                      <input formControlName="departament" matInput placeholder="Departamento Residencia" required />
+                    </mat-form-field>
+       
+                  </div>
+                  <div class="mat-cell">
+               
+                    <mat-form-field id="municipality">
+                      <input formControlName="municipality" matInput placeholder="Municipio Residencia" required />
+                    </mat-form-field>
+       
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="mat-table">
+                <div class="mat-row">
+                 
+                  <div class="mat-cell">
+                   
+                    <mat-form-field id="email">
+                      <input formControlName="email" matInput placeholder="email" required  />
+                    </mat-form-field>
+        
+                  </div>
+                  <div class="mat-cell">
+               
+                  <mat-form-field id="phone">
+                    <input formControlName="phone" matInput placeholder="télefono" />
+                  </mat-form-field>
+
+                  </div>
+                </div>
+              </div>
+            
+  
+              <div class="mat-button-center">
+                <button matStepperNext mat-stroked-button color="primary">Información Empleado</button>
+              </div>
+  
+              
+          
+            </div>
+          </form>
+        </mat-step>
+  
+        <mat-step [stepControl]="employeeForm" optional>
+          <form [formGroup]="employeeForm">
+            <ng-template matStepLabel>Información Empleado</ng-template>
+         
+
+            <div class="mat-table">
+              <div class="mat-row">
+                <div class="mat-cell">
+                  
+                  <mat-form-field>
+                    <input formControlName="salary" type="number" matInput placeholder="Salario" required />
+                  </mat-form-field>
+
+
+                </div>
+
+                <div class="mat-cell">
+                 
+                 <mat-form-field>
+               
+                    <mat-select
+                    formControlName="salaryType"
+                    matInput
+                    placeholder="Tipo Salario"
+                    required
+                    >
+                    <ng-container *ngFor="let salaryType of salaryTypes">
+                      <mat-option [value]="salaryType.code">{{ salaryType.description }}</mat-option>
+                    </ng-container>
+                  </mat-select>
+                </mat-form-field>
+
+                </div>
+
+              </div>
+
+              <div class="mat-row">
+                <div class="mat-cell">
+                  <mat-form-field>
+                    <input matInput [matDatepicker]="initDate" placeholder="Fecha Inicial Contrato" formControlName="initDateContract" />
+                    <mat-datepicker-toggle matSuffix [for]="initDate"></mat-datepicker-toggle>
+                    <mat-datepicker #initDate></mat-datepicker>
+                  </mat-form-field>
+
+
+                </div>
+                <div class="mat-cell">
+                  
+                  <mat-form-field>
+                    <input matInput [matDatepicker]="endDate" placeholder="Fecha Final" formControlName="endDateContract" />
+                    <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
+                    <mat-datepicker #endDate></mat-datepicker>
+                  </mat-form-field>
+
+                </div>
+               
+              </div>
+
+
+
+             <div class="mat-row">
+              <div class="mat-cell">
+             
+                <mat-form-field >
+                  <mat-select
+                  formControlName="costCenter"
+                  matInput
+                  placeholder="Centro de Costos"
+                  required
+                  >
+                  <ng-container *ngFor="let centroCosto of centrosCostos">
+                    <mat-option [value]="centroCosto.id">{{ centroCosto.description }}</mat-option>
+                  </ng-container>
+                </mat-select>
+              </mat-form-field>
+
+              </div>
+              <div class="mat-cell">
+               
+                <mat-form-field>
+                  <mat-select
+                  formControlName="payRollType"
+                  matInput
+                  placeholder="Tipo de Nomina"
+                  required
+                  >
+                  <ng-container *ngFor="let payRollType of payRollTypes">
+                    <mat-option [value]="payRollType.code">{{ payRollType.description }}</mat-option>
+                  </ng-container>
+                </mat-select>
+              </mat-form-field>
+
+              </div>
+            </div>
+
+
+            </div>
+
+
+            <mat-label>Información del lugar de trabajo</mat-label>
+
+
+            <div class="mat-table">
+
+              <div class="mat-row">
+                <div class="mat-cell">
+                 <mat-form-field >
+                   <mat-select
+                   formControlName="departament"
+                   matInput
+                   placeholder="Departamento"
+                   required
+                   >
+                   <ng-container *ngFor="let sucursal of sucursales">
+                     <mat-option [value]="sucursal.id">{{ sucursal.description }}</mat-option>
+                   </ng-container>
+                 </mat-select>
+               </mat-form-field>
+  
+               </div>
+               <div class="mat-cell">
+               
+                <mat-form-field >
+                  <mat-select
+                  formControlName="branchOffice"
+                  matInput
+                  placeholder="Sucursal"
+                  required
+                  >
+                  <ng-container *ngFor="let sucursal of sucursales">
+                    <mat-option [value]="sucursal.id">{{ sucursal.description }}</mat-option>
+                  </ng-container>
+                </mat-select>
+              </mat-form-field>
+              </div>
+             </div>
+  
+
+              <div class="mat-row">
+                <div class="mat-cell">
+              
+              
+                  <mat-form-field >
+                    <mat-select
+                    formControlName="unity"
+                    matInput
+                    placeholder="Unidad"
+                    required
+                    >
+                    <ng-container *ngFor="let area of areas">
+                      <mat-option [value]="area.id">{{ area.description }}</mat-option>
+                    </ng-container>
+                  </mat-select>
+                </mat-form-field>
+              
+              
+                 
+               </div>
+               <div class="mat-cell">
+               
+                 <mat-form-field >
+                   <mat-select
+                   formControlName="area"
+                   matInput
+                   placeholder="Área"
+                   required
+                   >
+                   <ng-container *ngFor="let area of areas">
+                     <mat-option [value]="area.id">{{ area.description }}</mat-option>
+                   </ng-container>
+                 </mat-select>
+               </mat-form-field>
+
+
+               </div>
+             </div>
+
+
+            </div>
+           
+            <div class="mat-table">
+              <div class="mat-row">
+           
+                <div class="mat-cell">
+                  <mat-label>Estado:&nbsp;</mat-label>
+                  <mat-radio-group aria-label="Estado" formControlName="active">
+                    <ng-container *ngFor="let state of estados">
+                      <mat-radio-button value="{{ state.code }}">&nbsp;{{ state.description }}&nbsp;</mat-radio-button>
+                    </ng-container>
+                  </mat-radio-group>    
+                </div>
+              </div>
+            </div>
+
+
+            <div class="mat-button-center">
+              <button  mat-stroked-button color="primary" (click)="add()">Ingresar Empleado</button>
+            </div>
+      
+
+            
+      
+
+
+
+
+         
+
+       
+    
+      
+
+  
+          
+  
+ 
+  
+        
+
+
+          
+          
+          </form>
+        </mat-step>
+  
+     
+      </mat-horizontal-stepper>
+    </div>
+  </mat-card>
+  

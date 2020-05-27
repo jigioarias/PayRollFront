@@ -1,0 +1,14 @@
+<!-- <p>menu works!</p> -->
+<div>
+    <mat-nav-list>
+
+      <mat-list-item routerLink="employees">Empleados</mat-list-item>
+      <mat-list-item routerLink="reports">Reportes</mat-list-item>
+      <button mat-button [matMenuTriggerFor]="menu">Menu</button>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item routerLink="employees" >Item 1</button>
+  <button mat-menu-item routerLink="employees">Item 2</button>
+</mat-menu>
+    </mat-nav-list>
+  </div>
+  
