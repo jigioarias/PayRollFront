@@ -6,7 +6,6 @@ import { Messages } from 'src/app/general/shared/messages';
 import { LABEL } from 'src/app/general/shared/label';
 import { DOCUMENT_TYPES,DocumentType } from 'src/app/general/shared/document-type';
 import { State, STATES } from 'src/app/general/shared/state';
-import { Employee } from '../../shared/employee';
 import { EmployeeService } from '../../shared/employee.service';
 import { PayRollType, PAYROLLTYPES } from 'src/app/general/shared/payRollType';
 import { SalaryType, SALARY_TYPES } from 'src/app/general/shared/salaryType';
@@ -15,6 +14,7 @@ import { AreaService } from 'src/app/general/shared/area.service';
 import { SucursalService } from 'src/app/general/shared/sucursal.service';
 import { CentroCostosService } from 'src/app/general/shared/centro-costos.service';
 import { civilStateType, CIVILSTATES_TYPES } from 'src/app/general/shared/civilStateType';
+import { Employee, PersonData, EmployeeData } from '../../shared/employee';
 
 
 @Component({
@@ -83,10 +83,12 @@ export class EmployeeComponent implements OnInit {
       branchOffice: [null, Validators.required],
       costCenter:  [null, Validators.required],
       active:  [null, Validators.required],
-      payRollType : [null, Validators.required],
+      classPayRoll : [null, Validators.required],
       endDateContract:[null, Validators.required],
-      initDateContract:[null, Validators.required]
-     
+      initDateContract:[null, Validators.required],
+      department:[null, Validators.required],
+      unity:[null, Validators.required]
+
     });
 
     this.areaService.list().subscribe(
@@ -130,47 +132,60 @@ export class EmployeeComponent implements OnInit {
 
   
    loadEmployee(){
-
-
-    let empleadoc :Employee={
-      
-      address :this.personForm.get('address').value,
+    
+   
+    let personac :PersonData={
+      id: 0,
+      firstName :this.personForm.get('firstName').value,
+      lastName:this.personForm.get('lastName').value,
+      phone:this.personForm.get('phone').value,
+      email:this.personForm.get('email').value,
+      document :this.personForm.get('document').value,
+      typeDocument:this.personForm.get('documentType').value ,
+      address : this.personForm.get('address').value,
       country:this.personForm.get('country').value,
       department:this.personForm.get('departament').value,
-      document :this.personForm.get('document').value,
-      email:this.personForm.get('email').value,
-      enterprise:{
-        branchOffice:this.employeeForm.get('branchOffice').value,
-        costCenter:this.employeeForm.get('costCenter').value,
-        nit:"80000000"
-      },
-      id:null,
-      lastName:this.personForm.get('lastName').value,
       municipality:this.personForm.get('municipality').value,
-      payRollType:{
-        code:this.employeeForm.get('payRollType').value,
-        name:this.employeeForm.get('payRollType').value
-      },
-      phone:this.personForm.get('phone').value,
-      salary:this.employeeForm.get('salary').value,
-      salaryType:this.employeeForm.get('salaryType').value,
-      typeDocument:this.personForm.get('documentType').value ,
-      firstName:this.personForm.get('firstName').value,
-      active :true,
+      user :'usuario',
+      civilState :this.personForm.get('civilState').value
+
     };
-    this.empleado = empleadoc;
+  
+    let empleadodatac :EmployeeData ={    
+      id:0,
+      enterprise :this.employeeForm.get('branchOffice').value,
+      salary :this.employeeForm.get('salary').value,
+      salaryType:this.employeeForm.get('salaryType').value,
+      initDateContract :this.employeeForm.get('initDateContract').value,
+      endDateContract :this.employeeForm.get('endDateContract').value,
+      costCenter: this.employeeForm.get('costCenter').value,
+      classPayRoll:this.employeeForm.get('classPayRoll').value,
+      department :this.employeeForm.get('department').value,
+      branchOffice: this.employeeForm.get('branchOffice').value,
+      active : this.employeeForm.get('active').value,
+      unity: this.employeeForm.get('unity').value,
+      area: this.employeeForm.get('area').value,
+      user : "usuario"
+    };
+
+    let empleadoc : Employee={
+      person: personac,
+      employee:empleadodatac
+
+    }
+    this.empleado =empleadoc
    }
   
 
   add() {
     
 
-    if (this.employeeForm.invalid || this.personForm.invalid){
 
+   /* if (this.employeeForm.invalid || this.personForm.invalid){
       this.messagesService.showErrorMessage(Messages.get('insert_error', LABEL.employee,this.personForm.get('document').value));
-      
+      return;      
     }
-
+*/
     this.loadEmployee();
     console.log('empleadoooZ>>>',this.empleado);
     

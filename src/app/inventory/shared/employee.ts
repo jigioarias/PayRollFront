@@ -1,54 +1,44 @@
-export interface Employee {
-   
-    id:string;
-    firstName :string;
-    lastName :string;
-    phone:string;
-    email :string;
-    document:string;
-    typeDocument:string;
-    salary:number;
-    active:boolean;
+export interface Employee{
+  person: PersonData;
+  employee :EmployeeData;
+  
+}
+
+
+export interface EmployeeData{
+    id:number;
+    enterprise :string;
+    salary :number;
     salaryType:string;
-    address:string;
-    country:string;
-    department:string;
-    municipality:string;
-    enterprise :EnterpriseEmployee;
-    payRollType:PayRollTypeEmployee;
-  }
+    initDateContract :string;
+    endDateContract :string;
+    costCenter: string;
+    classPayRoll:string;
+    department :string;
+    branchOffice: string;
+    active : boolean;
+    unity: string;
+    area: string;
+    user : string
+}
   
-  export interface EnterpriseEmployee {
-    nit:string;
-    costCenter:string;
-    branchOffice:string;  
-  }
-  export interface PayRollTypeEmployee {
 
-    	code:string;
-    	name:string;
-  }
-  
-  export interface EmployeeResponse{
 
-    id: number;
-    firstName: string;
-    lastName: string;
-    phone: string;
-    email: string;
-    document: string;
-    typeDocument: string;
-    salary: string;
-    nit: string;
-    payRollType: string;
-    salaryType: string;
-    active: boolean;
-    address: string;
-    country: string;
-    department: string;
-    municipality: string;
-
-  }
+export interface PersonData{
+  id: number;
+  firstName : string;
+  lastName : string;
+  phone : string;
+  email : string;
+  document : string;
+  typeDocument: string;
+  address : string;
+  country : string;
+  department : string;
+  municipality:string;
+  user :string;
+  civilState : number;
+}
 
 
   

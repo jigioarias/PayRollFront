@@ -49,7 +49,7 @@ export class Messages {
     delete_error: 'El %0  no fue eliminado exitosamente',
     insert_confirm: '¿Estás seguro de ingresar el %0?',
     insert_success: 'El %0 fue ingresado exitosamente',
-    insert_error: 'Error al ingresar el %0 : %1',
+    insert_error: 'Error al ingresar el %0',
     edit_confirm: '¿Estás seguro de actualizar el %0?',
     edit_success: 'El %0 fue actualizado exitosamente',
     edit_error: 'Error al actualizar el %0  %1',

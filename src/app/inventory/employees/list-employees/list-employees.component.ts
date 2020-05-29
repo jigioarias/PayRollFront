@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Employee, EmployeeResponse } from '../../shared/employee';
+import { Employee } from '../../shared/employee';
 import { Messages } from 'src/app/general/shared/messages';
 
 import { MessagesService } from 'src/app/general/shared/messages.service';
@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 import { EmployeeService } from '../../shared/employee.service';
 
 
-const ELEMENT_DATA: EmployeeResponse[] = [];
+const ELEMENT_DATA: Employee[] = [];
 
 @Component({
   selector: 'app-list-employees',
