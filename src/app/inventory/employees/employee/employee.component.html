@@ -85,23 +85,62 @@
                 
                   <div class="mat-cell">
           
-                      <mat-form-field id="country">
-                        <input formControlName="country" matInput placeholder="Pais de Residencia" required />
-                      </mat-form-field>
+                   
+                    <mat-form-field>
+                      <mat-select
+                      formControlName="country"
+                      matInput
+                      placeholder="Pais de Residencia"
+                      required
+                      >
+                      <ng-container *ngFor="let country of countries">
+                        <mat-option [value]="country.code">{{ country.description }}</mat-option>
+                      </ng-container>
+                    </mat-select>
+                  </mat-form-field>
+                   
+                   
+                 
   
                   </div>
                   <div class="mat-cell">
-                    <mat-form-field id="department">
-                      <input formControlName="departament" matInput placeholder="Departamento Residencia" required />
-                    </mat-form-field>
+                   
+ 
+                    <mat-form-field>
+                      <mat-select
+                      formControlName="departament"
+                      matInput
+                      placeholder="Departamento de Residencia"
+                      required
+                      >
+                      <ng-container *ngFor="let department of departments">
+                        <mat-option [value]="department.code">{{ department.description }}</mat-option>
+                      </ng-container>
+                    </mat-select>
+                  </mat-form-field>
+                   
+
        
                   </div>
                   <div class="mat-cell">
                
-                    <mat-form-field id="municipality">
-                      <input formControlName="municipality" matInput placeholder="Municipio Residencia" required />
-                    </mat-form-field>
+                  
        
+
+                    <mat-form-field>
+                      <mat-select
+                      formControlName="municipality"
+                      matInput
+                      placeholder="Municipio de Residencia"
+                      required
+                      >
+                      <ng-container *ngFor="let municipio of municipalities">
+                        <mat-option [value]="municipio.code">{{ municipio.description }}</mat-option>
+                      </ng-container>
+                    </mat-select>
+                  </mat-form-field>
+                   
+
                   </div>
 
                 </div>
@@ -221,11 +260,10 @@
                   <mat-select
                   formControlName="classPayRoll"
                   matInput
-                  placeholder="Tipo de Nomina"
-                  required
-                  >
-                  <ng-container *ngFor="let payRollType of payRollTypes">
-                    <mat-option [value]="payRollType.code">{{ payRollType.description }}</mat-option>
+                  placeholder="Clase de Nomina"
+                  required>
+                  <ng-container *ngFor="let classPayRoll of classPayRolls">
+                    <mat-option [value]="classPayRoll.id">{{ classPayRoll.description }}</mat-option>
                   </ng-container>
                 </mat-select>
               </mat-form-field>
@@ -233,7 +271,7 @@
               </div>
             </div>
 
-
+          
             </div>
 
 

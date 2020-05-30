@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { InventoryModule } from './inventory/inventory.module';
 import { ReportsModule } from './reports/reports.module';
 import { HomeComponent } from './general/home/home/home.component';
+import { NominaModule } from './generate/nomina/nomina.module';
 
 const routes: Routes = [
   {
@@ -18,6 +19,10 @@ const routes: Routes = [
         path: '',
         loadChildren: () => ReportsModule
       },
+      {
+          path: '',
+          loadChildren: () => NominaModule
+      }
     
     ]
   },

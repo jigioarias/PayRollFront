@@ -1,14 +1,22 @@
 <!-- <p>menu works!</p> -->
 <div>
     <mat-nav-list>
+      <button mat-button [matMenuTriggerFor]="menu">Administración</button>
+      <mat-menu #menu="matMenu"   >
+        <button mat-menu-item routerLink="employees" >Empleados</button>
+        <button mat-menu-item routerLink="classPayRolls">Clase de Nomina</button>
+        <button mat-menu-item routerLink="concepts">Conceptos</button>
+      </mat-menu>
+      
+      <button mat-button [matMenuTriggerFor]="menu2"> Administración Nomina</button>
+      <mat-menu #menu2="matMenu"   >
+        <button mat-menu-item routerLink="payroll" >Nomina</button>
+      </mat-menu>
 
-      <mat-list-item routerLink="employees">Empleados</mat-list-item>
+
       <mat-list-item routerLink="reports">Reportes</mat-list-item>
-      <button mat-button [matMenuTriggerFor]="menu">Menu</button>
-<mat-menu #menu="matMenu">
-  <button mat-menu-item routerLink="employees" >Item 1</button>
-  <button mat-menu-item routerLink="employees">Item 2</button>
-</mat-menu>
+
     </mat-nav-list>
   </div>
+
   

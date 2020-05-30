@@ -9,12 +9,14 @@ import { State, STATES } from 'src/app/general/shared/state';
 import { EmployeeService } from '../../shared/employee.service';
 import { PayRollType, PAYROLLTYPES } from 'src/app/general/shared/payRollType';
 import { SalaryType, SALARY_TYPES } from 'src/app/general/shared/salaryType';
-import { Area, Sucursal, CentroCostos } from '../../shared/master';
+import { Area, Sucursal, CentroCostos, ClaseNomina } from '../../shared/master';
 import { AreaService } from 'src/app/general/shared/area.service';
 import { SucursalService } from 'src/app/general/shared/sucursal.service';
 import { CentroCostosService } from 'src/app/general/shared/centro-costos.service';
 import { civilStateType, CIVILSTATES_TYPES } from 'src/app/general/shared/civilStateType';
 import { Employee, PersonData, EmployeeData } from '../../shared/employee';
+import { CountryType, COUNTRY_TYPES, DepartmentType, DEPARTAMENT_TYPES, MunicipalityType, MUNICIPALYTY_TYPES } from 'src/app/general/shared/countryType';
+import { ClaseNominaService } from 'src/app/general/shared/clase-nomina.service';
 
 
 @Component({
@@ -27,9 +29,12 @@ export class EmployeeComponent implements OnInit {
   personForm: FormGroup;
   documentTypes: DocumentType[];
   civilStates: civilStateType[];
+  countries : CountryType[];
+  departments : DepartmentType[];
+  municipalities: MunicipalityType[];
   estados: State[];
   empleado :Employee;
-  payRollTypes:PayRollType[];
+  classPayRolls:ClaseNomina[];
   salaryTypes:SalaryType[];
   areas : Area[];
   sucursales : Sucursal[];
@@ -43,6 +48,7 @@ export class EmployeeComponent implements OnInit {
     private areaService : AreaService,
     private sucursalService:SucursalService,
     private centroCostosService :CentroCostosService,
+    private claseNominaService :ClaseNominaService,
     private messagesService:MessagesService
 
   ) {}
@@ -54,8 +60,11 @@ export class EmployeeComponent implements OnInit {
     this.sucursales =[];
     this.centrosCostos = [];
     this.documentTypes = DOCUMENT_TYPES;
+    this.countries = COUNTRY_TYPES;
+    this.departments = DEPARTAMENT_TYPES;
+    this.municipalities = MUNICIPALYTY_TYPES;
     this.estados = STATES;
-    this.payRollTypes = PAYROLLTYPES;
+    this.classPayRolls = [];
     this.salaryTypes = SALARY_TYPES;
     this.civilStates = CIVILSTATES_TYPES;
     
@@ -93,7 +102,7 @@ export class EmployeeComponent implements OnInit {
 
     this.areaService.list().subscribe(
       (data)=>{
-
+        console.log('areas');
         this.areas = data;
       },
       (error)=>{
@@ -123,6 +132,18 @@ export class EmployeeComponent implements OnInit {
       (error)=>{
 
         console.log('lista de centros de costo ops>>>',error);
+      }
+
+    );
+
+    this.claseNominaService.list().subscribe(
+      (data)=>{
+
+        this.classPayRolls = data;
+      },
+      (error)=>{
+
+        console.log('lista de clases de nomina de costo ops>>>',error);
       }
 
     );
