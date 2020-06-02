@@ -6,6 +6,9 @@ import { MessagesService } from 'src/app/general/shared/messages.service';
 import { LABEL } from 'src/app/general/shared/label';
 import { Router } from '@angular/router';
 import { EmployeeService } from '../../shared/employee.service';
+import { EmployeeComponent } from '../employee/employee.component';
+import { SelectionModel } from '@angular/cdk/collections';
+import { MatTableDataSource } from '@angular/material/table';
 
 
 const ELEMENT_DATA: Employee[] = [];
@@ -17,27 +20,49 @@ const ELEMENT_DATA: Employee[] = [];
 })
 export class ListEmployeesComponent implements OnInit {
 
-  displayedColumns: string[] = ['firstName',  'edit', 'remove'];
-  dataSource = ELEMENT_DATA;
-  
+  displayedColumns: string[] = ['select','document','firstName','lastName','classPayRoll','initDate', 'endDate', 'active'];
+  //dataSource = ELEMENT_DATA;
+  dataSource = new MatTableDataSource<Employee>(ELEMENT_DATA);
+
+  selection = new SelectionModel<Employee>(true, []);
+
 
   constructor(private router:Router, private messagesService:MessagesService,private employeeeService:EmployeeService) { }
 
   ngOnInit(): void {
   
-   /* this.employeeeService.list().subscribe(
+    this.employeeeService.list().subscribe(
       (data)=>{
         console.log(data);
-         this.dataSource =data;
+         this.dataSource = new MatTableDataSource<Employee>(data);
       },
       (error)=>{
         console.log(error);
       }
 
-    );*/
+    );
   }
 
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.data.length;
+    return numSelected === numRows;
+  }
 
+ /** Selects all rows if they are not all selected; otherwise clear selection. */
+ masterToggle() {
+  this.isAllSelected() ?
+      this.selection.clear() :
+      this.dataSource.data.forEach(row => this.selection.select(row));
+}
+
+/** The label for the checkbox on the passed row */
+checkboxLabel(row?: Employee): string {
+  if (!row) {
+    return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
+  }
+  return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.person.document + 1}`;
+}
 
   edit(id: string) {
     this.router.navigate([`/app/users/edit/${id}`]);

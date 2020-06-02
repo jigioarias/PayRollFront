@@ -16,6 +16,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatCheckboxModule  } from '@angular/material/checkbox';
 
 
 
@@ -43,6 +44,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatAutocompleteModule,
     MatSlideToggleModule,
     MatStepperModule,
+    MatCheckboxModule,
     MatNativeDateModule
 
   ],
@@ -66,6 +68,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatAutocompleteModule,
     MatSlideToggleModule,
     MatStepperModule,
+    MatCheckboxModule,
     MatNativeDateModule
   ],
 })

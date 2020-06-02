@@ -174,7 +174,7 @@ export class EmployeeComponent implements OnInit {
   
     let empleadodatac :EmployeeData ={    
       id:0,
-      enterprise :this.employeeForm.get('branchOffice').value,
+      enterprise :'1',
       salary :this.employeeForm.get('salary').value,
       salaryType:this.employeeForm.get('salaryType').value,
       initDateContract :this.employeeForm.get('initDateContract').value,
@@ -204,17 +204,20 @@ export class EmployeeComponent implements OnInit {
 
    /* if (this.employeeForm.invalid || this.personForm.invalid){
       this.messagesService.showErrorMessage(Messages.get('insert_error', LABEL.employee,this.personForm.get('document').value));
-      return;      
+      return;      p
     }
 */
     this.loadEmployee();
-    console.log('empleadoooZ>>>',this.empleado);
     
     this.employeeService.save(this.empleado).subscribe(
       (data)=> {
         console.log(data);
+        if(data.employee!=null){
         this.messagesService.showSuccessMessage(Messages.get('insert_success', LABEL.employee,this.personForm.get('document').value));
-  
+        }else{
+          this.messagesService.showErrorMessage(Messages.get('insert_error', LABEL.employee,this.personForm.get('document').value));
+
+        }
       },
       (error)=>{
         console.log(error);
