@@ -66,5 +66,9 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     </table>
+    <div class="mat-button-center">
+      <button  mat-stroked-button color="primary" (click)="save()">Actualizar</button>
+    </div>
+
   </div>
   

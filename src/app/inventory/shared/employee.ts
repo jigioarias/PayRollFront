@@ -19,7 +19,8 @@ export interface EmployeeData{
     active : boolean;
     unity: string;
     area: string;
-    user : string
+    user : string;
+    transporteSubsidy:boolean;
 }
   
 

@@ -54,6 +54,7 @@ export class ListEmployeesComponent implements OnInit {
   this.isAllSelected() ?
       this.selection.clear() :
       this.dataSource.data.forEach(row => this.selection.select(row));
+      
 }
 
 /** The label for the checkbox on the passed row */
@@ -61,7 +62,7 @@ checkboxLabel(row?: Employee): string {
   if (!row) {
     return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
   }
-  return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.person.document + 1}`;
+  return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.employee.id + 1}`;
 }
 
   edit(id: string) {
@@ -72,4 +73,24 @@ checkboxLabel(row?: Employee): string {
     const confirmMessage = Messages.get('confirm_delete', LABEL.user);
    
   }
+
+  save(){
+    
+    let selectedFileIds: string[] = [];
+    for (let employee of this.selection.selected) {
+      employee.employee.active = false;
+      
+      this.employeeeService.update(employee).subscribe(
+      (data)=>{
+          console.log(data);
+      },(error)=>{
+        console.log(error);
+      }
+      );
+    }
+
+  }
+ 
+
+
 }

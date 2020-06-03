@@ -56,4 +56,18 @@ export class EmployeeService {
       })
     );
   }
+
+  update(employee: Employee): Observable<Employee> {
+    const url = environment.apiUrl;
+    return this.http.put<Response<Employee>>(`${url}employees`, employee).pipe(
+      switchMap((data) => of(data.content)),
+      catchError((error) => {
+        if (error.status == 400) {
+          return throwError(error.error.message);
+        } else {
+          return throwError(messages.tecnicalError);
+        }
+      })
+    );
+  }
 }

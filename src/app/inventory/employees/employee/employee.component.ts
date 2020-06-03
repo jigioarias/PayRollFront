@@ -17,6 +17,7 @@ import { civilStateType, CIVILSTATES_TYPES } from 'src/app/general/shared/civilS
 import { Employee, PersonData, EmployeeData } from '../../shared/employee';
 import { CountryType, COUNTRY_TYPES, DepartmentType, DEPARTAMENT_TYPES, MunicipalityType, MUNICIPALYTY_TYPES } from 'src/app/general/shared/countryType';
 import { ClaseNominaService } from 'src/app/general/shared/clase-nomina.service';
+import { Yesno, YESNO } from 'src/app/general/shared/yesno';
 
 
 @Component({
@@ -33,6 +34,7 @@ export class EmployeeComponent implements OnInit {
   departments : DepartmentType[];
   municipalities: MunicipalityType[];
   estados: State[];
+  sinos :Yesno[];
   empleado :Employee;
   classPayRolls:ClaseNomina[];
   salaryTypes:SalaryType[];
@@ -64,6 +66,7 @@ export class EmployeeComponent implements OnInit {
     this.departments = DEPARTAMENT_TYPES;
     this.municipalities = MUNICIPALYTY_TYPES;
     this.estados = STATES;
+    this.sinos = YESNO;
     this.classPayRolls = [];
     this.salaryTypes = SALARY_TYPES;
     this.civilStates = CIVILSTATES_TYPES;
@@ -96,7 +99,8 @@ export class EmployeeComponent implements OnInit {
       endDateContract:[null, Validators.required],
       initDateContract:[null, Validators.required],
       department:[null, Validators.required],
-      unity:[null, Validators.required]
+      unity:[null, Validators.required],
+      transporteSubsidy:[null, Validators.required]
 
     });
 
@@ -186,7 +190,8 @@ export class EmployeeComponent implements OnInit {
       active : this.employeeForm.get('active').value,
       unity: this.employeeForm.get('unity').value,
       area: this.employeeForm.get('area').value,
-      user : "usuario"
+      user : "usuario",
+      transporteSubsidy:this.employeeForm.get('transporteSubsidy').value
     };
 
     let empleadoc : Employee={

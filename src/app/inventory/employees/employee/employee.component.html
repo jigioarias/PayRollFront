@@ -356,9 +356,20 @@
 
             </div>
            
+
+
             <div class="mat-table">
               <div class="mat-row">
            
+                <div class="mat-cell">
+                  <mat-label>Subsidio:&nbsp;</mat-label>
+                  <mat-radio-group aria-label="Estado" formControlName="transporteSubsidy">
+                    <ng-container *ngFor="let sino of sinos">
+                      <mat-radio-button value="{{ sino.code }}">&nbsp;{{ sino.description }}&nbsp;</mat-radio-button>
+                    </ng-container>
+                  </mat-radio-group>    
+                </div>
+
                 <div class="mat-cell">
                   <mat-label>Estado:&nbsp;</mat-label>
                   <mat-radio-group aria-label="Estado" formControlName="active">
@@ -369,6 +380,8 @@
                 </div>
               </div>
             </div>
+
+
 
 
             <div class="mat-button-center">
