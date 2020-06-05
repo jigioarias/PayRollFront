@@ -14,7 +14,7 @@ export interface EmployeeData{
     endDateContract :string;
     costCenter: string;
     classPayRoll:string;
-    department :string;
+    departament :string;
     branchOffice: string;
     active : boolean;
     unity: string;

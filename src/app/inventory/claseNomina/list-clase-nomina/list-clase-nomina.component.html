@@ -1,1 +1,40 @@
-<p>list-clase-nomina works!</p>
+<div class="nomina-container">
+    
+    <div class="activar">Lista de Clases de Nomina</div>
+<p></p>   
+    
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+  
+
+
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef>Descripción</th>
+      <td mat-cell *matCellDef="let element">{{ element.description }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="dayshours">
+      <th mat-header-cell *matHeaderCellDef>Horas día</th>
+      <td mat-cell *matCellDef="let element">{{ element.dayshours }}</td>
+    </ng-container>
+
+    
+    <ng-container matColumnDef="monthhours">
+      <th mat-header-cell *matHeaderCellDef>Horas mes</th>
+      <td mat-cell *matCellDef="let element">{{ element.monthhours }}</td>
+    </ng-container>
+    
+
+      <ng-container matColumnDef="edit">
+        <th mat-header-cell *matHeaderCellDef>Editar</th>
+        <td mat-cell *matCellDef="let element">
+          <mat-icon (click)="edit(element.id)">edit</mat-icon>
+        </td>
+      </ng-container>
+    
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+ 
+
+</div>

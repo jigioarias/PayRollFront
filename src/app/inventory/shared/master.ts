@@ -57,12 +57,12 @@ export interface Area {
 
   export interface ClaseNomina {
    
-    id:string;
-    enterprise:string;
-    clase: string;
+    id:number;
+    enterprise:number;
+    clase: number;
     description:string; 
-    vacationDays:number;
-    vacationPrima:string;
+    vacationdays:number;
+    vacationprima:string;
     primatype:string;
     provisionservicedays :number;
     provisionservicetype:string;

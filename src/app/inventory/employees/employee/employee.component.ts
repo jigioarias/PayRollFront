@@ -83,9 +83,6 @@ export class EmployeeComponent implements OnInit {
       departament: [null, Validators.required],
       municipality: [null, Validators.required], 
       civilState: [null, Validators.required]
-
-
-
     });
 
     this.employeeForm = this.formBuilder.group({
@@ -185,7 +182,7 @@ export class EmployeeComponent implements OnInit {
       endDateContract :this.employeeForm.get('endDateContract').value,
       costCenter: this.employeeForm.get('costCenter').value,
       classPayRoll:this.employeeForm.get('classPayRoll').value,
-      department :this.employeeForm.get('department').value,
+      departament :this.employeeForm.get('department').value,
       branchOffice: this.employeeForm.get('branchOffice').value,
       active : this.employeeForm.get('active').value,
       unity: this.employeeForm.get('unity').value,
