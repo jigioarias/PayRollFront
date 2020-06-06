@@ -17,6 +17,7 @@ const ELEMENT_DATA: ClaseNomina[] = [];
 export class ListClaseNominaComponent implements OnInit {
 
   displayedColumns: string[] = ['description','dayshours','monthhours','edit'];
+
   //dataSource = ELEMENT_DATA;
   dataSource = ELEMENT_DATA;
 

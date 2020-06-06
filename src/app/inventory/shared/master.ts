@@ -75,4 +75,16 @@ export interface Area {
     user:string;
   }
 
+  export interface PeriodoClase {
+   
+    id:number;
+    enterprise:number;
+    clase: number;
+    descriptionClase?:string;
+    period:string; 
+    year:number;
+    active:boolean;
+    user:string;
+  }
+
 

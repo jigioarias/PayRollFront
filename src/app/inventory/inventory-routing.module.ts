@@ -9,6 +9,9 @@ import { CreateClaseNominaComponent } from './claseNomina/create-clase-nomina/cr
 import { ConceptoComponent } from './concepto/concepto.component';
 import { ListConceptsComponent } from './concepto/list-concepts/list-concepts.component';
 import { CreateConceptComponent } from './concepto/create-concept/create-concept.component';
+import { ListPeriodoClaseComponent } from './periodosClase/list-periodo-clase/list-periodo-clase.component';
+import { PeriodoClaseComponent } from './periodosClase/periodo-clase/periodo-clase.component';
+import { PeriodosClaseComponent } from './periodosClase/periodos-clase.component';
 
 const routes: Routes = [
   {
@@ -53,6 +56,22 @@ const routes: Routes = [
       {
         path: 'add',
         component: CreateConceptComponent
+      },
+     { path: '', redirectTo: 'list', pathMatch: 'full' }
+    ]
+  },
+
+  {
+    path: 'periods',
+    component: PeriodosClaseComponent,
+    children: [
+      {
+        path: 'list',
+        component: ListPeriodoClaseComponent
+      },
+      {
+        path: 'add',
+        component: PeriodoClaseComponent
       },
      { path: '', redirectTo: 'list', pathMatch: 'full' }
     ]

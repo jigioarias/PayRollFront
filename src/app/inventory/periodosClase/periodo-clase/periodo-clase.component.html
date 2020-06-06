@@ -1,0 +1,86 @@
+<div>
+
+    <form [formGroup]="claseForm">
+        <div>
+
+
+            <div class="mat-header-row">
+                <div class="mat-header-cell">Datos básicos de Periodo</div>
+            </div>
+
+            <div class="mat-table">
+
+
+                <div class="mat-header-row">
+                    
+                    <div class="mat-cell">
+                        <mat-form-field>
+                            <mat-select formControlName="period" matInput placeholder="Periodo" required>
+                                <ng-container *ngFor="let period of periods">
+                                    <mat-option [value]="period.code">{{ period.description }}</mat-option>
+                                </ng-container>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="mat-cell">
+                   
+                        <mat-form-field>
+                            <mat-select formControlName="month" matInput placeholder="Mes" required>
+                                <ng-container *ngFor="let month of months">
+                                    <mat-option [value]="month.code">{{ month.description }}</mat-option>
+                                </ng-container>
+                            </mat-select>
+                        </mat-form-field>
+
+
+                    </div>
+                    <div class="mat-cell">
+                        <mat-form-field>
+                            <input formControlName="year"  value="0" matInput placeholder="Año (YYYY)" />
+                        </mat-form-field>
+
+                    </div>
+                </div>
+
+
+                <div class="mat-header-row">
+
+
+                    <div class="mat-cell">
+                   
+                        <mat-form-field>
+                            <mat-select formControlName="clase" matInput placeholder="Clase de Nomina" required>
+                                <ng-container *ngFor="let clase of clases">
+                                    <mat-option [value]="clase.id">{{ clase.description }}</mat-option>
+                                </ng-container>
+                            </mat-select>
+                        </mat-form-field>
+
+
+                    </div>
+                    <div class="mat-cell">
+                        <mat-label>Estado:&nbsp;</mat-label>
+                        <mat-radio-group aria-label="Estado" formControlName="active">
+                          <ng-container *ngFor="let state of estados">
+                            <mat-radio-button value="{{ state.code }}">&nbsp;{{ state.description }}&nbsp;</mat-radio-button>
+                          </ng-container>
+                        </mat-radio-group>   
+
+                    </div>
+                  
+                </div>
+        
+          
+
+     
+            </div>
+            
+            <div class="mat-button-center">
+                <button   color="primary" (click)="add()">Ingresar</button>
+              </div>
+
+        </div>
+    </form>
+
+</div>

@@ -3,5 +3,6 @@ export const LABEL = {
   person: 'Persona',
   password: 'clave',
   classPayRoll: 'clase nómina',
-  employee: 'empleado'
+  employee: 'empleado',
+  periodClase: 'Periodo'
 };

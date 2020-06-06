@@ -13,12 +13,16 @@ import { CreateNominaComponent } from './claseNomina/create-nomina/create-nomina
 import { CreateConceptComponent } from './concepto/create-concept/create-concept.component';
 import { ListConceptsComponent } from './concepto/list-concepts/list-concepts.component';
 import { CreateClaseNominaComponent } from './claseNomina/create-clase-nomina/create-clase-nomina.component';
+import { ListPeriodoClaseComponent } from './periodosClase/list-periodo-clase/list-periodo-clase.component';
+import { PeriodosClaseComponent } from './periodosClase/periodos-clase.component';
+import { PeriodoClaseComponent } from './periodosClase/periodo-clase/periodo-clase.component';
+import { EditPeriodoClaseComponent } from './periodosClase/edit-periodo-clase/edit-periodo-clase.component';
 
 
 
 @NgModule({
   
-  declarations: [EmployeeComponent, ListEmployeesComponent, EmployeesComponent, ClaseNominaComponent, ConceptoComponent, ListClaseNominaComponent, CreateNominaComponent, CreateConceptComponent, ListConceptsComponent, CreateClaseNominaComponent],
+  declarations: [EmployeeComponent, ListEmployeesComponent, EmployeesComponent, ClaseNominaComponent, ConceptoComponent, ListClaseNominaComponent, CreateNominaComponent, CreateConceptComponent, ListConceptsComponent, CreateClaseNominaComponent, PeriodoClaseComponent, ListPeriodoClaseComponent, PeriodosClaseComponent, EditPeriodoClaseComponent],
 
   imports: [
     CommonModule, ReactiveFormsModule, MaterialModule, InventoryRoutingModule
