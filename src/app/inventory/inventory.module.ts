@@ -17,12 +17,15 @@ import { ListPeriodoClaseComponent } from './periodosClase/list-periodo-clase/li
 import { PeriodosClaseComponent } from './periodosClase/periodos-clase.component';
 import { PeriodoClaseComponent } from './periodosClase/periodo-clase/periodo-clase.component';
 import { EditPeriodoClaseComponent } from './periodosClase/edit-periodo-clase/edit-periodo-clase.component';
+import { CreateConceptoNominaComponent } from './conceptoNomina/create-concepto-nomina/create-concepto-nomina.component';
+import { ListConceptoNominaComponent } from './conceptoNomina/list-concepto-nomina/list-concepto-nomina.component';
+import { ConceptoNominaComponent } from './conceptoNomina/concepto-nomina.component';
 
 
 
 @NgModule({
   
-  declarations: [EmployeeComponent, ListEmployeesComponent, EmployeesComponent, ClaseNominaComponent, ConceptoComponent, ListClaseNominaComponent, CreateNominaComponent, CreateConceptComponent, ListConceptsComponent, CreateClaseNominaComponent, PeriodoClaseComponent, ListPeriodoClaseComponent, PeriodosClaseComponent, EditPeriodoClaseComponent],
+  declarations: [EmployeeComponent, ListEmployeesComponent, EmployeesComponent, ClaseNominaComponent, ConceptoComponent, ListClaseNominaComponent, CreateNominaComponent, CreateConceptComponent, ListConceptsComponent, CreateClaseNominaComponent, PeriodoClaseComponent, ListPeriodoClaseComponent, PeriodosClaseComponent, EditPeriodoClaseComponent, ConceptoNominaComponent, CreateConceptoNominaComponent, ListConceptoNominaComponent],
 
   imports: [
     CommonModule, ReactiveFormsModule, MaterialModule, InventoryRoutingModule

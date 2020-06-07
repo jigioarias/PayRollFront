@@ -12,6 +12,9 @@ import { CreateConceptComponent } from './concepto/create-concept/create-concept
 import { ListPeriodoClaseComponent } from './periodosClase/list-periodo-clase/list-periodo-clase.component';
 import { PeriodoClaseComponent } from './periodosClase/periodo-clase/periodo-clase.component';
 import { PeriodosClaseComponent } from './periodosClase/periodos-clase.component';
+import { ConceptoNominaComponent } from './conceptoNomina/concepto-nomina.component';
+import { ListConceptoNominaComponent } from './conceptoNomina/list-concepto-nomina/list-concepto-nomina.component';
+import { CreateConceptoNominaComponent } from './conceptoNomina/create-concepto-nomina/create-concepto-nomina.component';
 
 const routes: Routes = [
   {
@@ -72,6 +75,22 @@ const routes: Routes = [
       {
         path: 'add',
         component: PeriodoClaseComponent
+      },
+     { path: '', redirectTo: 'list', pathMatch: 'full' }
+    ]
+  },
+
+  {
+    path: 'conceptsPayRoll',
+    component: ConceptoNominaComponent,
+    children: [
+      {
+        path: 'list',
+        component: ListConceptoNominaComponent
+      },
+      {
+        path: 'add',
+        component: CreateConceptoNominaComponent
       },
      { path: '', redirectTo: 'list', pathMatch: 'full' }
     ]

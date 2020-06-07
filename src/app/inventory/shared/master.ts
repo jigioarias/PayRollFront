@@ -88,3 +88,26 @@ export interface Area {
   }
 
 
+  export interface Concepto {
+   
+    id:number;
+    enterprise:number;
+    code:string;
+    description :string;
+    fittype : string;
+    accountingcode :string;
+    conceptType:string;
+    user:string;
+  }
+
+  export interface ConceptoNomina {
+   
+    id:number;
+    enterprise:number;
+    clase: number;
+    descriptionClase?:string;
+    concept : number;
+    descriptionConcept?:string;
+    active : boolean;
+    user:string;
+  }
