@@ -31,6 +31,7 @@ export class EmployeeService {
   list(): Observable<Employee[]> {
     const url = environment.apiUrl;
 
+    
     return this.http.get<ResponseList<Employee>>(`${url}employees`).pipe(
       switchMap((data) => of(data.content)),
       catchError((error) => {

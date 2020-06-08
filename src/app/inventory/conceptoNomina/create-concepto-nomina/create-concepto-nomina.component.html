@@ -43,12 +43,9 @@
 
                 <div class="mat-header-row">
                     <div class="mat-cell">
-                        <mat-label>Estado:&nbsp;</mat-label>
-                        <mat-radio-group aria-label="Estado" formControlName="active">
-                          <ng-container *ngFor="let state of estados">
-                            <mat-radio-button value="{{ state.code }}">&nbsp;{{ state.description }}&nbsp;</mat-radio-button>
-                          </ng-container>
-                        </mat-radio-group> 
+                     
+                           <mat-slide-toggle formControlName="active">Activo</mat-slide-toggle>
+
 
                     </div>
                    

@@ -48,7 +48,7 @@ export class ListConceptoNominaComponent implements OnInit {
           });
 
 
-          this.conceptoService.list().subscribe((dataConcepto)=>{
+          this.conceptoService.list(1).subscribe((dataConcepto)=>{
             console.log('entorr');
             this.listaConceptos = dataConcepto;
             this.dataSource.forEach(elementConceptoNomina => {

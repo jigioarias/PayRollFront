@@ -10,19 +10,20 @@ const routes: Routes = [
     path: 'app',
     component: HomeComponent,
     children: [
-    
       {
+        path: '',
+        loadChildren: () => NominaModule
+    },
+
+    {
         path: '',
         loadChildren: () => InventoryModule
-      },
-      {
+    },
+    {
         path: '',
         loadChildren: () => ReportsModule
-      },
-      {
-          path: '',
-          loadChildren: () => NominaModule
-      }
+    }
+     
     
     ]
   },

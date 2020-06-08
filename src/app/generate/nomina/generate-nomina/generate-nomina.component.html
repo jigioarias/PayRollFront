@@ -1,1 +1,53 @@
-<p>generate-nomina works!</p>
+<div>
+
+    <form [formGroup]="nominaForm">
+        <div>
+
+
+            <div class="mat-header-row">
+                <div class="mat-header-cell">Generatate Nomina</div>
+            </div>
+
+            <div class="mat-table">
+
+
+                <div class="mat-header-row">
+
+                    <div class="mat-cell">
+                   
+                        <mat-form-field>
+                            <mat-select formControlName="clase" matInput placeholder="Clase de Nomina" required  (selectionChange)="select($event.value)"   >
+                                <ng-container *ngFor="let clase of clases">
+                                    <mat-option [value]="clase.id">{{ clase.description }}</mat-option>
+                                </ng-container>
+                            </mat-select>
+                        </mat-form-field>
+
+
+                    </div>
+                    <div class="mat-cell">
+                        <mat-form-field>
+                            <mat-select formControlName="period" matInput placeholder="Periodo" required>
+                                <ng-container *ngFor="let period of periods">
+                                    <mat-option [value]="period.code">{{ period.description }}</mat-option>
+                                </ng-container>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+            
+                  
+                </div>
+      
+          
+
+     
+            </div>
+            
+            <div class="mat-button-center">
+                <button   color="primary" (click)="generate()">Generate</button>
+              </div>
+
+        </div>
+    </form>
+
+</div>

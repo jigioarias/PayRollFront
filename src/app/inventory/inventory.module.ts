@@ -20,15 +20,17 @@ import { EditPeriodoClaseComponent } from './periodosClase/edit-periodo-clase/ed
 import { CreateConceptoNominaComponent } from './conceptoNomina/create-concepto-nomina/create-concepto-nomina.component';
 import { ListConceptoNominaComponent } from './conceptoNomina/list-concepto-nomina/list-concepto-nomina.component';
 import { ConceptoNominaComponent } from './conceptoNomina/concepto-nomina.component';
+import { ActiveNoActivePipe } from '../general/shared/pipes/active-no-active.pipe';
 
 
 
 @NgModule({
   
-  declarations: [EmployeeComponent, ListEmployeesComponent, EmployeesComponent, ClaseNominaComponent, ConceptoComponent, ListClaseNominaComponent, CreateNominaComponent, CreateConceptComponent, ListConceptsComponent, CreateClaseNominaComponent, PeriodoClaseComponent, ListPeriodoClaseComponent, PeriodosClaseComponent, EditPeriodoClaseComponent, ConceptoNominaComponent, CreateConceptoNominaComponent, ListConceptoNominaComponent],
+  declarations: [ActiveNoActivePipe,EmployeeComponent, ListEmployeesComponent, EmployeesComponent, ClaseNominaComponent, ConceptoComponent, ListClaseNominaComponent, CreateNominaComponent, CreateConceptComponent, ListConceptsComponent, CreateClaseNominaComponent, PeriodoClaseComponent, ListPeriodoClaseComponent, PeriodosClaseComponent, EditPeriodoClaseComponent, ConceptoNominaComponent, CreateConceptoNominaComponent, ListConceptoNominaComponent],
 
   imports: [
     CommonModule, ReactiveFormsModule, MaterialModule, InventoryRoutingModule
-  ]
+  ],
+  exports: [ActiveNoActivePipe]
 })
 export class InventoryModule { }

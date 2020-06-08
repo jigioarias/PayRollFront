@@ -31,9 +31,8 @@ export class ListPeriodoClaseComponent implements OnInit {
 
     this.periodoClaseService.list().subscribe(
       (data)=>{
-        console.log(data);
-        this.claseNominaService.list().subscribe((dataNomina)=>{
 
+        this.claseNominaService.list().subscribe((dataNomina)=>{
           this.dataSource = data;
 
           
@@ -48,11 +47,7 @@ export class ListPeriodoClaseComponent implements OnInit {
 
         },(error)=>{
 
-        }
-
-
-
-        );
+        });
         
 
 

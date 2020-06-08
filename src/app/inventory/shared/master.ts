@@ -111,3 +111,13 @@ export interface Area {
     active : boolean;
     user:string;
   }
+
+  export interface Filter{
+    enterprise?:number;
+    active?:boolean;
+    conceptType?:string;
+    name?:string;
+    period?:string;
+    classPayRoll?:number;
+
+  }

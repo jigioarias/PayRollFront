@@ -42,10 +42,10 @@ export class CreateConceptoNominaComponent implements OnInit {
       this.conceptoForm = this.formBuilder.group({
         clase: [null, Validators.required],
         concept: [null, Validators.required],
-        active: [null, Validators.required]
+        active: [true]
       });
-
-      this.conceptoService.list().subscribe(
+      //TODO: cambiar por enmpresa
+      this.conceptoService.list(1).subscribe(
         (data)=>{
 
           this.concepts = data;

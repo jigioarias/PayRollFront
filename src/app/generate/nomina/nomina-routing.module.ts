@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { NovedadesComponent } from './novedades/novedades.component';
 import { NominaComponent } from './nomina.component';
+import { GenerateNominaComponent } from './generate-nomina/generate-nomina.component';
 
 const routes: Routes = [
   {
@@ -9,13 +9,10 @@ const routes: Routes = [
     component: NominaComponent,
     children: [
       {
-        path: 'generatePayRoll',
-        component: NominaComponent
+        path: 'generate',
+        component: GenerateNominaComponent
       },
-      {
-        path: 'novedades',
-        component: NovedadesComponent
-      },
+      
      { path: '', redirectTo: 'list', pathMatch: 'full' }
     ]
   }
