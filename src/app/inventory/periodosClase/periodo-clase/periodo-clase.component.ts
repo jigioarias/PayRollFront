@@ -54,7 +54,10 @@ estados :State[];
       month :[null, Validators.required],
       clase: [null, Validators.required],
       year: [null, Validators.required],
-      active: [null, Validators.required]
+      active: [null, Validators.required],
+      initDate: [null, Validators.required],
+      endDate: [null, Validators.required],
+
     });
 
    this.claseNominaService.list().subscribe(
@@ -81,10 +84,13 @@ estados :State[];
     id:0,
     enterprise:1,
     clase: this.claseForm.get('clase').value,
-    period:this.claseForm.get('month').value+this.claseForm.get('period').value, 
+    period:this.claseForm.get('period').value, 
     year:this.claseForm.get('year').value,
     active:this.claseForm.get('active').value,
-    user:'usuario'
+    user:'usuario',
+    month:this.claseForm.get('month').value,
+    initDate:this.claseForm.get('initDate').value,
+    endDate:this.claseForm.get('endDate').value
     };
   
     this.periodClase =periodoClaseC;

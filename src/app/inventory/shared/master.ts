@@ -85,6 +85,9 @@ export interface Area {
     year:number;
     active:boolean;
     user:string;
+    month:string;
+    initDate:string;
+    endDate:string;
   }
 
 
@@ -117,7 +120,8 @@ export interface Area {
     active?:boolean;
     conceptType?:string;
     name?:string;
-    period?:string;
-    classPayRoll?:number;
+    period?:PeriodoClase;
+    classPayRoll?:ClaseNomina;
+    clase?:number;
 
   }

@@ -4,7 +4,7 @@ import { MessagesService } from 'src/app/general/shared/messages.service';
 import { ClaseNominaService } from 'src/app/general/shared/clase-nomina.service';
 import { ConceptoService } from 'src/app/general/shared/concepto.service';
 import { ConceptoNominaService } from 'src/app/general/shared/concepto-nomina.service';
-import { ClaseNomina,ConceptoNomina, Concepto } from '../../shared/master';
+import { ClaseNomina,ConceptoNomina, Concepto, Filter } from '../../shared/master';
 
 const ELEMENT_DATA: ConceptoNomina[] = [];
 
@@ -28,8 +28,14 @@ export class ListConceptoNominaComponent implements OnInit {
    private conceptoNominaService:ConceptoNominaService) { }
 
   ngOnInit(): void {
+
+  let  filter: Filter ={
+    enterprise:1,
+    active:true
+
+    }
   
-    this.conceptoNominaService.list().subscribe(
+    this.conceptoNominaService.list(filter).subscribe(
       (data)=>{
         this.claseNominaService.list().subscribe((dataClases)=>{
         

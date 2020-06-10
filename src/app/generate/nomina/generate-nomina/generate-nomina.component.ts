@@ -18,7 +18,8 @@ export class GenerateNominaComponent implements OnInit {
   nominaForm: FormGroup;
   clases :ClaseNomina[];
   periods:PeriodoClase[];
-
+  claeSelected :ClaseNomina;
+  periodSelected : PeriodoClase;
  
   constructor(
     private router: Router,
@@ -31,8 +32,10 @@ export class GenerateNominaComponent implements OnInit {
 
   ngOnInit(): void {
  
+
+
     this.nominaForm = this.formBuilder.group({
-      classPayRoll: [null, Validators.required],
+      clase: [null, Validators.required],
       period: [null, Validators.required]
     })
     
@@ -49,13 +52,22 @@ export class GenerateNominaComponent implements OnInit {
 
   select(clase){
 
-    console.log(clase);
+
+  this.clases.forEach(element => {
+        if(clase==element.id){
+          this.claeSelected = element;
+        }       
+    }); 
+
+    
     let filter:Filter ={
-      classPayRoll:clase,
+      classPayRoll: this.claeSelected,
       enterprise:1,
       active:true
     }
-    this.periodoClaseService.listByClassPayRoll(filter).subscribe((data)=>{
+    
+
+     this.periodoClaseService.listByClassPayRoll(filter).subscribe((data)=>{
       this.periods = data;
     },(error)=>{
       console.log(error);
@@ -66,16 +78,28 @@ export class GenerateNominaComponent implements OnInit {
 
   generate(){
 
+
+    this.periods.forEach(element => {
+        if(this.nominaForm.get('period').value==element.id){
+          this.periodSelected = element;
+        }
+    });
+
+    
+
     let filter :Filter={
       enterprise : 1,
-      classPayRoll: this.nominaForm.get('classPayRoll').value,
-      period: this.nominaForm.get('period').value,
+      classPayRoll: this.claeSelected,
+      period: this.periodSelected,
       active:true
     }
+
+    console.log('llamando',filter);
     this.generateNoinaService.generate(filter).subscribe(
       (data)=>{
-
-         console.log(data);
+        console.log('llamando 2');
+        console.log(data);
+        return;
       },
       (error)=>{
         console.log(error);

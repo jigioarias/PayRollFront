@@ -59,20 +59,37 @@
 
 
                     </div>
-                    <div class="mat-cell">
-                        <mat-label>Estado:&nbsp;</mat-label>
-                        <mat-radio-group aria-label="Estado" formControlName="active">
-                          <ng-container *ngFor="let state of estados">
-                            <mat-radio-button value="{{ state.code }}">&nbsp;{{ state.description }}&nbsp;</mat-radio-button>
-                          </ng-container>
-                        </mat-radio-group>   
 
+                    <div class="mat-cell">
+
+                        <mat-form-field>
+                            <input matInput [matDatepicker]="initDate" placeholder="Fecha Inicial" formControlName="initDate" />
+                            <mat-datepicker-toggle matSuffix [for]="initDate"></mat-datepicker-toggle>
+                            <mat-datepicker #initDate></mat-datepicker>
+                          </mat-form-field>
                     </div>
+                    
+                    <div class="mat-cell">
+
+                        <mat-form-field>
+                            <input matInput [matDatepicker]="endDate" placeholder="Fecha Final" formControlName="endDate" />
+                            <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
+                            <mat-datepicker #endDate></mat-datepicker>
+                          </mat-form-field>
+                    </div>
+
+
                   
                 </div>
         
-          
+                <div class="mat-header-row">
 
+
+                    <div class="mat-cell">
+                        <mat-slide-toggle formControlName="active">Activo</mat-slide-toggle>
+                    </div>
+ 
+                </div>
      
             </div>
             

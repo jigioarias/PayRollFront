@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ConceptoNomina } from 'src/app/inventory/shared/master';
+import { ConceptoNomina, Filter } from 'src/app/inventory/shared/master';
 import { Observable, of, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ResponseList,Response } from './response';
@@ -31,9 +31,9 @@ export class ConceptoNominaService {
     );
   }
 
-  list(): Observable<ConceptoNomina[]> {
+  list(filter:Filter): Observable<ConceptoNomina[]> {
     const url = environment.apiUrl;
-    return this.http.get<ResponseList<ConceptoNomina>>(`${url}conceptPayRolls`).pipe(
+    return this.http.post<ResponseList<ConceptoNomina>>(`${url}listConceptPayRolls`,filter).pipe(
       switchMap((data) => of(data.content)),
       catchError((error) => {
         if (error.status == 400) {
