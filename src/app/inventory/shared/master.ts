@@ -125,3 +125,27 @@ export interface Area {
     clase?:number;
 
   }
+
+
+  export interface Nomina{
+    id:Number;
+    enterprise?:number;
+    clase:number;
+    employeeId :number;
+    document :string;
+    name :string;
+    address:string;
+    email : string;
+    phone : string;
+    period : string;
+    concept :number;
+    conceptName : string;
+    user ?: string;
+    valor : number;
+    percentaje :number;
+    conceptType : string;
+    type : string;
+    InitDayPay :string;
+    endDayPay :string;
+
+  }

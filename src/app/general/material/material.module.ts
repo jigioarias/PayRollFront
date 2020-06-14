@@ -17,6 +17,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatCheckboxModule  } from '@angular/material/checkbox';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 
 
@@ -45,7 +46,9 @@ import { MatCheckboxModule  } from '@angular/material/checkbox';
     MatSlideToggleModule,
     MatStepperModule,
     MatCheckboxModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatPaginatorModule
+
 
   ],
   exports: [
@@ -69,7 +72,9 @@ import { MatCheckboxModule  } from '@angular/material/checkbox';
     MatSlideToggleModule,
     MatStepperModule,
     MatCheckboxModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatPaginatorModule
+
   ],
 })
 export class MaterialModule { }

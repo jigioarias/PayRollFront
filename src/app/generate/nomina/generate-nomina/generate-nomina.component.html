@@ -50,4 +50,41 @@
         </div>
     </form>
 
+
 </div>
+
+
+
+
+
+<div *ngIf="listaNomina.length > 0" class="tabla">
+    <h6>Lista de Empleados</h6>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    
+    
+    <ng-container matColumnDef="document">
+            <th mat-header-cell *matHeaderCellDef>Documento</th>
+            <td mat-cell *matCellDef="let element">{{ element.document }}</td>
+    </ng-container>
+        
+    <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Nombre</th>
+        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+    </ng-container>
+    
+    <ng-container matColumnDef="concept">
+        <th mat-header-cell *matHeaderCellDef>Concepto</th>
+        <td mat-cell *matCellDef="let element">{{ element.conceptName }}</td>
+    </ng-container>
+    <ng-container matColumnDef="value">
+        <th mat-header-cell *matHeaderCellDef>Valor</th>
+        <td mat-cell *matCellDef="let element">{{ element.valor }}</td>
+    </ng-container>
+    
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons></mat-paginator>
+  </div>
+  

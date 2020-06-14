@@ -1,11 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { GenerateNominaService } from '../shared/generate-nomina.service';
 import { MessagesService } from 'src/app/general/shared/messages.service';
-import { Filter, ClaseNomina, PeriodoClase } from 'src/app/inventory/shared/master';
+import { Filter, ClaseNomina, PeriodoClase, Nomina } from 'src/app/inventory/shared/master';
 import { PeriodoclaseService } from 'src/app/general/shared/periodoclase.service';
 import { ClaseNominaService } from 'src/app/general/shared/clase-nomina.service';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+
+
+const ELEMENT_DATA: Nomina[] = [];
+
 
 @Component({
   selector: 'app-generate-nomina',
@@ -15,11 +21,21 @@ import { ClaseNominaService } from 'src/app/general/shared/clase-nomina.service'
 export class GenerateNominaComponent implements OnInit {
 
  
+
+  displayedColumns: string[] = [
+    'name',
+    'document','concept','value'  ];
+
+ 
+
+  dataSource = new MatTableDataSource<Nomina>(ELEMENT_DATA);
+
   nominaForm: FormGroup;
   clases :ClaseNomina[];
   periods:PeriodoClase[];
   claeSelected :ClaseNomina;
   periodSelected : PeriodoClase;
+  listaNomina : Nomina[];
  
   constructor(
     private router: Router,
@@ -30,10 +46,12 @@ export class GenerateNominaComponent implements OnInit {
     private messagesService:MessagesService
   ) { }
 
+
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   ngOnInit(): void {
  
 
-
+    this.listaNomina = [];
     this.nominaForm = this.formBuilder.group({
       clase: [null, Validators.required],
       period: [null, Validators.required]
@@ -78,8 +96,7 @@ export class GenerateNominaComponent implements OnInit {
 
   generate(){
 
-
-    this.periods.forEach(element => {
+   this.periods.forEach(element => {
         if(this.nominaForm.get('period').value==element.id){
           this.periodSelected = element;
         }
@@ -93,15 +110,15 @@ export class GenerateNominaComponent implements OnInit {
       period: this.periodSelected,
       active:true
     }
-
-    console.log('llamando',filter);
+    
     this.generateNoinaService.generate(filter).subscribe(
       (data)=>{
-        console.log('llamando 2');
-        console.log(data);
-        return;
+        
+        this.listaNomina = data;
+        this.dataSource = new MatTableDataSource<Nomina>(this.listaNomina);
       },
       (error)=>{
+        this.listaNomina = null;
         console.log(error);
 
       }
@@ -109,5 +126,7 @@ export class GenerateNominaComponent implements OnInit {
 
   }
 
+
+  
 
 }
