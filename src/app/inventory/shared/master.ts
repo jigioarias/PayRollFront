@@ -127,6 +127,26 @@ export interface Area {
   }
 
 
+  export interface DetalleNomina{
+    id:Number;
+    enterprise?:number;
+    payrollId:number;
+    employeeId :number;
+    period : string;
+    concept :number;
+    conceptName : string;
+    valor : number;
+    percentaje :number;
+    conceptType : string;
+    type : string;
+    user ?: string;
+
+  }
+
+
+   
+  
+
   export interface Nomina{
     id:Number;
     enterprise?:number;
@@ -138,14 +158,20 @@ export interface Area {
     email : string;
     phone : string;
     period : string;
-    concept :number;
-    conceptName : string;
-    user ?: string;
     valor : number;
-    percentaje :number;
-    conceptType : string;
+    monthSalary :number;
+    salary : string;
     type : string;
     InitDayPay :string;
     endDayPay :string;
-
+    days:number;
+    user ?: string;
+   
   }
+
+
+   export interface EmployeePayRoll{
+    payRoll:Nomina;
+    payRollDetail:DetalleNomina[];
+   }
+ 

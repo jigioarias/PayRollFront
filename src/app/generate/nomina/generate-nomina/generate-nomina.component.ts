@@ -1,16 +1,19 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ɵDEFAULT_LOCALE_ID } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { GenerateNominaService } from '../shared/generate-nomina.service';
 import { MessagesService } from 'src/app/general/shared/messages.service';
-import { Filter, ClaseNomina, PeriodoClase, Nomina } from 'src/app/inventory/shared/master';
+import { Filter, ClaseNomina, PeriodoClase, Nomina, EmployeePayRoll, DetalleNomina } from 'src/app/inventory/shared/master';
 import { PeriodoclaseService } from 'src/app/general/shared/periodoclase.service';
 import { ClaseNominaService } from 'src/app/general/shared/clase-nomina.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
+import { Messages } from 'src/app/general/shared/messages';
+import { LABEL } from 'src/app/general/shared/label';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 
-const ELEMENT_DATA: Nomina[] = [];
+const ELEMENT_DATA: EmployeePayRoll[] = [];
 
 
 @Component({
@@ -22,20 +25,17 @@ export class GenerateNominaComponent implements OnInit {
 
  
 
-  displayedColumns: string[] = [
-    'name',
-    'document','concept','value'  ];
-
- 
-
-  dataSource = new MatTableDataSource<Nomina>(ELEMENT_DATA);
+  displayedColumns: string[] = ['document','name','value','monthSalary','salary','days','period','initDatePeriod','endDatePeriod','viewDetail' ];
+  columnsToDisplay: string[] =['name', 'weight', 'symbol', 'position'];
+  dataSource = new MatTableDataSource<EmployeePayRoll>(ELEMENT_DATA);
+  expandedElement: EmployeePayRoll | null;
 
   nominaForm: FormGroup;
   clases :ClaseNomina[];
   periods:PeriodoClase[];
   claeSelected :ClaseNomina;
   periodSelected : PeriodoClase;
-  listaNomina : Nomina[];
+  listaNomina : EmployeePayRoll[];
  
   constructor(
     private router: Router,
@@ -113,9 +113,9 @@ export class GenerateNominaComponent implements OnInit {
     
     this.generateNoinaService.generate(filter).subscribe(
       (data)=>{
-        
+       console.log(data); 
         this.listaNomina = data;
-        this.dataSource = new MatTableDataSource<Nomina>(this.listaNomina);
+        this.dataSource = new MatTableDataSource<EmployeePayRoll>(this.listaNomina);
       },
       (error)=>{
         this.listaNomina = null;
@@ -127,6 +127,26 @@ export class GenerateNominaComponent implements OnInit {
   }
 
 
-  
+  getDetail(listaDetalle:DetalleNomina[])
+  {
+    let tablaDeducciones = '<table><tr><td colspan="2"><b>Lista Deducciones</b></td></tr>';
+    let tablaDevengo = '<table><tr><td colspan="2"><b>Lista Devengo</b></td></tr>';
+
+    listaDetalle.forEach(detail => {
+      
+       if(detail.conceptType=='R'){
+        tablaDeducciones = tablaDeducciones + '<tr><td>' + detail.conceptName + '</td><td>'+detail.valor+'</td></tr>'
+      }else{
+        tablaDevengo = tablaDevengo + '<tr><td>' + detail.conceptName + '</td><td>'+detail.valor+'</td></tr>'
+      }
+
+    });
+
+    tablaDeducciones = tablaDeducciones+ '</table>';
+    tablaDevengo  = tablaDevengo + '</table><br>';-
+    this.messagesService.showInfoHtml('',tablaDevengo + tablaDeducciones);
+
+
+  }
 
 }

@@ -18,6 +18,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatCheckboxModule  } from '@angular/material/checkbox';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 
@@ -47,7 +48,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatStepperModule,
     MatCheckboxModule,
     MatNativeDateModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatDialogModule
 
 
   ],
@@ -73,7 +75,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatStepperModule,
     MatCheckboxModule,
     MatNativeDateModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatDialogModule
 
   ],
 })

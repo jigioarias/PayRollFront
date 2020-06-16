@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { from, Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
+import { EmployeePayRoll } from 'src/app/inventory/shared/master';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,21 @@ export class MessagesService {
 
   showSuccessMessage(message: string) {
     this.showMessage(message, 'success');
+  }
+
+
+  showInfoHtml(title:string,info:string){
+
+  
+    Swal.fire({
+      title: title,
+      html: info
+     
+    });
+
+ 
+
+
   }
 
   showErrorMessage(message: string) {
