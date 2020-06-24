@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NominaComponent } from './nomina.component';
 import { GenerateNominaComponent } from './generate-nomina/generate-nomina.component';
+import { VacationsComponent } from './novedades/vacations/vacations.component';
 
 const routes: Routes = [
   {
@@ -13,6 +14,10 @@ const routes: Routes = [
         component: GenerateNominaComponent
       },
       
+      {
+        path: 'vacations',
+        component: VacationsComponent
+      },
      { path: '', redirectTo: 'list', pathMatch: 'full' }
     ]
   }

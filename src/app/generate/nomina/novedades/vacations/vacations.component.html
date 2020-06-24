@@ -1,0 +1,83 @@
+<div>
+
+    <form [formGroup]="vacationsForm">
+        <div>
+
+
+            <div class="mat-header-row">
+                <div class="mat-header-cell">Empleado</div>
+            </div>
+
+            <div class="mat-table">
+
+
+                <div class="mat-header-row">
+                    
+                  
+
+                 
+                    <div class="mat-cell">
+                        <mat-form-field>
+                            <input formControlName="document"  value="0" matInput placeholder="Document" />
+                        </mat-form-field>
+
+                    </div>
+
+                     
+                    <div class="mat-cell">
+                        <mat-form-field>
+                            <input formControlName="name"  value="0" matInput placeholder="name" />
+                        </mat-form-field>
+
+                    </div>
+                </div>
+
+
+                <!--div class="mat-header-row">
+
+
+                    <div class="mat-cell">
+                   
+                        <mat-form-field>
+                            <mat-select formControlName="clase" matInput placeholder="Clase de Nomina" required>
+                                <ng-container *ngFor="let clase of clases">
+                                    <mat-option [value]="clase.id">{{ clase.description }}</mat-option>
+                                </ng-container>
+                            </mat-select>
+                        </mat-form-field>
+
+
+                    </div>
+
+                    <div class="mat-cell">
+
+                        <mat-form-field>
+                            <input matInput [matDatepicker]="initDate" placeholder="Fecha Inicial Vacaciones" formControlName="initDate" />
+                            <mat-datepicker-toggle matSuffix [for]="initDate"></mat-datepicker-toggle>
+                            <mat-datepicker #initDate></mat-datepicker>
+                          </mat-form-field>
+                    </div>
+                    
+                    <div class="mat-cell">
+
+                        <mat-form-field>
+                            <input matInput [matDatepicker]="endDate" placeholder="Fecha Final Vacaciones" formControlName="endDate" />
+                            <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
+                            <mat-datepicker #endDate></mat-datepicker>
+                          </mat-form-field>
+                    </div>
+
+
+                  
+                </div-->
+        
+            </div>
+            
+            <div class="mat-button-center">
+                <button   color="primary" (click)="findEmployee()">Ingresar</button>
+              </div>
+
+        </div>
+    </form>
+
+</div>

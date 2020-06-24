@@ -1,6 +1,11 @@
+import { ClaseNominaComponent } from '../clase-nomina/clase-nomina.component';
+import { ClaseNomina, PeriodoClase } from './master';
+
 export interface Employee{
   person: PersonData;
   employee :EmployeeData;
+  classPayRoll?:ClaseNomina;
+  period ?:PeriodoClase;
   
 }
 

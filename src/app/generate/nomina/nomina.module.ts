@@ -6,11 +6,12 @@ import { GenerateNominaComponent } from './generate-nomina/generate-nomina.compo
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from 'src/app/general/material/material.module';
 import { NominaRoutingModule } from './nomina-routing.module';
+import { VacationsComponent } from './novedades/vacations/vacations.component';
 
 
 
 @NgModule({
-  declarations: [NovedadesComponent, NominaComponent,GenerateNominaComponent],
+  declarations: [NovedadesComponent, NominaComponent,GenerateNominaComponent, VacationsComponent],
   imports: [
     
     CommonModule, ReactiveFormsModule, MaterialModule, NominaRoutingModule
