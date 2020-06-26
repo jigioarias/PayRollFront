@@ -73,6 +73,7 @@ export interface Area {
     bankbranch:string;
     account:string;
     user:string;
+    workweek:number;
   }
 
   export interface PeriodoClase {
@@ -175,3 +176,12 @@ export interface Area {
     payRollDetail:DetalleNomina[];
    }
  
+
+   
+   export interface SemanaLaboral{
+    id:Number;
+    enterprise?:number;
+    description :string;
+    workcalendar:number;
+    user ?: string;
+   }

@@ -127,8 +127,23 @@
                         </mat-form-field>
 
                     </div>
+
+                    <div class="mat-header-cell">
+                 
+                        <mat-form-field>
+                            <mat-select formControlName="workweek" matInput placeholder="Semana Laboral" required>
+                                <ng-container *ngFor="let semanaLaboral of semanasLaborales">
+                                    <mat-option [value]="semanaLaboral.id">{{ semanaLaboral.description}}</mat-option>
+                                </ng-container>
+                            </mat-select>
+                        </mat-form-field>
+
+                    </div>
                     
                 </div>
+
+
+                
 
             </div>
             
