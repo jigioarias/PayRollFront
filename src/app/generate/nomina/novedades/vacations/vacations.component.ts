@@ -29,7 +29,9 @@ export class VacationsComponent implements OnInit {
     
       this.vacationsForm = this.formBuilder.group({
         document: [null, Validators.required],
-        name: [null, Validators.required]
+        name: [null, Validators.required],
+        classpayroll: [null, Validators.required],
+        initDate: [null, Validators.required]
   
       });
   
@@ -49,6 +51,8 @@ export class VacationsComponent implements OnInit {
            console.log(data);
             this.empleado =data;
             this.vacationsForm.get('name').setValue(this.empleado.person.firstName);
+            this.vacationsForm.get('classpayroll').setValue(this.empleado.classPayRoll.description);
+            this.vacationsForm.get('initDate').setValue(this.empleado.period[0].initDate);
 
         },(error)=>{
           console.log(error);

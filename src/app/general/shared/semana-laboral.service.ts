@@ -14,7 +14,7 @@ export class SemanaLaboralService {
 
   constructor(private http:HttpClient) { }
 
-  list(): Observable<SemanaLaboral[]> {
+    list(): Observable<SemanaLaboral[]> {
     const url = environment.apiUrl;
     return this.http.get<ResponseList<SemanaLaboral>>(`${url}workweek`).pipe(
       switchMap((data) => of(data.content)),

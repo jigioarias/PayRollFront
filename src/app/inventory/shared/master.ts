@@ -185,3 +185,20 @@ export interface Area {
     workcalendar:number;
     user ?: string;
    }
+
+   export interface CalendarioLaboral{
+    id:Number;
+    enterprise?:number;
+    description :string;
+    user ?: string;
+    dates:FechaCalendarioLaboral; 
+   }
+
+   export interface FechaCalendarioLaboral{
+    id:Number;
+    enterprise?:number;
+    date :string;
+    year:number;
+    user ?: string;
+    calendar:number
+   }
