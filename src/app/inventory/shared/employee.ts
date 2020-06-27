@@ -8,6 +8,7 @@ export interface Employee{
   period ?:PeriodoClase;
   workweek?:SemanaLaboral;
   calendarwork?:CalendarioLaboral;
+  vacationdays?:number;
   
   
 }
