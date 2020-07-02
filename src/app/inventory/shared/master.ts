@@ -124,6 +124,8 @@ export interface Area {
     period?:PeriodoClase;
     classPayRoll?:ClaseNomina;
     clase?:number;
+    fechaInicioLaboral?:FechaCalendarioLaboral,
+    fechaFinLaboral?:FechaCalendarioLaboral
 
   }
 
@@ -158,7 +160,7 @@ export interface Area {
     address:string;
     email : string;
     phone : string;
-    period : string;
+    perisod : string;
     valor : number;
     monthSalary :number;
     salary : string;
@@ -179,7 +181,7 @@ export interface Area {
 
    
    export interface SemanaLaboral{
-    id:Number;
+    id:number;
     enterprise?:number;
     description :string;
     workcalendar:number;
@@ -187,7 +189,7 @@ export interface Area {
    }
 
    export interface CalendarioLaboral{
-    id:Number;
+    id:number;
     enterprise?:number;
     description :string;
     user ?: string;
@@ -195,10 +197,22 @@ export interface Area {
    }
 
    export interface FechaCalendarioLaboral{
-    id:Number;
+    id:number;
     enterprise?:number;
     date :string;
     year:number;
     user ?: string;
     calendar:number
+   }
+
+   export interface SolicitudVacacion{
+    id:number;
+    enterprise?:number;
+    document :string;
+    enjoyInitDate:string;
+    enjoyEndDate:string,
+    moneyDays:number;
+    state:string
+    user ?: string;
+    
    }

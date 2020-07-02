@@ -1,5 +1,5 @@
 import { ClaseNominaComponent } from '../clase-nomina/clase-nomina.component';
-import { ClaseNomina, PeriodoClase, SemanaLaboral, CalendarioLaboral } from './master';
+import { ClaseNomina, PeriodoClase, SemanaLaboral, CalendarioLaboral, SolicitudVacacion } from './master';
 
 export interface Employee{
   person: PersonData;
@@ -9,6 +9,7 @@ export interface Employee{
   workweek?:SemanaLaboral;
   calendarwork?:CalendarioLaboral;
   vacationdays?:number;
+  vacationRequest?:SolicitudVacacion
   
   
 }

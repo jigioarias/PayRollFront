@@ -69,6 +69,10 @@ export class Messages {
 
     room_list_no_content: 'No se han definido habitaciones.',
     room_save_success: 'La habitación fue guardada exitosamente.',
+    
+    vacation_days_dates :'La fecha de fin es menor a la fecha de inicio de las vacaciones a disfrutar',
+    vacation_days_majors :'Los dias de vacaciones solicitados %0 son mayores a los disponibles %1',
+
 
     no_message: 'No existe mensaje con código %0'
   };

@@ -25,6 +25,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 
 
 
+
 @NgModule({
   imports: [
     MatButtonModule,
@@ -40,6 +41,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatInputModule,
     MatSelectModule,
     MatDatepickerModule,
+    MatNativeDateModule,
     MatButtonModule,
     MatTableModule,
     MatCardModule,
@@ -67,6 +69,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatInputModule,
     MatSelectModule,
     MatDatepickerModule,
+    MatNativeDateModule,
     MatButtonModule,
     MatTableModule,
     MatCardModule,
