@@ -9,8 +9,8 @@ export interface Employee{
   workweek?:SemanaLaboral;
   calendarwork?:CalendarioLaboral;
   vacationdays?:number;
-  vacationRequest?:SolicitudVacacion
-  
+  vacationRequest?:SolicitudVacacion;
+  requestDays?:number;
   
 }
 

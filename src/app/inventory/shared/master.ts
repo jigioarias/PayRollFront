@@ -1,3 +1,5 @@
+import { Employee } from './employee';
+
 export interface Area {
    
     id:string;
@@ -212,7 +214,24 @@ export interface Area {
     enjoyInitDate:string;
     enjoyEndDate:string,
     moneyDays:number;
-    state:string
+    state:string;
+    remuneration:boolean;
     user ?: string;
+    
+   }
+
+
+   export interface Vacacion{
+    id:number;
+    enterprise?:number;
+    document :string;
+    enjoyInitDate:string;
+    enjoyEndDate:string,
+    moneyDays:number;
+    remuneration:boolean;
+    user ?: string;
+    clase:number;
+    employee:number;
+    period:PeriodoClase;
     
    }

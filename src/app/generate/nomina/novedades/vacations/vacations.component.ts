@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { PeriodoClase, ClaseNomina, FechaCalendarioLaboral, Filter } from 'src/app/inventory/shared/master';
+import { PeriodoClase, ClaseNomina, FechaCalendarioLaboral, Filter, Vacacion } from 'src/app/inventory/shared/master';
 import { Router } from '@angular/router';
 import { ClaseNominaService } from 'src/app/general/shared/clase-nomina.service';
 import { MessagesService } from 'src/app/general/shared/messages.service';
@@ -10,6 +10,7 @@ import { Messages } from 'src/app/general/shared/messages';
 import { LABEL } from 'src/app/general/shared/label';
 import { WorkCalendarService } from 'src/app/general/shared/work-calendar.service';
 import { error } from 'protractor';
+import { GenerateNominaService } from '../../shared/generate-nomina.service';
 
 @Component({
   selector: 'app-vacations',
@@ -27,6 +28,7 @@ export class VacationsComponent implements OnInit {
       private formBuilder: FormBuilder,
       private employeeService :EmployeeService,
       private calensarioService : WorkCalendarService,
+      private nominaService :GenerateNominaService,
       private messagesService:MessagesService
     ) { }
     
@@ -69,12 +71,7 @@ export class VacationsComponent implements OnInit {
             this.vacationsForm.get('enjoyInitDate').setValue(this.empleado.vacationRequest.enjoyInitDate);
             this.vacationsForm.get('enjoyEndDate').setValue(this.empleado.vacationRequest.enjoyEndDate);    
             this.vacationsForm.get('payDays').setValue(this.empleado.vacationRequest.moneyDays);    
-
-            
-
-            this.vacationDays = this.empleado.vacationdays;
-
-
+            this.vacationsForm.get('enjoyDays').setValue(this.empleado.requestDays);    
 
         },(error)=>{
           console.log(error);
@@ -87,115 +84,44 @@ export class VacationsComponent implements OnInit {
 
      vacationRequest(){
 
-         const fechaInicial  =  new Date(this.vacationsForm.get('enjoyInitDate').value);
-         const fechaFinal =  new Date(this.vacationsForm.get('enjoyEndDate').value);
-         const restaDias = (fechaFinal.getTime()- fechaInicial.getTime())/(1000*60*60*24 );
         
-        if(restaDias <0){
-          this.messagesService.showErrorMessage(Messages.get('vacation_days_dates'));
-          return;
+        
+      //    this.messagesService.showErrorMessage(Messages.get('vacation_days_dates'));
+        
+      let vacaciones : Vacacion={
+        id:0,
+        employee:this.empleado.employee.id,
+        document:this.empleado.person.document,
+        clase:this.empleado.classPayRoll.id,
+        enjoyInitDate:this.vacationsForm.get('enjoyInitDate').value,
+        enjoyEndDate:this.vacationsForm.get('enjoyEndDate').value,
+        moneyDays: this.vacationsForm.get('payDays').value,
+        //remuneration:this.vacationsForm.get('remuneration').value,
+        remuneration:true,
+        enterprise: 1,
+        user:'usuario',
+        period :this.empleado.period[0]
+        
+      }
+
+      console.log(vacaciones);
+      this.nominaService.insertVacation(vacaciones).subscribe(
+        (data)=>{
+            console.log(data);
+            if(data){
+
+              this.messagesService.showErrorMessage(Messages.get('vacation_days_dates'));
+            }
+        },
+        (error)=>{
+            console.log(error);
         }
-         if( restaDias > this.vacationDays){
-          this.messagesService.showErrorMessage(Messages.get('vacation_days_majors',restaDias+'',this.vacationDays+''));
-          return;
-         }
 
-         const restaVaciones = this.vacationDays - restaDias;
-         console.log(restaVaciones);
-
+      );
 
      }
     
   
-    findDate() {
-        
-
-      const fechaInicial  =  new Date(this.vacationsForm.get('enjoyInitDate').value);
-      const fechaFinal =  new Date(this.vacationsForm.get('enjoyEndDate').value);
-      let restaDias = (fechaFinal.getTime()- fechaInicial.getTime())/(1000*60*60*24 );
-     
-     if(restaDias <0){
-       this.messagesService.showErrorMessage(Messages.get('vacation_days_dates'));
-       return;
-     }
     
-   /* if( restaDias > this.vacationDays){
-       this.messagesService.showErrorMessage(Messages.get('vacation_days_majors',restaDias+'',this.vacationDays+''));
-       return;
-    }*/
-
-
-     let restaVaciones = this.vacationDays - restaDias;
-     this.vacationsForm.get('enjoyDays').setValue(restaDias);
-     console.log(restaVaciones);
-
-     
-      let fechaInicialLaboral : FechaCalendarioLaboral = {
-
-            calendar : this.empleado.calendarwork.id,
-            date : this.vacationsForm.get('enjoyInitDate').value,
-            id: null,
-            year:null,
-            enterprise:1,
-          user :null
-        };
-
-       
-
-        let fechaFinalLaboral : FechaCalendarioLaboral = {
-
-          calendar : this.empleado.calendarwork.id,
-          date :  this.vacationsForm.get('enjoyEndDate').value,
-          id: null,
-          year:null,
-          enterprise:1,
-        user :null
-      };
-
-      let filter : Filter ={
-
-        fechaInicioLaboral:fechaInicialLaboral,
-        fechaFinLaboral :fechaFinalLaboral
-      }
-        
-      let listaDias = null; 
-
-        this.calensarioService.listDate(filter).subscribe(
-          (data) =>{
-              listaDias  = data;
-              console.log(listaDias);
-             if(listaDias!= null && listaDias.length >0)
-             {
-              restaDias = restaDias - listaDias.length;
-              this.vacationsForm.get('enjoyDays').setValue(restaDias);
-              
-             }
-
-
-          },(error)=>{
-            console.log('opss',error);
-          }
-
-        );
-      
-
-      
-    }
-
-    
-    getDateWithDays(fecha, dias){
-
-
-      let TuFecha = new Date(fecha); 
-      let diasSuma = parseInt(dias);
-      TuFecha.setDate(TuFecha.getDate() + diasSuma);
-      let   year = TuFecha.getFullYear();
-      let month = (TuFecha.getMonth()+1);
-      let dt = TuFecha.getDate();
-      
-          
-      //console.log(month+'-' + dt + '-'+year);
-      return  month+'/' + dt + '/'+year;
-    }
 
 }
