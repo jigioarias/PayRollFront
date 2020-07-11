@@ -7,12 +7,13 @@ import { BankType, BANK_TYPES } from 'src/app/general/shared/bankType';
 import { ProvisionType, PROVISION_TYPES } from 'src/app/general/shared/provisionType';
 import { PayRollType, PAYROLLTYPES } from 'src/app/general/shared/payRollType';
 import { ClaseNominaService } from 'src/app/general/shared/clase-nomina.service';
-import { ClaseNomina, SemanaLaboral } from '../../shared/master';
+import { ClaseNomina, SemanaLaboral, PeriodoClase } from '../../shared/master';
 import { ClaseNominaComponent } from '../../clase-nomina/clase-nomina.component';
 import { Messages } from 'src/app/general/shared/messages';
 import { LABEL } from 'src/app/general/shared/label';
 import { ClassPayRollType, CLASSPAYROLL_TYPES } from 'src/app/general/shared/classPayRollType';
 import { SemanaLaboralService } from 'src/app/general/shared/semana-laboral.service';
+import { PERIODOSCLASES, PeriodClase } from 'src/app/general/shared/periodoClase';
 
 @Component({
   selector: 'app-create-clase-nomina',
@@ -29,6 +30,7 @@ payRollTypes  : PayRollType[];
 claseNomina : ClaseNomina;
 clases :ClassPayRollType[];
 semanasLaborales : SemanaLaboral[];
+periodClases : PeriodClase[];
   
  constructor(
     private router: Router,
@@ -46,6 +48,7 @@ semanasLaborales : SemanaLaboral[];
     this.provisionTypes =PROVISION_TYPES;
     this.payRollTypes = PAYROLLTYPES;
     this.clases =CLASSPAYROLL_TYPES;
+    this.periodClases = PERIODOSCLASES;
     this.claseForm = this.formBuilder.group({
       description: [null, Validators.required],
       clase: [null, Validators.required],
@@ -61,6 +64,8 @@ semanasLaborales : SemanaLaboral[];
       bankbranch:[null, Validators.required], 
       account: [null, Validators.required],
       workweek:[null, Validators.required],
+      periodType:[null, Validators.required],
+
     });
 
     this.semanaLaboralService.list().subscribe(
@@ -100,7 +105,8 @@ semanasLaborales : SemanaLaboral[];
     bankbranch:this.claseForm.get('bankbranch').value,
     account:this.claseForm.get('account').value,
     user:'usuario',
-    workweek:this.claseForm.get('workweek').value
+    workweek:this.claseForm.get('workweek').value,
+    periodType :this.claseForm.get('periodType').value
     };
   
     this.claseNomina =claseNominac

@@ -60,6 +60,8 @@ export class Messages {
     dataFormError: ' Falta diligenciar uno de los datos para %0 ',
 
     confirm_logout: 'Desea salir del sistema?',
+
+    sin_solicitud_vacaciones: 'El empleado no tiene solicitudes de vacación pendientes',
     confirm_delete: 'Desea eleiminar el(la) %0?',
 
     priceDetail_info_incomplete:

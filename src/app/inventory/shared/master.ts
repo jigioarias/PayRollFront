@@ -76,6 +76,7 @@ export interface Area {
     account:string;
     user:string;
     workweek:number;
+    periodType :string;
   }
 
   export interface PeriodoClase {
@@ -228,10 +229,13 @@ export interface Area {
     enjoyInitDate:string;
     enjoyEndDate:string,
     moneyDays:number;
+    vacationRequest:SolicitudVacacion,
+    enjoyDays:number;
     remuneration:boolean;
     user ?: string;
-    clase:number;
+    classPayRoll:ClaseNomina;
     employee:number;
     period:PeriodoClase;
-    
+    dayHours:number;
+    salary:number;
    }
