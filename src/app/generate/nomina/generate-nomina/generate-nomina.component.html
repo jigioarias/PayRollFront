@@ -27,7 +27,7 @@
                     </div>
                     <div class="mat-cell">
                         <mat-form-field>
-                            <mat-select formControlName="period" matInput placeholder="Periodo" required>
+                            <mat-select formControlName="period" matInput placeholder="Periodo" required (selectionChange)="selectData($event.value)" >
                                 <ng-container *ngFor="let period of periods">
                                     <mat-option [value]="period.id">{{ period.period}}</mat-option>
                                 </ng-container>
@@ -35,7 +35,18 @@
                         </mat-form-field>
                     </div>
             
-                  
+                    <div class="mat-cell">
+                        <mat-form-field>
+                            <input formControlName="year"  value="0" matInput placeholder="Año" readonly="true" />
+                             
+                        </mat-form-field>
+                    </div>
+                    <div class="mat-cell">
+                        <mat-form-field>
+                            <input formControlName="month"  value="0" matInput placeholder="Mes" readonly="true" />
+                             
+                        </mat-form-field>
+                    </div> 
                 </div>
       
           

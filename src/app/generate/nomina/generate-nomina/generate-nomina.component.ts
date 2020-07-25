@@ -54,7 +54,9 @@ export class GenerateNominaComponent implements OnInit {
     this.listaNomina = [];
     this.nominaForm = this.formBuilder.group({
       clase: [null, Validators.required],
-      period: [null, Validators.required]
+      period: [null, Validators.required],
+      year: [null, Validators.required],
+      month:[null, Validators.required],
     })
     
     this.claseNominaService.list().subscribe(
@@ -93,6 +95,22 @@ export class GenerateNominaComponent implements OnInit {
     );
 
   }
+
+
+  selectData(period){
+
+     console.log('periodo',period);
+    this.periods.forEach(element => {
+          if(period==element.id){
+            this.nominaForm.get('year').setValue(element.year);
+            this.nominaForm.get('month').setValue(element.month);
+
+          }       
+      }); 
+  
+    
+  
+    }
 
   generate(){
 
