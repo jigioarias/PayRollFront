@@ -1,0 +1,51 @@
+<div class="nomina-container">
+    
+    <div class="activar">Lista de Solicitudes de Vacaciones</div>
+   
+    
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+
+
+
+
+
+    <ng-container matColumnDef="document">
+      <th mat-header-cell *matHeaderCellDef>Documento</th>
+      <td mat-cell *matCellDef="let element">{{ element.document }}</td>
+    </ng-container>
+
+  
+  
+    <ng-container matColumnDef="initDate">
+      <th mat-header-cell *matHeaderCellDef>Inicio de Vacaciones</th>
+      <td mat-cell *matCellDef="let element">{{ element.enjoyInitDate }}</td>
+    </ng-container>
+  
+    <ng-container matColumnDef="endDate">
+      <th mat-header-cell *matHeaderCellDef>Fin de Vacaciones</th>
+      <td mat-cell *matCellDef="let element">{{ element.enjoyEndDate }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="moneyDays">
+        <th mat-header-cell *matHeaderCellDef>Días Dinero</th>
+        <td mat-cell *matCellDef="let element">{{ element.moneyDays }}</td>
+      </ng-container>
+      
+    <ng-container matColumnDef="edit">
+      <th mat-header-cell *matHeaderCellDef>Editar</th>
+      <td mat-cell *matCellDef="let element">
+        <mat-icon (click)="update(element.id)">edit</mat-icon>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <div class="mat-button-center">
+    <button  mat-stroked-button color="primary" (click)="save()">Aprobar Todos</button>
+  </div>
+
+  
+
+</div>

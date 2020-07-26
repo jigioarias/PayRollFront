@@ -31,7 +31,23 @@ export class SolicitudVacacionService {
     );
   }
 
+  list(solicitud: SolicitudVacacion): Observable<SolicitudVacacion[]> {
+    const url = environment.apiUrl;
+  
+    return this.http.post<ResponseList<SolicitudVacacion>>(`${url}vacationRequestList`, solicitud).pipe(
+      switchMap((data) => of(data.content)),
+      catchError((error) => {
+        if (error.status == 400) {
+          return throwError(error.error.message);
+        } else {
+          return throwError(messages.tecnicalError);
+        }
+      })
+    );
+  
+  }
 
 
 
 }
+

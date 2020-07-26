@@ -1,4 +1,5 @@
-import { Employee } from './employee';
+import { Employee, PersonData } from './employee';
+import { EmployeeComponent } from '../employees/employee/employee.component';
 
 export interface Area {
    
@@ -218,6 +219,13 @@ export interface Area {
     state:string;
     remuneration:boolean;
     user ?: string;
+    
+   }
+
+   export interface SolicitudVacacionData{
+    solicitud:SolicitudVacacion;
+    employee:Employee,
+    person:PersonData
     
    }
 

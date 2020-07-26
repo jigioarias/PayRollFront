@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { NominaComponent } from './nomina.component';
 import { GenerateNominaComponent } from './generate-nomina/generate-nomina.component';
 import { VacationsComponent } from './novedades/vacations/vacations.component';
+import { ListRequestVacationsComponent } from './novedades/vacations/list-request-vacations/list-request-vacations.component';
 
 const routes: Routes = [
   {
@@ -16,7 +17,8 @@ const routes: Routes = [
       
       {
         path: 'vacations',
-        component: VacationsComponent
+        component: ListRequestVacationsComponent
+       // component: VacationsComponent
       },
      { path: '', redirectTo: 'list', pathMatch: 'full' }
     ]
