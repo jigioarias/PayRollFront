@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { PeriodoClase, ClaseNomina, FechaCalendarioLaboral, Filter, Vacacion } from 'src/app/inventory/shared/master';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ClaseNominaService } from 'src/app/general/shared/clase-nomina.service';
 import { MessagesService } from 'src/app/general/shared/messages.service';
 import { EmployeeService } from 'src/app/inventory/shared/employee.service';
@@ -24,9 +24,11 @@ export class VacationsComponent implements OnInit {
   periodClase : PeriodoClase;
   empleado :Employee;
   vacationDays :number;
+  document: string;
     
    constructor(
       private router: Router,
+      private route: ActivatedRoute,
       private formBuilder: FormBuilder,
       private employeeService :EmployeeService,
       private calensarioService : WorkCalendarService,
@@ -37,7 +39,13 @@ export class VacationsComponent implements OnInit {
     
     ngOnInit(): void {
     
-    
+
+      
+    this.route.params.subscribe((params) => {
+      this.document = params['id'];
+    });
+      
+
       this.vacationsForm = this.formBuilder.group({
         document: [null, Validators.required],
         name: [null, Validators.required],
@@ -52,7 +60,8 @@ export class VacationsComponent implements OnInit {
         payDays: [0],
           });
   
-    
+      this.vacationsForm.get('document').setValue(this.document);
+      this.findEmployee();
     
     
     }
@@ -60,7 +69,7 @@ export class VacationsComponent implements OnInit {
   
   
     findEmployee(){
-      let document = this.vacationsForm.get('document').value;
+      let document = (this.vacationsForm.get('document').value==null)?this.document:this.vacationsForm.get('document').value;
       console.log(document);      
       this.employeeService.find(document).subscribe(
 
@@ -79,6 +88,14 @@ export class VacationsComponent implements OnInit {
             this.vacationsForm.get('enjoyDays').setValue(this.empleado.requestDays);    
           }else{
 
+            this.vacationsForm.get('name').setValue(null);
+            this.vacationsForm.get('classpayroll').setValue(null);
+            this.vacationsForm.get('initDate').setValue(null);
+            this.vacationsForm.get('vacationDays').setValue(null);
+            this.vacationsForm.get('enjoyInitDate').setValue(null);
+            this.vacationsForm.get('enjoyEndDate').setValue(null);    
+            this.vacationsForm.get('payDays').setValue(null);    
+            this.vacationsForm.get('enjoyDays').setValue(null);  
             this.messagesService.showErrorMessage(Messages.get('sin_solicitud_vacaciones'));
 
           }

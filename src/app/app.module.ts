@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { SecurityModule } from './security/security.module';
 import { GeneralModule } from './general/general.module';
@@ -17,6 +18,7 @@ import { RouterModule } from '@angular/router';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    NoopAnimationsModule,
      AppRoutingModule,  
      GeneralModule,
      SecurityModule,

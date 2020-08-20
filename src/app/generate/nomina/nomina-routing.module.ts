@@ -14,13 +14,16 @@ const routes: Routes = [
         path: 'generate',
         component: GenerateNominaComponent
       },
-      
       {
-        path: 'vacations',
+        path: 'listVacations',
         component: ListRequestVacationsComponent
        // component: VacationsComponent
       },
-     { path: '', redirectTo: 'list', pathMatch: 'full' }
+      {
+        path: 'requestVacations/:id',
+        component: VacationsComponent
+      },
+     { path: '', redirectTo: 'listVacations', pathMatch: 'full' }
     ]
   }
 

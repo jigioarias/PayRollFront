@@ -10,8 +10,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { Messages } from 'src/app/general/shared/messages';
 import { LABEL } from 'src/app/general/shared/label';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-
+import {animate, state, style, transition, trigger} from '@angular/animations';
 
 const ELEMENT_DATA: EmployeePayRoll[] = [];
 
@@ -19,15 +18,23 @@ const ELEMENT_DATA: EmployeePayRoll[] = [];
 @Component({
   selector: 'app-generate-nomina',
   templateUrl: './generate-nomina.component.html',
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({height: '0px', minHeight: '0', display: 'none'})),
+      state('expanded', style({height: '*'})),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
   styleUrls: ['./generate-nomina.component.scss']
 })
 export class GenerateNominaComponent implements OnInit {
 
  
 
-  displayedColumns: string[] = ['document','name','value','monthSalary','salary','days','period','initDatePeriod','endDatePeriod','viewDetail' ];
-  columnsToDisplay: string[] =['name', 'weight', 'symbol', 'position'];
-  dataSource = new MatTableDataSource<EmployeePayRoll>(ELEMENT_DATA);
+  displayedColumns: string[] = ['Documento','Nombre','Valor','Periodo','SalarioMensual','dias','Fecha Inicio','Fecha Fin','viewDetail' ];
+  columnsToDisplay: string[] =['Documento','Nombre','Valor','Periodo','SalarioMensual','dias','Fecha Inicio','Fecha Fin','viewDetail'];
+  //dataSource = new MatTableDataSource<EmployeePayRoll>(ELEMENT_DATA);
+  dataSource = ELEMENT_DATA
   expandedElement: EmployeePayRoll | null;
 
   nominaForm: FormGroup;
@@ -133,7 +140,12 @@ export class GenerateNominaComponent implements OnInit {
       (data)=>{
        console.log(data); 
         this.listaNomina = data;
-        this.dataSource = new MatTableDataSource<EmployeePayRoll>(this.listaNomina);
+        this.dataSource = this.listaNomina;
+        //this.dataSource = new MatTableDataSource<EmployeePayRoll>(this.listaNomina);
+       // this.dataSource.connect().next(this.listaNomina);
+        //this.dataSource.sort = this.sort;
+
+        
       },
       (error)=>{
         this.listaNomina = null;

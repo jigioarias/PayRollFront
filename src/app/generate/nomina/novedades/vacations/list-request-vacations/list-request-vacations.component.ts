@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { SolicitudVacacionService } from 'src/app/general/shared/solicitud-vacacion.service';
 import { MessagesService } from 'src/app/general/shared/messages.service';
-import { SolicitudVacacion } from 'src/app/inventory/shared/master';
+import { SolicitudVacacion, SolicitudVacacionData } from 'src/app/inventory/shared/master';
+import { Router } from '@angular/router';
 
 
-const ELEMENT_DATA: SolicitudVacacion[] = [];
+const ELEMENT_DATA: SolicitudVacacionData[] = [];
 
 
 
@@ -17,13 +18,14 @@ const ELEMENT_DATA: SolicitudVacacion[] = [];
 
 export class ListRequestVacationsComponent implements OnInit {
 
-  displayedColumns: string[] = ['document','initDate','endDate','moneyDays','edit'];
+  displayedColumns: string[] = ['document','name','initDate','endDate','moneyDays','edit'];
 
   //dataSource = ELEMENT_DATA;
   dataSource = ELEMENT_DATA;
 
 
   constructor(
+    private router: Router,
     private solicitudVacationService : SolicitudVacacionService,
     private messagesService:MessagesService
 
@@ -53,6 +55,7 @@ export class ListRequestVacationsComponent implements OnInit {
          this.dataSource = data;
       },
       (error)=>{
+
         console.log(error);
       }
 
@@ -61,6 +64,7 @@ export class ListRequestVacationsComponent implements OnInit {
   }
   update(id){
     console.log(id);
+    this.router.navigate([`/app/payroll/requestVacations/${id}`]);
   }
 
   save(){

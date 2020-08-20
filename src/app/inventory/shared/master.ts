@@ -224,8 +224,7 @@ export interface Area {
 
    export interface SolicitudVacacionData{
     solicitud:SolicitudVacacion;
-    employee:Employee,
-    person:PersonData
+    person:PersonData;
     
    }
 

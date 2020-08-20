@@ -12,30 +12,34 @@
 
     <ng-container matColumnDef="document">
       <th mat-header-cell *matHeaderCellDef>Documento</th>
-      <td mat-cell *matCellDef="let element">{{ element.document }}</td>
+      <td mat-cell *matCellDef="let element">{{ element.solicitud.document }}</td>
     </ng-container>
 
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Nombre</th>
+      <td mat-cell *matCellDef="let element">{{ element.person.firstName }}{{ element.person.lastName }} </td>
+    </ng-container>
   
   
     <ng-container matColumnDef="initDate">
       <th mat-header-cell *matHeaderCellDef>Inicio de Vacaciones</th>
-      <td mat-cell *matCellDef="let element">{{ element.enjoyInitDate }}</td>
+      <td mat-cell *matCellDef="let element">{{ element.solicitud.enjoyInitDate }}</td>
     </ng-container>
   
     <ng-container matColumnDef="endDate">
       <th mat-header-cell *matHeaderCellDef>Fin de Vacaciones</th>
-      <td mat-cell *matCellDef="let element">{{ element.enjoyEndDate }}</td>
+      <td mat-cell *matCellDef="let element">{{ element.solicitud.enjoyEndDate }}</td>
     </ng-container>
 
     <ng-container matColumnDef="moneyDays">
         <th mat-header-cell *matHeaderCellDef>Días Dinero</th>
-        <td mat-cell *matCellDef="let element">{{ element.moneyDays }}</td>
+        <td mat-cell *matCellDef="let element">{{ element.solicitud.moneyDays }}</td>
       </ng-container>
       
     <ng-container matColumnDef="edit">
       <th mat-header-cell *matHeaderCellDef>Editar</th>
       <td mat-cell *matCellDef="let element">
-        <mat-icon (click)="update(element.id)">edit</mat-icon>
+        <mat-icon (click)="update(element.person.document)">edit</mat-icon>
       </td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

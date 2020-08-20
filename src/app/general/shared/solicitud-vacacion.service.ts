@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { SolicitudVacacion } from 'src/app/inventory/shared/master';
+import { SolicitudVacacion, Filter, SolicitudVacacionData } from 'src/app/inventory/shared/master';
 import { Observable, of, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Response,ResponseList } from './response';
@@ -31,10 +31,10 @@ export class SolicitudVacacionService {
     );
   }
 
-  list(solicitud: SolicitudVacacion): Observable<SolicitudVacacion[]> {
+  list(solicitud: SolicitudVacacion): Observable<SolicitudVacacionData[]> {
     const url = environment.apiUrl;
   
-    return this.http.post<ResponseList<SolicitudVacacion>>(`${url}vacationRequestList`, solicitud).pipe(
+    return this.http.post<ResponseList<SolicitudVacacionData>>(`${url}vacationRequestList`, solicitud).pipe(
       switchMap((data) => of(data.content)),
       catchError((error) => {
         if (error.status == 400) {

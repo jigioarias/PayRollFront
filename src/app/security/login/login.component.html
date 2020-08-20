@@ -1,17 +1,19 @@
 <div class="login-container">
   <div>
-    logo
+    Logo
   </div>
   <div>
     <form [formGroup]="loginForm">
       <div>
-        <span>{{ error }}</span>
+        <span class="mensajeError">{{ error }}</span>
       </div>
+
+      
       <mat-form-field>
         <input formControlName="user" matInput placeholder="Usuario" required />
       </mat-form-field>
       <mat-form-field>
-        <input formControlName="password" type="password" matInput placeholder="Password" required />
+        <input formControlName="password" type="password" matInput placeholder="Password" required maxlength="15" />
       </mat-form-field>
        <button mat-raised-button color="primary" (click)="login()">Ingresar</button>
      
