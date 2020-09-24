@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'api/'
-  
+  apiUrl: 'api/',
+  suscriptionKey :'404040402d'
 };
 
 /*

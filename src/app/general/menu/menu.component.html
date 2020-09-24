@@ -1,7 +1,9 @@
 <!-- <p>menu works!</p> -->
 <div>
     <mat-nav-list>
-      <button mat-button [matMenuTriggerFor]="menu">Administración</button>
+      <button mat-icon-button [matMenuTriggerFor]="menu">Administración
+        <mat-icon>more_vert</mat-icon>
+      </button>
       <mat-menu #menu="matMenu"   >
         <button mat-menu-item routerLink="employees" >Empleado</button>
         <button mat-menu-item routerLink="classPayRolls">Clase de Nomina</button>
@@ -13,7 +15,18 @@
       <mat-menu #menu2="matMenu"   >
         <button mat-menu-item routerLink="payroll" >Nomina</button>
       </mat-menu-->
-
+      <p></p>
+      <button mat-icon-button [matMenuTriggerFor]="novedades">Novedades
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #novedades="matMenu"   >
+        <button mat-menu-item routerLink="payroll/listVacations" >Vacaciones</button>
+        <button mat-menu-item routerLink="payroll/listLeaves">Licencias</button>
+        <button mat-menu-item routerLink="payroll/listInabilities">Incapacidades</button>
+        <button mat-menu-item routerLink="payroll/listLoans">Prestamos</button>
+        <button mat-menu-item routerLink="payroll/listExtraHours">Horas Extras</button>
+      </mat-menu>
+ 
       <mat-list-item routerLink="payroll">Nomina</mat-list-item>
 
       <mat-list-item routerLink="reports">Reportes</mat-list-item>

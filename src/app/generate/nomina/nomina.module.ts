@@ -8,11 +8,13 @@ import { MaterialModule } from 'src/app/general/material/material.module';
 import { NominaRoutingModule } from './nomina-routing.module';
 import { VacationsComponent } from './novedades/vacations/vacations.component';
 import { ListRequestVacationsComponent } from './novedades/vacations/list-request-vacations/list-request-vacations.component';
+import { LeavesComponent } from './novedades/leaves/leaves.component';
+import { ListLeavesComponent } from './novedades/leaves/list-leaves/list-leaves.component';
 
 
 
 @NgModule({
-  declarations: [NovedadesComponent, NominaComponent,GenerateNominaComponent, VacationsComponent, ListRequestVacationsComponent],
+  declarations: [NovedadesComponent, NominaComponent,GenerateNominaComponent, VacationsComponent, ListRequestVacationsComponent, LeavesComponent, ListLeavesComponent],
   imports: [
     
     CommonModule, ReactiveFormsModule, MaterialModule, NominaRoutingModule

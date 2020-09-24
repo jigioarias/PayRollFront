@@ -20,6 +20,8 @@ export class GenerateNominaService {
   generate(filter:Filter): Observable<EmployeePayRoll[]> {
     const url = environment.apiUrl;
 
+
+    console.log(filter);
     return this.http.post<ResponseList<EmployeePayRoll>>(`${url}generateClassPayRoll`,filter).pipe(
       switchMap((data) => of(data.content)),
       catchError((error) => {

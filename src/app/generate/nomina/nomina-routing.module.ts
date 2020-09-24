@@ -4,6 +4,7 @@ import { NominaComponent } from './nomina.component';
 import { GenerateNominaComponent } from './generate-nomina/generate-nomina.component';
 import { VacationsComponent } from './novedades/vacations/vacations.component';
 import { ListRequestVacationsComponent } from './novedades/vacations/list-request-vacations/list-request-vacations.component';
+import { ListLeavesComponent } from './novedades/leaves/list-leaves/list-leaves.component';
 
 const routes: Routes = [
   {
@@ -20,10 +21,15 @@ const routes: Routes = [
        // component: VacationsComponent
       },
       {
+        path: 'listLeaves',
+        component: ListLeavesComponent
+       // component: VacationsComponent
+      },
+      {
         path: 'requestVacations/:id',
         component: VacationsComponent
       },
-     { path: '', redirectTo: 'listVacations', pathMatch: 'full' }
+     { path: '', redirectTo: 'generate', pathMatch: 'full' }
     ]
   }
 
