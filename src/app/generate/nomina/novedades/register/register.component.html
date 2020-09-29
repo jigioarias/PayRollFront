@@ -1,0 +1,127 @@
+<div>
+
+    <form [formGroup]="registerForm">
+        <div>
+
+
+            <div class="mat-header-row">
+                <div class="mat-header-cell">Empleado</div>
+            </div>
+
+            <div class="mat-table">
+
+
+                <div class="mat-header-row">
+                    
+                
+                    <div class="mat-cell">
+                        <mat-form-field>
+                            <input formControlName="document"  value="0" matInput placeholder="Documento" />
+                        </mat-form-field>
+
+                    </div>
+
+                     
+                    <div class="mat-cell">
+                        <mat-form-field>
+                            <input formControlName="name"  value="0" matInput placeholder="Nombre" readonly="true" />
+                        </mat-form-field>
+
+                    </div>
+                </div>
+
+                <div class="mat-button-center">
+                    <button  mat-stroked-button color="primary" (click)="findEmployee()">Consultar Empleado</button>
+
+                  </div>
+
+                <mat-label>Información Nomina</mat-label>
+                <p><p>
+
+                <div class="mat-header-row">
+                    
+                
+                    <div class="mat-cell">
+                        <mat-form-field>
+                            <input formControlName="classpayroll"  value="0" matInput placeholder="Nomina"  readonly="true" />
+                        </mat-form-field>
+
+                    </div>
+
+                     
+                    <div class="mat-cell">
+                        <mat-form-field>
+                            <mat-select formControlName="concept" matInput placeholder="Concepto" required>
+                                <ng-container *ngFor="let concept of concepts">
+                                    <mat-option [value]="concept.code">{{ concept.name }}</mat-option>
+                                </ng-container>
+                            </mat-select>
+                        </mat-form-field>
+
+                    </div>
+                </div>
+
+                
+                <div class="mat-header-row">
+                    
+                
+                    <div class="mat-cell">
+                        <mat-form-field>
+                            <mat-select formControlName="period" matInput placeholder="Periodo" 
+                             >
+                                <ng-container *ngFor="let period of periods">
+                                    <mat-option [value]="period.id">{{ period.period}}</mat-option>
+                                </ng-container>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+                     
+                    <div class="mat-cell">
+                        <mat-form-field>
+                            <input formControlName="hours"  type="number"  value="0" matInput placeholder="Horas"  />
+                        </mat-form-field>
+
+                    </div>
+                </div>
+
+
+                <div class="mat-row">
+                    <div class="mat-cell">
+                      <mat-form-field>
+                        <input matInput  placeholder="valor" formControlName="valor" readonly="true"  />
+                    </mat-form-field>
+
+    
+                    </div>
+                    <div class="mat-cell">
+                        <mat-form-field>
+                            <input matInput placeholder="Fecha Novedad" formControlName="dateRegister"  />
+                        </mat-form-field>
+
+  
+                    </div>
+                   
+                  </div>
+
+
+                
+                 
+
+                
+             
+        
+            </div>
+            
+ 
+
+        </div>
+        <p></p>
+
+        <div class="mat-button-center">
+            <button  mat-stroked-button color="primary" (click)="hoursSave()">Guardar Horas</button>
+        </div>
+
+    </form>
+
+</div>

@@ -1,8 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
-@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 // @import '~@angular/material/prebuilt-themes/pink-bluegrey.css';
 
-$color-header-avatar: #3147bf;
+$color-header-avatar: #bf31bf;
 
 html,
 body {
@@ -14,7 +14,7 @@ body {
 }
 
 .mat-toolbar {
-  background-color: #3147bf;
+  background-color: #4c0099;
   color: #fff;
 }
 
@@ -43,7 +43,7 @@ body {
 }
 
 .menu-resource {
-  background-color: #283a9c;
+  background-color: #4c0099;
   display: flex;
   justify-content: space-between;
   line-height: 2rem;
@@ -135,7 +135,7 @@ tr.mat-header-row,
     margin-top: 5px;
 
     &:hover {
-      color: #ff4081;
+      color: #bf31bf;
     }
 
     &:last-child {

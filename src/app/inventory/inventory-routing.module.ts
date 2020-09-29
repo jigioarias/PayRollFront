@@ -15,6 +15,7 @@ import { PeriodosClaseComponent } from './periodosClase/periodos-clase.component
 import { ConceptoNominaComponent } from './conceptoNomina/concepto-nomina.component';
 import { ListConceptoNominaComponent } from './conceptoNomina/list-concepto-nomina/list-concepto-nomina.component';
 import { CreateConceptoNominaComponent } from './conceptoNomina/create-concepto-nomina/create-concepto-nomina.component';
+import { LoadEmployeesComponent } from './employees/load-employees/load-employees.component';
 
 const routes: Routes = [
   {
@@ -28,6 +29,10 @@ const routes: Routes = [
       {
         path: 'add',
         component: EmployeeComponent
+      },
+      {
+        path: 'load',
+        component: LoadEmployeesComponent
       },
      { path: '', redirectTo: 'list', pathMatch: 'full' }
     ]

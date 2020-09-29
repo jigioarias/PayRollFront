@@ -10,11 +10,14 @@ import { VacationsComponent } from './novedades/vacations/vacations.component';
 import { ListRequestVacationsComponent } from './novedades/vacations/list-request-vacations/list-request-vacations.component';
 import { LeavesComponent } from './novedades/leaves/leaves.component';
 import { ListLeavesComponent } from './novedades/leaves/list-leaves/list-leaves.component';
+import { ListInabilitiesComponent } from './novedades/list-inabilities/list-inabilities.component';
+import { ListLoansComponent } from './novedades/list-loans/list-loans.component';
+import { RegisterComponent } from './novedades/register/register.component';
 
 
 
 @NgModule({
-  declarations: [NovedadesComponent, NominaComponent,GenerateNominaComponent, VacationsComponent, ListRequestVacationsComponent, LeavesComponent, ListLeavesComponent],
+  declarations: [NovedadesComponent, NominaComponent,GenerateNominaComponent, VacationsComponent, ListRequestVacationsComponent, LeavesComponent, ListLeavesComponent, ListInabilitiesComponent, ListLoansComponent, RegisterComponent],
   imports: [
     
     CommonModule, ReactiveFormsModule, MaterialModule, NominaRoutingModule

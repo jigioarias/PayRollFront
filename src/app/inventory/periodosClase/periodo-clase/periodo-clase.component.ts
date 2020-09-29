@@ -111,7 +111,6 @@ estados :State[];
 
 this.loadPeriodClase();
 
-    console.log('clae Nomina',this.periodClase);
     this.periodoClaseService.save(this.periodClase).subscribe(
       (data)=> {
         console.log(data);

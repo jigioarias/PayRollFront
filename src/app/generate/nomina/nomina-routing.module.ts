@@ -5,6 +5,9 @@ import { GenerateNominaComponent } from './generate-nomina/generate-nomina.compo
 import { VacationsComponent } from './novedades/vacations/vacations.component';
 import { ListRequestVacationsComponent } from './novedades/vacations/list-request-vacations/list-request-vacations.component';
 import { ListLeavesComponent } from './novedades/leaves/list-leaves/list-leaves.component';
+import { ListInabilitiesComponent } from './novedades/list-inabilities/list-inabilities.component';
+import { ListLoansComponent } from './novedades/list-loans/list-loans.component';
+import { RegisterComponent } from './novedades/register/register.component';
 
 const routes: Routes = [
   {
@@ -25,8 +28,25 @@ const routes: Routes = [
         component: ListLeavesComponent
        // component: VacationsComponent
       },
+
       {
-        path: 'requestVacations/:id',
+        path: 'listInabilities', 
+        component: ListInabilitiesComponent
+       // component: VacationsComponent
+      }, 
+      {
+        path: 'listLoans', 
+        component: ListLoansComponent
+       // component: VacationsComponent
+      }, 
+
+      {
+        path: 'extraHours', 
+        component: RegisterComponent
+       // component: VacationsComponent
+      }, 
+      {
+     path: 'requestVacations/:id',
         component: VacationsComponent
       },
      { path: '', redirectTo: 'generate', pathMatch: 'full' }
