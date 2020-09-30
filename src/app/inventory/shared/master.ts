@@ -103,6 +103,7 @@ export interface Area {
     code:string;
     description :string;
     fittype : string;
+    percentaje : number;
     accountingcode :string;
     conceptType:string;
     user:string;

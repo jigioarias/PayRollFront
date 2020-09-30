@@ -51,11 +51,8 @@
                      
                     <div class="mat-cell">
                         <mat-form-field>
-                            <mat-select formControlName="concept" matInput placeholder="Concepto" required>
-                                <ng-container *ngFor="let concept of concepts">
-                                    <mat-option [value]="concept.code">{{ concept.name }}</mat-option>
-                                </ng-container>
-                            </mat-select>
+                            <input formControlName="hours"  type="number"  value="0" 
+                            matInput placeholder="Horas" (change)="calculateValue($event.target.value)" />
                         </mat-form-field>
 
                     </div>
@@ -68,18 +65,28 @@
                     <div class="mat-cell">
                         <mat-form-field>
                             <mat-select formControlName="period" matInput placeholder="Periodo" 
+                            (selectionChange)="selectPeriod($event.value)"
                              >
                                 <ng-container *ngFor="let period of periods">
                                     <mat-option [value]="period.id">{{ period.period}}</mat-option>
                                 </ng-container>
                             </mat-select>
+                            <input matInput  placeholder="periodo" formControlName="periodoInfo" readonly="true"  />
+
                         </mat-form-field>
+
+
                     </div>
 
                      
                     <div class="mat-cell">
+
                         <mat-form-field>
-                            <input formControlName="hours"  type="number"  value="0" matInput placeholder="Horas"  />
+                            <mat-select formControlName="concept" matInput placeholder="Concepto" required  (selectionChange)="selectConcept($event.value)">
+                                <ng-container *ngFor="let concept of concepts">
+                                    <mat-option [value]="concept.code">{{ concept.description }}</mat-option>
+                                </ng-container>
+                            </mat-select>
                         </mat-form-field>
 
                     </div>
