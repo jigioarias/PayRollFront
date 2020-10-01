@@ -106,7 +106,9 @@ export interface Area {
     percentaje : number;
     accountingcode :string;
     conceptType:string;
+    maxRegisterHour:number;
     user:string;
+
   }
 
   export interface ConceptoNomina {
@@ -247,3 +249,25 @@ export interface Area {
     dayHours:number;
     salary:number;
    }
+
+  
+   
+   export interface NovedadNomina{
+    id:number;
+    enterprise?:number;
+    document :string;
+    idClassPayRoll:number;
+    employee:number;
+    concept:number;
+    period :string;
+    valor:number;
+    hours: number;
+    initDate:string;
+    endDate:string;
+    user ?: string;
+   
+   }
+
+   
+
+   

@@ -76,7 +76,8 @@ export class Messages {
     vacation_days_majors :'Los dias de vacaciones solicitados %0 son mayores a los disponibles %1',
 
 
-    no_message: 'No existe mensaje con código %0'
+    no_message: 'No existe mensaje con código %0',
+    error_calculate_extrahours :'Error al calcular las horas  %0  %1'
   };
 
   static get(codigo: string, ...parametros: string[]): string {

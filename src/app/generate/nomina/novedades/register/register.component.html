@@ -51,9 +51,17 @@
                      
                     <div class="mat-cell">
                         <mat-form-field>
-                            <input formControlName="hours"  type="number"  value="0" 
-                            matInput placeholder="Horas" (change)="calculateValue($event.target.value)" />
+                            <mat-select formControlName="period" matInput placeholder="Periodo" 
+                            (selectionChange)="selectPeriod($event.value)"
+                             >
+                                <ng-container *ngFor="let period of periods">
+                                    <mat-option [value]="period.id">{{ period.year}}{{ period.month}}{{ period.period}} </mat-option>
+                                </ng-container>
+                            </mat-select>
+
                         </mat-form-field>
+
+                       
 
                     </div>
                 </div>
@@ -64,24 +72,6 @@
                 
                     <div class="mat-cell">
                         <mat-form-field>
-                            <mat-select formControlName="period" matInput placeholder="Periodo" 
-                            (selectionChange)="selectPeriod($event.value)"
-                             >
-                                <ng-container *ngFor="let period of periods">
-                                    <mat-option [value]="period.id">{{ period.period}}</mat-option>
-                                </ng-container>
-                            </mat-select>
-                            <input matInput  placeholder="periodo" formControlName="periodoInfo" readonly="true"  />
-
-                        </mat-form-field>
-
-
-                    </div>
-
-                     
-                    <div class="mat-cell">
-
-                        <mat-form-field>
                             <mat-select formControlName="concept" matInput placeholder="Concepto" required  (selectionChange)="selectConcept($event.value)">
                                 <ng-container *ngFor="let concept of concepts">
                                     <mat-option [value]="concept.code">{{ concept.description }}</mat-option>
@@ -90,33 +80,40 @@
                         </mat-form-field>
 
                     </div>
+
+                     
+                    <div class="mat-cell">
+                        <mat-form-field>
+                            <input formControlName="hours"  type="number"  value="0" 
+                            matInput placeholder="Horas" (change)="calculateValue($event.target.value)" />
+                        </mat-form-field>
+                       
+
+                    </div>
                 </div>
 
 
                 <div class="mat-row">
                     <div class="mat-cell">
                       <mat-form-field>
-                        <input matInput  placeholder="valor" formControlName="valor" readonly="true"  />
+                        <input matInput  placeholder="valor" formControlName="valor" readonly="true"  value="{{ valorCalculado | number:'1.0-0'}}" />
                     </mat-form-field>
 
     
                     </div>
                     <div class="mat-cell">
-                        <mat-form-field>
-                            <input matInput placeholder="Fecha Novedad" formControlName="dateRegister"  />
-                        </mat-form-field>
+                    
 
+                        <mat-form-field>
+                            <input matInput [matDatepicker]="dateRegister" placeholder="Fecha Novedad" formControlName="dateRegister" />
+                            <mat-datepicker-toggle matSuffix [for]="dateRegister"></mat-datepicker-toggle>
+                            <mat-datepicker #dateRegister></mat-datepicker>
+                          </mat-form-field>
   
                     </div>
                    
                   </div>
 
-
-                
-                 
-
-                
-             
         
             </div>
             

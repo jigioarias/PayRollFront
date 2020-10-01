@@ -5,5 +5,6 @@ export const LABEL = {
   classPayRoll: 'clase nómina',
   employee: 'empleado',
   periodClase: 'Periodo',
-  vacation :'vacaciones'
+  vacation :'vacaciones',
+  extraHour : 'Horas extras'
 };
