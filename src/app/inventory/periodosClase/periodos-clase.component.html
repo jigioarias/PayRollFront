@@ -1,10 +1,25 @@
-<div class="menu-resource">
-    <div>
-      <a routerLink="list">Lista de Periodos</a>
-      <a routerLink="add">Crear Periodo</a>
-    </div>
-    <span>Gestión de Periodos</span>
-  </div>
-  
+
+<p></p>
+<span>Empleados</span>
+
+<mat-toolbar color="primary">
+  <button mat-button routerLink="add">
+    <mat-icon>add_comment</mat-icon>
+    Crear
+  </button>
+  <button mat-button routerLink="/">
+    <mat-icon>edit</mat-icon>
+    Actualizar
+  </button>
+  <button mat-button routerLink="/">
+    <mat-icon>assignment_turned_in</mat-icon>
+    Activar/Desactivar
+  </button>
+<button mat-button routerLink="/">
+  <mat-icon>cloud_upload</mat-icon>
+  Carga Masiva  
+</button>
+</mat-toolbar>
   <router-outlet></router-outlet>
-  
+ 
+ 

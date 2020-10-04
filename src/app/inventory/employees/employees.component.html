@@ -1,11 +1,28 @@
-<div class="menu-resource">
-    <div>
-      <a routerLink="list">Lista de Empleados</a>
-      <a routerLink="add">Crear Empleado</a>
-      <a routerLink="load">Carga Mavisa Empleado</a>
-    </div>
-    <span>Gestión de Empleados</span>
-  </div>
-  
+<p></p>
+<span>Empleado</span>
+
+<mat-toolbar color="primary">
+  <button mat-button routerLink="add">
+    <mat-icon>add_comment</mat-icon>
+    Crear
+  </button>
+  <button mat-button routerLink="edit">
+    <mat-icon>edit</mat-icon>
+    Actualizar
+  </button>
+  <button mat-button routerLink="list">
+    <mat-icon>list</mat-icon>
+    Listar
+  </button>
+
+  <button mat-button routerLink="activate">
+    <mat-icon>assignment_turned_in</mat-icon>
+    Activar/Desactivar
+  </button>
+<button mat-button routerLink="load">
+  <mat-icon>cloud_upload</mat-icon>
+  Carga Masiva  
+</button>
+</mat-toolbar>
   <router-outlet></router-outlet>
   

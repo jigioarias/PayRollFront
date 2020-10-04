@@ -1,50 +1,81 @@
-<!-- <mat-toolbar class="example-header">Header</mat-toolbar>
-
-<mat-sidenav-container class="example-container">
-  <mat-sidenav #sidenav mode="side" opened class="example-sidenav">
-    Aqui Menú
-  </mat-sidenav>
-
-  <mat-sidenav-content>
-    Aqui contenido
-  </mat-sidenav-content>
-</mat-sidenav-container>
-
-<mat-toolbar class="example-footer">Footer</mat-toolbar> -->
 
 <div>
-    <mat-toolbar
-      >Nomina 
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <div>
-        {{usuario}}
-      </div>
+    <mat-toolbar>
+      <button mat-icon-button class="home-icon"  
+      aria-label="Menu Nomina" (click)="opened = !opened">
+              <mat-icon>menu</mat-icon>
+      </button>
 
-      <div class="left-toolbar">
-        <mat-icon (click)="logout()">supervised_user_circle</mat-icon>
-      </div>
+     
+
+
+      <img class="jpg-icon"  src="../../../../assets/nominardo.png" 
+      style="max-width:5%; min-width: 5%;">
+      <span class="home-spacer"></span>
+
+    <button mat-icon-button class="home-icon notifications-icon" 
+        matTooltip="Licencias"  
+        matBadge="{{licencias}}" aria-label="Solicitudes de Licencias"  [matMenuTriggerFor]="licencia">
+        <mat-icon>note</mat-icon>
+      </button>
+      <mat-menu #licencia="matMenu"   >
+        <button mat-menu-item routerLink="listLeaves">Listar Licencias</button>
+      </mat-menu>
+
+
+  <button mat-icon-button class="home-icon notifications-icon" 
+  matTooltip="Solicitud de vacaciones"  
+    matBadge="{{solicitudVacaciones}}" aria-label="Solicitudes de Vacaciones"  [matMenuTriggerFor]="solicitudVacacion">
+    <mat-icon>notifications</mat-icon>
+  </button>
+  <mat-menu #solicitudVacacion="matMenu"   >
+    <button mat-menu-item routerLink="../payroll/listVacations">Listar Solicitud</button>
+  </mat-menu>
+
+    <span class="left-toolbar">
+      <mat-icon (click)="logout()"></mat-icon>
+    </span>
+
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>supervised_user_circle</mat-icon>
+      </button>
+
+      <mat-menu #menu="matMenu"   >
+        <button mat-menu-item routerLink="employees" >Cambiar Imagen</button>
+        <button mat-menu-item routerLink="classPayRolls">Cerrar Sesion</button>
+        <mat-list>
+          <mat-list-item> {{usuario}} </mat-list-item>
+        </mat-list>
+      </mat-menu>
+
     </mat-toolbar>
   
     <mat-sidenav-container class="app-container">
-      <mat-sidenav #sidenav mode="side" opened="true">
-        <!-- <hs-menu></hs-menu> -->
+      <mat-sidenav #sidenav  mode="over" [(opened)]="opened">
+
         <app-menu></app-menu>
        
-        <!-- Aqui Menú -->
+    
       </mat-sidenav>
   
       <mat-sidenav-content>
-        <!-- <hs-container></hs-container> -->
-        <!-- Aqui contenido -->
+     
         <router-outlet></router-outlet>
-        <!-- contenido -->
+        <p></p>
+        <footer class="footer">
+          <div class="container">
+          <div class="content has-text-centered">
+            <p>
+              @Derechos reservados <a href="x"> Jinni Arias</a>
+            </p>
+          </div>
+          </div>
+          </footer>
+
       </mat-sidenav-content>
+      
     </mat-sidenav-container>
+
+  
   </div>
   

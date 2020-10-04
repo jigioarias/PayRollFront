@@ -8,11 +8,19 @@ import { Component, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit {
 
   usuario :string;
+  licencias :number;
+  solicitudVacaciones : number;
+  opened :boolean;
+
   constructor() { }
 
   ngOnInit(): void {
 
     this.usuario = localStorage.getItem('user');
+    this.licencias = 3;
+    this.solicitudVacaciones =10;
+
+
   }
 
   logout(){}

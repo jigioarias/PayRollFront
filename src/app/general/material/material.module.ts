@@ -19,6 +19,9 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatCheckboxModule  } from '@angular/material/checkbox';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialogModule } from '@angular/material/dialog';
+import {MatBadgeModule} from '@angular/material/badge';
+import {MatTooltipModule} from '@angular/material/tooltip'; 
+
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {ScrollingModule} from '@angular/cdk/scrolling';
 //import {CdkTableModule} from '@angular/cdk/table';
@@ -32,6 +35,8 @@ import {CdkTreeModule} from '@angular/cdk/tree';
 
 @NgModule({
   imports: [
+    MatTooltipModule,
+    MatBadgeModule,
     MatButtonModule,
     MatIconModule,
     MatMenuModule,
@@ -60,6 +65,8 @@ import {CdkTreeModule} from '@angular/cdk/tree';
 
   ],
   exports: [
+    MatTooltipModule,
+    MatBadgeModule,
     MatButtonModule,
     MatIconModule,
     MatMenuModule,
