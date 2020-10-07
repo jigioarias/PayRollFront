@@ -42,7 +42,7 @@
 
       <mat-menu #menu="matMenu"   >
         <button mat-menu-item routerLink="employees" >Cambiar Imagen</button>
-        <button mat-menu-item routerLink="classPayRolls">Cerrar Sesion</button>
+        <button mat-menu-item (click)=logout()>Cerrar Sesion</button>
         <mat-list>
           <mat-list-item> {{usuario}} </mat-list-item>
         </mat-list>

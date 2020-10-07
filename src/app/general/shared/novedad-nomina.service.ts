@@ -19,6 +19,7 @@ export class NovedadNominaService {
     return this.http.post<Response<NovedadNomina>>(`${url}extraHours`, novedadNomina).pipe(
       switchMap((data) => of(data.content)),
       catchError((error) => {
+        console.log('entro',error);
         if (error.status == 400) {
           return throwError(error.error.message);
         } else {

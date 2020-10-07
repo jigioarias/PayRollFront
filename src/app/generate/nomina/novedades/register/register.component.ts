@@ -133,8 +133,8 @@ export class RegisterComponent implements OnInit {
         hours: this.registerForm.get('hours').value,
         initDate:this.periodSelected.initDate,
         endDate:this.periodSelected.endDate,
-        user : ''
-
+        user : localStorage.getItem('user'),
+        noveltyDate: this.registerForm.get('dateRegister').value
       }
       console.log('horas extras',horasExtras);
       this.novedadNominaService.save(horasExtras).subscribe((data)=>{

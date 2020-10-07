@@ -265,6 +265,7 @@ export interface Area {
     initDate:string;
     endDate:string;
     user ?: string;
+    noveltyDate?:string;
    
    }
 
