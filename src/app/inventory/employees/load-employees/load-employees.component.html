@@ -1,1 +1,9 @@
-<p>load-employees works!</p>
+
+<p></p>
+<label>Seleccione El archivo a Cargar en formato(CSV)</label>
+<p></p>
+        <div class="mat-button-center">
+
+            <input #csvInput hidden="true" type="file" onclick="this.value=null" (change)="csvInputChange($event)" accept=".csv"/>
+            <button  mat-flat-button color="primary"  (click)="csvInput.click()">Choose Spreadsheet File (CSV)</button>
+        </div>

@@ -5,7 +5,7 @@ import { Observable, of, throwError } from 'rxjs';
 import { catchError, switchMap } from 'rxjs/operators';
 import { Response, ResponseList } from 'src/app/general/shared/response';
 import { messages } from 'src/app/general/shared/messages';
-import { Employee } from './employee';
+import { Employee, EmployeeTest } from './employee';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -28,6 +28,21 @@ export class EmployeeService {
     );
   }
 
+  saveMasive(employees: Employee[]): Observable<Employee> {
+    const url = environment.apiUrl;
+    return this.http.post<Response<Employee>>(`${url}employeesMasive`, employees).pipe(
+      switchMap((data) => of(data.content)),
+      catchError((error) => {
+        if (error.status == 400) {
+          return throwError(error.error.message);
+        } else {
+          return throwError(messages.tecnicalError);
+        }
+      })
+    );
+  }
+
+  //
   list(): Observable<Employee[]> {
     const url = environment.apiUrl;
 
