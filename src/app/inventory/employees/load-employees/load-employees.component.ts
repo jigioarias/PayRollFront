@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Employee, EmployeeData, EmployeeTest, PersonData } from '../../shared/employee';
+import { Employee, EmployeeData, PersonData } from '../../shared/employee';
 import { EmployeeService } from '../../shared/employee.service';
 import { EmployeeComponent } from '../employee/employee.component';
 
