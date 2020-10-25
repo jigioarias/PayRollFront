@@ -28,6 +28,7 @@ import { Yesno, YESNO } from 'src/app/general/shared/yesno';
 export class EmployeeComponent implements OnInit {
   employeeForm: FormGroup;
   personForm: FormGroup;
+  imageForm: FormGroup;
   documentTypes: DocumentType[];
   civilStates: civilStateType[];
   countries : CountryType[];
@@ -226,7 +227,31 @@ export class EmployeeComponent implements OnInit {
       }
 
     );   
+      
+  }
+
+
+
+ imageInputChange(fileInputEvent: any) {
     
+
+      if(this.messagesService.showConfirmMessage('Desea subir la foto seleccionada')){
+
+
+          var file:File =fileInputEvent.target.files[0];
+          var self = this;
+           var myReader:FileReader = new FileReader();
+          myReader.readAsDataURL(file);
+
+          myReader.onloadend = function(e){
+              console.log(myReader.result);
+              
+          };
+    }
     
   }
+
+
+
+
 }

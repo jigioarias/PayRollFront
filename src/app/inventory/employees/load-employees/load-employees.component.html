@@ -1,9 +1,29 @@
 
 <p></p>
-<label>Seleccione El archivo a Cargar en formato(CSV)</label>
+<label>Carga Masiva de Empleados a través de archivo CSV</label>
 <p></p>
-        <div class="mat-button-center">
+       
+<p></p>
+<div class="mat-button-center">
 
-            <input #csvInput hidden="true" type="file" onclick="this.value=null" (change)="csvInputChange($event)" accept=".csv"/>
-            <button  mat-flat-button color="primary"  (click)="csvInput.click()">Choose Spreadsheet File (CSV)</button>
-        </div>
+            <!--input #csvInput hidden="true" type="file" onclick="this.value=null"
+                 (change)="csvInputChange($event)" accept=".csv"/>
+            <button  mat-flat-button color="primary" 
+             (click)="csvInput.click()">Choose Spreadsheet File (CSV)</button-->
+   
+
+        <form [formGroup]="form" novalidate>
+
+            <mat-form-field>
+                <ngx-mat-file-input formControlName="file1"
+                 placeholder="Archivo CSV" [accept]="'.csv'"
+                
+                 (change)="csvInputChange($event)"
+                 ></ngx-mat-file-input>
+                <mat-icon matSuffix>folder</mat-icon>
+              </mat-form-field>
+            
+            </form>
+
+    </div>
+         

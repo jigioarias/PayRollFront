@@ -21,6 +21,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialogModule } from '@angular/material/dialog';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatTooltipModule} from '@angular/material/tooltip'; 
+import { MaterialFileInputModule } from 'ngx-material-file-input';
 
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {ScrollingModule} from '@angular/cdk/scrolling';
@@ -35,6 +36,7 @@ import {CdkTreeModule} from '@angular/cdk/tree';
 
 @NgModule({
   imports: [
+    MaterialFileInputModule,
     MatTooltipModule,
     MatBadgeModule,
     MatButtonModule,
@@ -65,6 +67,7 @@ import {CdkTreeModule} from '@angular/cdk/tree';
 
   ],
   exports: [
+    MaterialFileInputModule,
     MatTooltipModule,
     MatBadgeModule,
     MatButtonModule,
