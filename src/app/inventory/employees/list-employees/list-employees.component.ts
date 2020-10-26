@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Employee } from '../../shared/employee';
+import { Component, Input, OnInit } from '@angular/core';
+import { Employee, EmployeeData, PersonData } from '../../shared/employee';
 import { Messages } from 'src/app/general/shared/messages';
 
 import { MessagesService } from 'src/app/general/shared/messages.service';
@@ -9,6 +9,10 @@ import { EmployeeService } from '../../shared/employee.service';
 import { EmployeeComponent } from '../employee/employee.component';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatTableDataSource } from '@angular/material/table';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ClaseNominaService } from 'src/app/general/shared/clase-nomina.service';
+import { ClaseNomina } from '../../shared/master';
+import { State, STATES } from 'src/app/general/shared/state';
 
 
 const ELEMENT_DATA: Employee[] = [];
@@ -20,27 +24,49 @@ const ELEMENT_DATA: Employee[] = [];
 })
 export class ListEmployeesComponent implements OnInit {
 
+
   displayedColumns: string[] = ['select','document','firstName','lastName','classPayRoll','initDate', 'endDate', 'active'];
   //dataSource = ELEMENT_DATA;
   dataSource = new MatTableDataSource<Employee>(ELEMENT_DATA);
 
   selection = new SelectionModel<Employee>(true, []);
+  searchForm: FormGroup; 
+  clases :ClaseNomina[];
+  estados: State[];
+  employeeData: EmployeeData; 
+  loadImage : boolean;
+
+  
 
 
-  constructor(private router:Router, private messagesService:MessagesService,private employeeeService:EmployeeService) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private claseNominaService : ClaseNominaService,
+    private router:Router, 
+    private messagesService:MessagesService,
+    private employeeeService:EmployeeService) { }
+
+
 
   ngOnInit(): void {
   
-    this.employeeeService.list().subscribe(
+   //this.dataSource.data.length
+    this.searchForm = this.formBuilder.group({
+      document: [null, Validators.required],
+      clase: [null, Validators.required],
+      active: [true],
+    });
+    this.claseNominaService.list().subscribe(
       (data)=>{
-        console.log(data);
-         this.dataSource = new MatTableDataSource<Employee>(data);
-      },
-      (error)=>{
-        console.log(error);
+          this.clases = data;
+      },(error)=>{
+          console.log(error);
       }
 
-    );
+  );
+  this.estados = STATES;
+
+
   }
 
   isAllSelected() {
@@ -66,13 +92,11 @@ checkboxLabel(row?: Employee): string {
 }
 
   edit(id: string) {
-    this.router.navigate([`/app/users/edit/${id}`]);
+    console.log('id EMPLEADO',id);
+    this.router.navigate([`/app/employees/edit/${id}`]);
   }
 
-  remove(id: string) {
-    const confirmMessage = Messages.get('confirm_delete', LABEL.user);
-   
-  }
+ 
 
   save(){
     
@@ -92,5 +116,76 @@ checkboxLabel(row?: Employee): string {
   }
  
 
+ find(){
+
+  this.loadImage = true;
+  var employeeData:EmployeeData ;
+  var employee : Employee;
+  
+  employeeData = {
+         id:null,
+         enterprise :'1',
+         salary :0,
+         salaryType:null,
+         initDateContract :null,
+         endDateContract : null,
+         costCenter: null,
+         classPayRoll:  this.searchForm.get('clase').value,
+         departament :null,  
+         branchOffice:null,
+         active : this.searchForm.get('active').value,
+         unity: null,
+         area: null,
+         user : null,
+         transporteSubsidy:false
+   };
+   let personData : PersonData;
+   personData={
+    id: 0,
+    firstName :null,
+    lastName : null,
+    phone : null,
+    email : null,
+    document : this.searchForm.get('document').value,
+    typeDocument: null, 
+    address :  null,
+    country :  null,
+    department :  null,
+    municipality: null,
+    user : null,
+    civilState : 0
+
+   };
+
+   employee = {
+      person: personData,
+      employee:employeeData
+   };
+ this.employeeeService.list(employee).subscribe(
+ (data)=>{
+   console.log(data);
+
+    this.dataSource = new MatTableDataSource<Employee>(data);
+    this.loadImage = false;
+ },
+ (error)=>{
+   console.log(error);
+ }
+
+);
+
+ }
+
+ select(clase){
+    this.searchForm.get('document').setValue(''); 
+}
+clean(){
+  this.searchForm.get('clase').setValue(this.clases); 
+}
+
+
+hideLoader(){
+  this.loadImage=false;
+}
 
 }

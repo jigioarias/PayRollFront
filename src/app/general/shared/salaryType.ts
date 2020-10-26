@@ -4,17 +4,17 @@ export interface SalaryType {
 }
 
 export const Normal: SalaryType = {
-  code: '1',
+  code: 'N',
   description: 'Normal'
 };
 
 export const Integral: SalaryType = {
-  code: '2',
+  code: 'I',
   description: 'Integral'
 };
 
 export const Horas: SalaryType = {
-  code: '3',
+  code: 'H',
   description: 'Por Horas'
 };
 

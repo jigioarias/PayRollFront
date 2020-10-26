@@ -1,31 +1,32 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AreaService } from 'src/app/general/shared/area.service';
+import { CentroCostosService } from 'src/app/general/shared/centro-costos.service';
+import { CIVILSTATES_TYPES, civilStateType } from 'src/app/general/shared/civilStateType';
+import { DOCUMENT_TYPES,DocumentType } from 'src/app/general/shared/document-type';
+import { ClaseNominaService } from 'src/app/general/shared/clase-nomina.service';
+import { CountryType, COUNTRY_TYPES, DEPARTAMENT_TYPES, DepartmentType, MunicipalityType, MUNICIPALYTY_TYPES } from 'src/app/general/shared/countryType';
 import { MessagesService } from 'src/app/general/shared/messages.service';
+import { SalaryType, SALARY_TYPES } from 'src/app/general/shared/salaryType';
+import { State, STATES } from 'src/app/general/shared/state';
+import { SucursalService } from 'src/app/general/shared/sucursal.service';
+import { YESNO, Yesno } from 'src/app/general/shared/yesno';
+import { Employee, EmployeeData, PersonData } from '../../shared/employee';
+import { EmployeeService } from '../../shared/employee.service';
+import { Area, CentroCostos, ClaseNomina, Sucursal } from '../../shared/master';
 import { Messages } from 'src/app/general/shared/messages';
 import { LABEL } from 'src/app/general/shared/label';
-import { DOCUMENT_TYPES,DocumentType } from 'src/app/general/shared/document-type';
-import { State, STATES } from 'src/app/general/shared/state';
-import { EmployeeService } from '../../shared/employee.service';
-import { PayRollType, PAYROLLTYPES } from 'src/app/general/shared/payRollType';
-import { SalaryType, SALARY_TYPES } from 'src/app/general/shared/salaryType';
-import { Area, Sucursal, CentroCostos, ClaseNomina } from '../../shared/master';
-import { AreaService } from 'src/app/general/shared/area.service';
-import { SucursalService } from 'src/app/general/shared/sucursal.service';
-import { CentroCostosService } from 'src/app/general/shared/centro-costos.service';
-import { civilStateType, CIVILSTATES_TYPES } from 'src/app/general/shared/civilStateType';
-import { Employee, PersonData, EmployeeData } from '../../shared/employee';
-import { CountryType, COUNTRY_TYPES, DepartmentType, DEPARTAMENT_TYPES, MunicipalityType, MUNICIPALYTY_TYPES } from 'src/app/general/shared/countryType';
-import { ClaseNominaService } from 'src/app/general/shared/clase-nomina.service';
-import { Yesno, YESNO } from 'src/app/general/shared/yesno';
-
+import { throwToolbarMixedModesError } from '@angular/material/toolbar';
 
 @Component({
-  selector: 'app-employee',
-  templateUrl: './employee.component.html',
-  styleUrls: ['./employee.component.scss']
+  selector: 'app-edit-employee',
+  templateUrl: './edit-employee.component.html',
+  styleUrls: ['./edit-employee.component.scss']
 })
-export class EmployeeComponent implements OnInit {
+export class EditEmployeeComponent implements OnInit {
+
+  idEmployee: string;
   employeeForm: FormGroup;
   personForm: FormGroup;
   imageForm: FormGroup;
@@ -42,9 +43,12 @@ export class EmployeeComponent implements OnInit {
   areas : Area[];
   sucursales : Sucursal[];
   centrosCostos : CentroCostos[];
+  personaConsultada :PersonData;
+  empleadoConsultado :EmployeeData;
 
 
   constructor(
+    private route: ActivatedRoute,
     private router: Router,
     private formBuilder: FormBuilder,
     private employeeService : EmployeeService,
@@ -53,15 +57,18 @@ export class EmployeeComponent implements OnInit {
     private centroCostosService :CentroCostosService,
     private claseNominaService :ClaseNominaService,
     private messagesService:MessagesService
+  ) { }
 
-  ) {}
+  ngOnInit(): void {
+    this.route.params.subscribe((params) => {
+      this.idEmployee = params['id'];
+    });
 
-  ngOnInit() {
-   
+//    console.log('id Empleado EDIT_:::::',this.idEmployee);
 
     this.areas =[];
     this.sucursales =[];
-    this.centrosCostos = [];
+    this.centrosCostos = [];  
     this.documentTypes = DOCUMENT_TYPES;
     this.countries = COUNTRY_TYPES;
     this.departments = DEPARTAMENT_TYPES;
@@ -144,21 +151,63 @@ export class EmployeeComponent implements OnInit {
         this.classPayRolls = data;
       },
       (error)=>{
-
         console.log('lista de clases de nomina de costo ops>>>',error);
       }
 
     );
 
-    
+    this.employeeService.get(this.idEmployee).subscribe((data)=>{
+
+      this.personForm.get('document').setValue(data.person.document);
+      this.personaConsultada = data.person;
+      this.empleadoConsultado = data.employee;
+      //revisar
+      this.personForm.get('documentType').setValue(data.person.typeDocument);
+      this.personForm.get('civilState').setValue(data.person.civilState);
+      //*/////
+      
+      this.personForm.get('country').setValue(data.person.country);
+      this.personForm.get('departament').setValue(data.person.department);
+      this.personForm.get('municipality').setValue(data.person.municipality);
+
+      this.personForm.get('firstName').setValue(data.person.firstName);
+      this.personForm.get('lastName').setValue(data.person.lastName);
+      this.personForm.get('email').setValue(data.person.email);
+      this.personForm.get('address').setValue(data.person.address);
+      this.personForm.get('phone').setValue(data.person.phone);
+      this.employeeForm.get('salary').setValue(data.employee.salary);
+      //revisar
+      this.employeeForm.get('salaryType').setValue(data.employee.salaryType);
+      
+      this.employeeForm.get('initDateContract').setValue(data.employee.initDateContract);
+      this.employeeForm.get('endDateContract').setValue(data.employee.endDateContract);
+      this.employeeForm.get('classPayRoll').setValue(data.employee.classPayRoll);
+      this.employeeForm.get('costCenter').setValue(data.employee.costCenter);
+      this.employeeForm.get('department').setValue(data.employee.departament);
+      this.employeeForm.get('branchOffice').setValue(data.employee.branchOffice);
+      this.employeeForm.get('unity').setValue(data.employee.unity);
+      this.employeeForm.get('area').setValue(data.employee.area);
+      this.employeeForm.get('transporteSubsidy').setValue(data.employee.transporteSubsidy);
+      this.employeeForm.get('active').setValue(data.employee.active);
+
+      
+
+     // console.log(data.employee.classPayRoll);
+     
+      console.log('empleado',data);
+    },(error)=>{
+      console.log('error',error);
+    });
+      
+
+
   }
 
-  
-   loadEmployee(){
+  loadEmployee(){
     
    
     let personac :PersonData={
-      id: 0,
+      id: this.personaConsultada.id,
       firstName :this.personForm.get('firstName').value,
       lastName:this.personForm.get('lastName').value,
       phone:this.personForm.get('phone').value,
@@ -175,7 +224,7 @@ export class EmployeeComponent implements OnInit {
     };
   
     let empleadodatac :EmployeeData ={    
-      id:0,
+      id:this.empleadoConsultado.id,
       enterprise :'1',
       salary :this.employeeForm.get('salary').value,
       salaryType:this.employeeForm.get('salaryType').value,
@@ -200,10 +249,10 @@ export class EmployeeComponent implements OnInit {
     this.empleado =empleadoc
    
   }
-  
 
-  add() {
-    
+
+//
+  edit(){
 
 
    /* if (this.employeeForm.invalid || this.personForm.invalid){
@@ -211,15 +260,17 @@ export class EmployeeComponent implements OnInit {
       return;      p
     }
 */
+
     this.loadEmployee();
     
-    this.employeeService.save(this.empleado).subscribe(
+    this.employeeService.update(this.empleado).subscribe(
       (data)=> {
-        console.log(data);
+        console.log(data.error);
+        
         if(data.employee!=null){
-        this.messagesService.showSuccessMessage(Messages.get('insert_success', LABEL.employee,this.personForm.get('document').value));
+        this.messagesService.showSuccessMessage(Messages.get('edit_success', LABEL.employee,this.personForm.get('document').value));
         }else{
-          this.messagesService.showErrorMessage(Messages.get('insert_error', LABEL.employee,this.personForm.get('document').value));
+          this.messagesService.showErrorMessage(Messages.get('edit_error', LABEL.employee,data.error));
 
         }
       },
@@ -228,31 +279,7 @@ export class EmployeeComponent implements OnInit {
       }
 
     );   
-      
+
   }
-
-
-
- imageInputChange(fileInputEvent: any) {
-    
-
-      if(this.messagesService.showConfirmMessage('Desea subir la foto seleccionada')){
-
-
-          var file:File =fileInputEvent.target.files[0];
-          var self = this;
-           var myReader:FileReader = new FileReader();
-          myReader.readAsDataURL(file);
-
-          myReader.onloadend = function(e){
-              console.log(myReader.result);
-              
-          };
-    }
-    
-  }
-
-
-
 
 }

@@ -63,7 +63,7 @@ export class ListRequestVacationsComponent implements OnInit {
 
   }
   update(id){
-    console.log(id);
+    
     this.router.navigate([`/app/payroll/requestVacations/${id}`]);
   }
 

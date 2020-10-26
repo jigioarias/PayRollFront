@@ -1,9 +1,83 @@
+<p>
+</p> 
+
+
+
+
+
 <div class="nomina-container">
     
       <div class="activar">Lista de Empleados</div>
      
+
+      <form [formGroup]="searchForm">
+        <div>
+
+
+            <div class="mat-header-row">
+                <div class="mat-header-cell">Buscar Empleados</div>
+            </div>
+
+            <div class="mat-table">
+
+                <div class="mat-header-row">
+
+                <div class="mat-cell">
+                    <mat-form-field>
+                      <mat-select formControlName="clase" matInput placeholder="Clase de Nomina" required   (selectionChange)="select($event.value)"   >
+                          <ng-container *ngFor="let clase of clases">
+                              <mat-option [value]="clase.id">{{ clase.description }}</mat-option>
+                          </ng-container>
+                      </mat-select>
+                  </mat-form-field>
+              </div>
+
+
+                <div class="mat-cell">
+                        <mat-form-field>
+                            <input formControlName="document"  value="0" matInput placeholder="Documento"
+                            (blur)="clean()" />
+                        </mat-form-field>
+
+                 </div>
+
+                 <div class="mat-cell" >
+                  <mat-slide-toggle formControlName="active">Activo</mat-slide-toggle>    
+                </div>
+
+                <div class="mat-cell">
+
+                  <div class="mat-button-center">
+                    <button  mat-stroked-button color="primary" (click)="save()">Inactivar/Activar</button>
+                  </div>
+                </div>
+
+                    </div>
+                </div>
+
+                <div class="mat-button-center">
+                    <button  mat-stroked-button color="primary" (click)="find()">Consultar</button>
+
+                  </div>
+
+        </div>
+
+              
+    </form>
+
+
+
+
+<p></p>
+
+
+<div>
+<mat-progress-bar mode="indeterminate" value="10" *ngIf="loadImage == true"></mat-progress-bar>
+<P></P>
+</div>
+
       
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" *ngIf="dataSource.data.length > 0" >
 
 
       <ng-container matColumnDef="select">
@@ -32,7 +106,7 @@
 
       <ng-container matColumnDef="firstName">
         <th mat-header-cell *matHeaderCellDef>Nombre</th>
-        <td mat-cell *matCellDef="let element">{{ element.person.firstName }}</td>
+        <td mat-cell *matCellDef="let element">{{ element.person.firstName}}  </td>
       </ng-container>
 
       
@@ -42,7 +116,7 @@
       </ng-container>
     
       <ng-container matColumnDef="classPayRoll">
-        <th mat-header-cell *matHeaderCellDef>Clase de Nomina</th>
+        <th mat-header-cell *matHeaderCellDef>Clase Nomina</th>
         <td mat-cell *matCellDef="let element">{{ element.employee.classPayRoll }}</td>
       </ng-container>
 
@@ -59,16 +133,14 @@
       <ng-container matColumnDef="active">
         <th mat-header-cell *matHeaderCellDef>Editar</th>
         <td mat-cell *matCellDef="let element">
-          <mat-icon (click)="remove(element.id)">edit</mat-icon>
+          <mat-icon (click)="edit(element.employee.id)">edit</mat-icon>
         </td>
       </ng-container>
   
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     </table>
-    <div class="mat-button-center">
-      <button  mat-stroked-button color="primary" (click)="save()">Actualizar</button>
-    </div>
+  
 
   </div>
   

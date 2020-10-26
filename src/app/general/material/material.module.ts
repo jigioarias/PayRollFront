@@ -22,6 +22,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatTooltipModule} from '@angular/material/tooltip'; 
 import { MaterialFileInputModule } from 'ngx-material-file-input';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {ScrollingModule} from '@angular/cdk/scrolling';
@@ -36,6 +37,7 @@ import {CdkTreeModule} from '@angular/cdk/tree';
 
 @NgModule({
   imports: [
+    MatProgressBarModule,
     MaterialFileInputModule,
     MatTooltipModule,
     MatBadgeModule,
@@ -67,6 +69,7 @@ import {CdkTreeModule} from '@angular/cdk/tree';
 
   ],
   exports: [
+    MatProgressBarModule,
     MaterialFileInputModule,
     MatTooltipModule,
     MatBadgeModule,

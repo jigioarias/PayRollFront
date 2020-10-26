@@ -373,25 +373,12 @@
             </div>
 
             <div class="mat-button-center">
-              <button  mat-stroked-button color="primary" (click)="add()">Ingresar Empleado</button>
+              <button  mat-stroked-button color="primary" (click)="edit()">Actualizar Empleado</button>
             </div>
           
           </form>
         </mat-step>
   
-        <mat-step [stepControl]="imageForm" optional>
-          <form [formGroup]="imageForm">
-            <ng-template matStepLabel>Administrar Imagen Empleado</ng-template>     
-           
-           <div class="mat-button-center">
-
-            <input #imageInput hidden="true" type="file" onclick="this.value=null" (change)="imageInputChange($event)" accept=".png"/>
-            <button  mat-flat-button color="primary"  (click)="imageInput.click()">Escoja la imagen a cargar</button>
-            </div>
-
-
-          </form>
-        </mat-step>
      
       </mat-horizontal-stepper>
     </div>

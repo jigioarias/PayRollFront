@@ -65,7 +65,7 @@ export class RegisterComponent implements OnInit {
   //consultar empleado
   findEmployee(){
     let document = this.registerForm.get('document').value;
-    console.log(document);      
+
     this.employeeService.find(document).subscribe(
 
       (data)=>{

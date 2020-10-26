@@ -1,5 +1,14 @@
 import { ClaseNominaComponent } from '../clase-nomina/clase-nomina.component';
+import { EmployeeComponent } from '../employees/employee/employee.component';
 import { ClaseNomina, PeriodoClase, SemanaLaboral, CalendarioLaboral, SolicitudVacacion } from './master';
+
+
+
+export interface EmployeeDTO{
+
+  employee :Employee;
+  error?:string;
+} 
 
 export interface Employee{
   person: PersonData;
