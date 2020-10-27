@@ -1,7 +1,7 @@
 .nomina-container {
     display: flex;
     flex-direction: column;
-    width: 90%;
+    width: 95%;
     margin: auto;
   }
 
@@ -46,8 +46,8 @@
   
 
   th, td {
-    overflow: hidden;
-    width: 100px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+     width: 100px;
+      }
+  table {
+    width: 100%;
   }

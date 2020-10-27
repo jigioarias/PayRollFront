@@ -215,12 +215,11 @@ export class EmployeeComponent implements OnInit {
     
     this.employeeService.save(this.empleado).subscribe(
       (data)=> {
-        console.log(data);
+        console.log(data.error);
         if(data.employee!=null){
         this.messagesService.showSuccessMessage(Messages.get('insert_success', LABEL.employee,this.personForm.get('document').value));
         }else{
-          this.messagesService.showErrorMessage(Messages.get('insert_error', LABEL.employee,this.personForm.get('document').value));
-
+          this.messagesService.showErrorMessage(Messages.get('insert_error', LABEL.employee,data.error));
         }
       },
       (error)=>{

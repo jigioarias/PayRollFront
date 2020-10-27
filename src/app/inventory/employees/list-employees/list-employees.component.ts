@@ -25,7 +25,7 @@ const ELEMENT_DATA: Employee[] = [];
 export class ListEmployeesComponent implements OnInit {
 
 
-  displayedColumns: string[] = ['select','document','firstName','lastName','classPayRoll','initDate', 'endDate', 'active'];
+  displayedColumns: string[] = ['select','document','firstName','lastName','initDate', 'endDate', 'active','edit'];
   //dataSource = ELEMENT_DATA;
   dataSource = new MatTableDataSource<Employee>(ELEMENT_DATA);
 
@@ -183,6 +183,34 @@ clean(){
   this.searchForm.get('clase').setValue(this.clases); 
 }
 
+inactivate(){
+
+  if( this.selection.selected.length >0){
+
+          try {
+
+          this.selection.selected.forEach(element => {
+            element.employee.active =(!this.searchForm.get('active').value);
+            
+          });
+
+          this.employeeeService.updateMasive(this.selection.selected).subscribe((data)=>{
+            console.log('actualizados',data);
+            this.find();
+
+          },
+          (error)=>{
+            console.log(error);
+          }
+          );
+
+          
+          } catch (error) {
+            console.log(error);
+          }
+    } 
+  
+}
 
 hideLoader(){
   this.loadImage=false;

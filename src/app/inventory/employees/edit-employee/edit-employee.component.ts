@@ -265,7 +265,7 @@ export class EditEmployeeComponent implements OnInit {
     
     this.employeeService.update(this.empleado).subscribe(
       (data)=> {
-        console.log(data.error);
+       
         
         if(data.employee!=null){
         this.messagesService.showSuccessMessage(Messages.get('edit_success', LABEL.employee,this.personForm.get('document').value));
