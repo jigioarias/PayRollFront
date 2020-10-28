@@ -92,7 +92,7 @@ checkboxLabel(row?: Employee): string {
 }
 
   edit(id: string) {
-    console.log('id EMPLEADO',id);
+   
     this.router.navigate([`/app/employees/edit/${id}`]);
   }
 

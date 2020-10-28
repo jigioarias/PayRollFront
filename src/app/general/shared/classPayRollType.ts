@@ -5,21 +5,21 @@ export interface ClassPayRollType {
 }
 
 export const General:  ClassPayRollType= {
-  code: 'GE',
+  code: 'G  ',
   description: 'General'
 };
 
 export const Administrativa: ClassPayRollType = {
-  code: 'AD',
+  code: 'A',
   description: 'Administrativa'
 };
 export const Temporal: ClassPayRollType = {
-    code: 'TP',
+    code: 'T',
     description: 'Temporal'
   };
 
   export const Operativa: ClassPayRollType = {
-    code: 'OP',
+    code: 'O',
     description: 'Operativa'
   };
 

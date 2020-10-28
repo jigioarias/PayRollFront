@@ -23,12 +23,13 @@ import { ConceptoNominaComponent } from './conceptoNomina/concepto-nomina.compon
 import { ActiveNoActivePipe } from '../general/shared/pipes/active-no-active.pipe';
 import { LoadEmployeesComponent } from './employees/load-employees/load-employees.component';
 import { EditEmployeeComponent } from './employees/edit-employee/edit-employee.component';
+import { EditClaseNominaComponent } from './claseNomina/edit-clase-nomina/edit-clase-nomina.component';
 
 
 
 @NgModule({
   
-  declarations: [ActiveNoActivePipe,EmployeeComponent, ListEmployeesComponent, EmployeesComponent, ClaseNominaComponent, ConceptoComponent, ListClaseNominaComponent, CreateNominaComponent, CreateConceptComponent, ListConceptsComponent, CreateClaseNominaComponent, PeriodoClaseComponent, ListPeriodoClaseComponent, PeriodosClaseComponent, EditPeriodoClaseComponent, ConceptoNominaComponent, CreateConceptoNominaComponent, ListConceptoNominaComponent, LoadEmployeesComponent, EditEmployeeComponent],
+  declarations: [ActiveNoActivePipe,EmployeeComponent, ListEmployeesComponent, EmployeesComponent, ClaseNominaComponent, ConceptoComponent, ListClaseNominaComponent, CreateNominaComponent, CreateConceptComponent, ListConceptsComponent, CreateClaseNominaComponent, PeriodoClaseComponent, ListPeriodoClaseComponent, PeriodosClaseComponent, EditPeriodoClaseComponent, ConceptoNominaComponent, CreateConceptoNominaComponent, ListConceptoNominaComponent, LoadEmployeesComponent, EditEmployeeComponent, EditClaseNominaComponent],
 
   imports: [
     CommonModule, ReactiveFormsModule, MaterialModule, InventoryRoutingModule

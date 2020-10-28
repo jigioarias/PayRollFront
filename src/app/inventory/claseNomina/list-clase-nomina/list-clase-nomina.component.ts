@@ -16,7 +16,7 @@ const ELEMENT_DATA: ClaseNomina[] = [];
 })
 export class ListClaseNominaComponent implements OnInit {
 
-  displayedColumns: string[] = ['description','dayshours','monthhours','edit'];
+  displayedColumns: string[] = ['description','dayshours','monthhours','active','edit','doActive'];
 
   //dataSource = ELEMENT_DATA;
   dataSource = ELEMENT_DATA;
@@ -42,7 +42,11 @@ export class ListClaseNominaComponent implements OnInit {
 
 edit(id){
 
-  alert(id);
+  this.router.navigate([`/app/classPayRolls/edit/${id}`]);  
+
+}
+activate(id,activate){
+  
 
 }
 

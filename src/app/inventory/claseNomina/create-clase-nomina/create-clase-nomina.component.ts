@@ -65,6 +65,7 @@ periodClases : PeriodClase[];
       account: [null, Validators.required],
       workweek:[null, Validators.required],
       periodType:[null, Validators.required],
+      active:[null, Validators.required],
 
     });
 
@@ -106,7 +107,8 @@ periodClases : PeriodClase[];
     account:this.claseForm.get('account').value,
     user:'usuario',
     workweek:this.claseForm.get('workweek').value,
-    periodType :this.claseForm.get('periodType').value
+    periodType :this.claseForm.get('periodType').value,
+    active :this.claseForm.get('active').value
     };
   
     this.claseNomina =claseNominac
@@ -131,11 +133,11 @@ this.loadClaseNomina();
     this.claseNominaService.save(this.claseNomina).subscribe(
       (data)=> {
         console.log(data);
-        if(data!=null){
+        if(data.clase!=null){
         this.messagesService.showSuccessMessage(Messages.get('insert_success', LABEL.classPayRoll,this.claseForm.get('description').value));
         }else{
           
-          this.messagesService.showErrorMessage(Messages.get('insert_error', LABEL.classPayRoll,this.claseForm.get('description').value));
+          this.messagesService.showErrorMessage(Messages.get('insert_error', LABEL.classPayRoll,data.error));
 
         }
       },

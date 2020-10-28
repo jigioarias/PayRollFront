@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ClaseNomina } from 'src/app/inventory/shared/master';
+import { ClaseNomina, ClaseNominaDTO } from 'src/app/inventory/shared/master';
 import { Observable, of, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Response,ResponseList } from './response';
@@ -17,9 +17,9 @@ export class ClaseNominaService {
 
 
 
-  save(claseNomina: ClaseNomina): Observable<ClaseNomina> {
+  save(claseNomina: ClaseNomina): Observable<ClaseNominaDTO> {
     const url = environment.apiUrl;
-    return this.http.post<Response<ClaseNomina>>(`${url}classPayRolls`, claseNomina).pipe(
+    return this.http.post<Response<ClaseNominaDTO>>(`${url}classPayRolls`, claseNomina).pipe(
       switchMap((data) => of(data.content)),
       catchError((error) => {
         if (error.status == 400) {

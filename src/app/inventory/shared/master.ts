@@ -78,6 +78,14 @@ export interface Area {
     user:string;
     workweek:number;
     periodType :string;
+    active:boolean;
+  }
+
+  export interface ClaseNominaDTO {
+   
+    clase:ClaseNomina;
+    error:string;
+   
   }
 
   export interface PeriodoClase {
@@ -95,6 +103,7 @@ export interface Area {
     endDate:string;
   }
 
+  
 
   export interface Concepto {
    
