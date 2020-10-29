@@ -5,7 +5,7 @@ export interface ClassPayRollType {
 }
 
 export const General:  ClassPayRollType= {
-  code: 'G  ',
+  code: 'G',
   description: 'General'
 };
 

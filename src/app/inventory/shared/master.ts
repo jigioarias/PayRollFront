@@ -88,6 +88,10 @@ export interface Area {
    
   }
 
+  export interface PeriodoClaseDTO {
+     periodo:PeriodoClase;
+     error?:string;
+  }
   export interface PeriodoClase {
    
     id:number;

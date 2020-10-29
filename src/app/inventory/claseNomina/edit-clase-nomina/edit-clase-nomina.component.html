@@ -1,1 +1,178 @@
-<p>edit-clase-nomina works!</p>
+<div>
+
+    <form [formGroup]="claseForm">
+        <div>
+
+
+            <div class="mat-header-row">
+                <div class="mat-header-cell">Editar Clase de Nomina</div>
+            </div>
+
+            <div class="mat-table">
+
+
+                <div class="mat-header-row">
+                    
+                    <div class="mat-cell">
+                        <mat-form-field>
+                            <input formControlName="description"  matInput placeholder="Descripcion" />
+                        </mat-form-field>
+                    </div>
+
+                    <div class="mat-cell">
+                   
+                        <mat-form-field>
+                            <mat-select formControlName="clase" matInput placeholder="Clase de Nomina" required>
+                                <ng-container *ngFor="let clase of clases">
+                                    <mat-option [value]="clase.code">{{ clase.description }}</mat-option>
+                                </ng-container>
+                            </mat-select>
+                        </mat-form-field>
+
+
+                    </div>
+                    <div class="mat-cell">
+                        <mat-form-field>
+                            <input formControlName="vacationdays" type="number" value="0" matInput placeholder="Dias de Vacaciones " />
+                        </mat-form-field>
+
+                    </div>
+                </div>
+
+
+                <div class="mat-header-row">
+                    <div class="mat-cell">
+                        <mat-form-field>
+                            <mat-select formControlName="primaType" matInput placeholder="Tipo  de Prima" required>
+                                <ng-container *ngFor="let prima of primaTypes">
+                                    <mat-option [value]="prima.code">{{ prima.description }}</mat-option>
+                                </ng-container>
+                            </mat-select>
+                        </mat-form-field>
+
+                    </div>
+                    <div class="mat-cell">
+                        <mat-form-field>
+                            <input formControlName="vacationprima" type="number" matInput placeholder="Prima de Vacaciones" />
+                        </mat-form-field>
+                    </div>
+                    <div class="mat-cell">
+                        <mat-form-field>
+                            <input formControlName="provisionservicedays" type="number" matInput placeholder="Dias Provision " />
+                        </mat-form-field>
+
+                    </div>
+                </div>
+                <div class="mat-row">
+                    <div class="mat-cell">
+
+                        <mat-form-field>
+                            <mat-select formControlName="provisionservicetype" matInpu t placeholder="Tipo de Provision"
+                                required>
+                                <ng-container *ngFor="let provision of provisionTypes">
+                                    <mat-option [value]="provision.code">{{ provision.description }}</mat-option>
+                                </ng-container>
+                            </mat-select>
+                        </mat-form-field>
+
+
+                    </div>
+                    <div class="mat-cell">
+
+                        <mat-form-field>
+                            <mat-select formControlName="payrollltype" matInput placeholder="Tipo de Nomina" required>
+                                <ng-container *ngFor="let payrollltype of payRollTypes">
+                                    <mat-option [value]="payrollltype.code">{{ payrollltype.description }}</mat-option>
+                                </ng-container>
+                            </mat-select>
+                        </mat-form-field>
+
+                    </div>
+                    <div class="mat-cell">
+                        <mat-form-field>
+                            <input formControlName="monthhours" type="number" matInput placeholder="horas mes"
+                                required />
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="mat-header-row">
+                    <div class="mat-header-cell">
+                        <mat-form-field>
+                            <mat-select formControlName="bank" matInput placeholder="Banco" required>
+                                <ng-container *ngFor="let bank of banks">
+                                    <mat-option [value]="bank.code">{{ bank.description }}</mat-option>
+                                </ng-container>
+                            </mat-select>
+                        </mat-form-field>
+
+                    </div>
+                    <div class="mat-header-cell">
+                        <mat-form-field>
+                            <input formControlName="account" matInput placeholder="Cuenta Banco" required />
+                        </mat-form-field>
+
+                    </div>
+                    <div class="mat-header-cell">
+                        <mat-form-field>
+                            <input formControlName="bankbranch" matInput placeholder="Sucursal del banco" required />
+                        </mat-form-field>
+                    </div>
+                </div>
+
+
+                <div class="mat-header-row">
+                    <div class="mat-header-cell">
+                        <mat-form-field>
+                            <input formControlName="dayshours" type="number"  value="1" matInput placeholder="Horas Dia " min="1" max="24" maxlength="2" />
+                        </mat-form-field>
+
+                    </div>
+
+                    <div class="mat-header-cell">
+                 
+                        <mat-form-field>
+                            <mat-select formControlName="workweek" matInput placeholder="Semana Laboral" required>
+                                <ng-container *ngFor="let semanaLaboral of semanasLaborales">
+                                    <mat-option [value]="semanaLaboral.id">{{ semanaLaboral.description}}</mat-option>
+                                </ng-container>
+                            </mat-select>
+                        </mat-form-field>
+
+                    </div>
+                    
+                    <div class="mat-header-cell">
+                 
+                        <mat-form-field>
+                            <mat-select formControlName="periodType" matInput placeholder="Tipo de Periodo" required>
+                                <ng-container *ngFor="let periodClase of periodClases">
+                                    <mat-option [value]="periodClase.code">{{ periodClase.description}}</mat-option>
+                                </ng-container>
+                            </mat-select>
+                        </mat-form-field>
+
+                    </div>
+
+                </div>
+
+                <div class="mat-header-row">
+                    
+                <div class="mat-header-cell">
+                 
+                    <mat-slide-toggle formControlName="active">Activo</mat-slide-toggle>   
+
+                </div>
+
+            </div>
+
+
+            </div>
+            
+            <div class="mat-button-center">
+                <button   color="primary" (click)="edit()">Actualizar</button>
+              </div>
+
+        </div>
+    </form>
+
+
+</div>

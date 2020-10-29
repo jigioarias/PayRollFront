@@ -77,9 +77,7 @@ estados :State[];
 
 
   loadPeriodClase(){
-    
-   
-
+  
     let periodoClaseC :PeriodoClase={
     id:0,
     enterprise:1,
@@ -87,7 +85,7 @@ estados :State[];
     period:this.claseForm.get('period').value, 
     year:this.claseForm.get('year').value,
     active:this.claseForm.get('active').value,
-    user:'usuario',
+    user:localStorage.getItem('user'),
     month:this.claseForm.get('month').value,
     initDate:this.claseForm.get('initDate').value,
     endDate:this.claseForm.get('endDate').value
@@ -100,21 +98,12 @@ estados :State[];
   add() {
     
 
-
-   /* if (this.claseForm.invalid ){
-      
-          this.messagesService.showErrorMessage(Messages.get('insert_error', LABEL.periodClase,this.claseForm.get('period').value));
-      return;     
-    }
-
-  */
-
 this.loadPeriodClase();
 
     this.periodoClaseService.save(this.periodClase).subscribe(
       (data)=> {
         console.log(data);
-        if(data!=null){
+        if(data.periodo !=null){
         this.messagesService.showSuccessMessage(Messages.get('insert_success', LABEL.periodClase,this.claseForm.get('period').value));
         }else{
           

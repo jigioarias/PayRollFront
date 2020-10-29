@@ -63,7 +63,7 @@ export class ListPeriodoClaseComponent implements OnInit {
 
 edit(id){
 
-  alert(id);
+  this.router.navigate([`/app/periods/edit/${id}`]);  
 
 }
 

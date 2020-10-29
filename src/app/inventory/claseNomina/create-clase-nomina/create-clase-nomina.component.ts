@@ -84,11 +84,7 @@ periodClases : PeriodClase[];
 
   loadClaseNomina(){
     
-   
-
-    
-
-
+  
     let claseNominac :ClaseNomina={
     id:0,
     enterprise:1,

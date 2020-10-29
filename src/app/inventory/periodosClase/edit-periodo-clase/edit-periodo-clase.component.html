@@ -1,1 +1,103 @@
-<p>edit-periodo-clase works!</p>
+<div>
+
+    <form [formGroup]="claseForm">
+        <div>
+
+
+            <div class="mat-header-row">
+                <div class="mat-header-cell">Editar Periodo Clase</div>
+            </div>
+
+            <div class="mat-table">
+
+
+                <div class="mat-header-row">
+                    
+                    <div class="mat-cell">
+                        <mat-form-field>
+                            <mat-select formControlName="period" matInput placeholder="Periodo" required>
+                                <ng-container *ngFor="let period of periods">
+                                    <mat-option [value]="period.code">{{ period.description }}</mat-option>
+                                </ng-container>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="mat-cell">
+                   
+                        <mat-form-field>
+                            <mat-select formControlName="month" matInput placeholder="Mes" required>
+                                <ng-container *ngFor="let month of months">
+                                    <mat-option [value]="month.code">{{ month.description }}</mat-option>
+                                </ng-container>
+                            </mat-select>
+                        </mat-form-field>
+
+
+                    </div>
+                    <div class="mat-cell">
+                        <mat-form-field>
+                            <input formControlName="year"  value="0" matInput placeholder="Año (YYYY)" />
+                        </mat-form-field>
+
+                    </div>
+                </div>
+
+
+                <div class="mat-header-row">
+
+
+                    <div class="mat-cell">
+                   
+                        <mat-form-field>
+                            <mat-select formControlName="clase" matInput placeholder="Clase de Nomina" required>
+                                <ng-container *ngFor="let clase of clases">
+                                    <mat-option [value]="clase.id">{{ clase.description }}</mat-option>
+                                </ng-container>
+                            </mat-select>
+                        </mat-form-field>
+
+
+                    </div>
+
+                    <div class="mat-cell">
+
+                        <mat-form-field>
+                            <input matInput [matDatepicker]="initDate" placeholder="Fecha Inicial" formControlName="initDate" />
+                            <mat-datepicker-toggle matSuffix [for]="initDate"></mat-datepicker-toggle>
+                            <mat-datepicker #initDate></mat-datepicker>
+                          </mat-form-field>
+                    </div>
+                    
+                    <div class="mat-cell">
+
+                        <mat-form-field>
+                            <input matInput [matDatepicker]="endDate" placeholder="Fecha Final" formControlName="endDate" />
+                            <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
+                            <mat-datepicker #endDate></mat-datepicker>
+                          </mat-form-field>
+                    </div>
+
+
+                  
+                </div>
+        
+                <div class="mat-header-row">
+
+
+                    <div class="mat-cell">
+                        <mat-slide-toggle formControlName="active">Activo</mat-slide-toggle>
+                    </div>
+ 
+                </div>
+     
+            </div>
+            
+            <div class="mat-button-center">
+                <button   color="primary" (click)="edit()">Actualizar</button>
+              </div>
+
+        </div>
+    </form>
+
+</div>

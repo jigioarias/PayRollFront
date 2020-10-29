@@ -15,8 +15,6 @@ export class ClaseNominaService {
 
   constructor(private http:HttpClient) { }
 
-
-
   save(claseNomina: ClaseNomina): Observable<ClaseNominaDTO> {
     const url = environment.apiUrl;
     return this.http.post<Response<ClaseNominaDTO>>(`${url}classPayRolls`, claseNomina).pipe(
@@ -31,10 +29,39 @@ export class ClaseNominaService {
     );
   }
 
+  update(claseNomina: ClaseNomina): Observable<ClaseNominaDTO> {
+    const url = environment.apiUrl;
+    return this.http.put<Response<ClaseNominaDTO>>(`${url}classPayRolls`, claseNomina).pipe(
+      switchMap((data) => of(data.content)),
+      catchError((error) => {
+        if (error.status == 400) {
+          return throwError(error.error.message);
+        } else {
+          return throwError(messages.tecnicalError);
+        }
+      })
+    );
+  }
+
+
 
   list(): Observable<ClaseNomina[]> {
     const url = environment.apiUrl;
     return this.http.get<ResponseList<ClaseNomina>>(`${url}classPayRolls`).pipe(
+      switchMap((data) => of(data.content)),
+      catchError((error) => {
+        if (error.status == 400) {
+          return throwError(error.error.message);
+        } else {
+          return throwError(messages.tecnicalError);
+        }
+      })
+    );
+  }
+
+  get(id:number): Observable<ClaseNomina> {
+    const url = environment.apiUrl;
+    return this.http.get<Response<ClaseNomina>>(`${url}classPayRoll/`+id).pipe(
       switchMap((data) => of(data.content)),
       catchError((error) => {
         if (error.status == 400) {
