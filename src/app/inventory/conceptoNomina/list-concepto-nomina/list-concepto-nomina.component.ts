@@ -93,7 +93,8 @@ export class ListConceptoNominaComponent implements OnInit {
 
 edit(id){
 
-  alert(id);
+  this.router.navigate([`/app/conceptsPayRoll/edit/${id}`]);  
+
 
 }
 

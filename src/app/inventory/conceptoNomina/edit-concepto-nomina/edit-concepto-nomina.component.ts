@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ClaseNomina, ConceptoNomina, Concepto } from '../../shared/master';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ClaseNominaService } from 'src/app/general/shared/clase-nomina.service';
 import { MessagesService } from 'src/app/general/shared/messages.service';
 import { ConceptoService } from 'src/app/general/shared/concepto.service';
@@ -10,22 +10,22 @@ import { Messages } from 'src/app/general/shared/messages';
 import { LABEL } from 'src/app/general/shared/label';
 import { State, STATES } from 'src/app/general/shared/state';
 
-
 @Component({
-  selector: 'app-create-concepto-nomina',
-  templateUrl: './create-concepto-nomina.component.html',
-  styleUrls: ['./create-concepto-nomina.component.scss']
+  selector: 'app-edit-concepto-nomina',
+  templateUrl: './edit-concepto-nomina.component.html',
+  styleUrls: ['./edit-concepto-nomina.component.scss']
 })
-export class CreateConceptoNominaComponent implements OnInit {
+export class EditConceptoNominaComponent implements OnInit {
 
- 
   conceptoForm: FormGroup;
   estados: State[];
   clases : ClaseNomina[];
   concepts : Concepto[];
   conceptoNomina :ConceptoNomina;
+  idConcepto :number;
     
    constructor(
+    private route: ActivatedRoute,
       private router: Router,
       private formBuilder: FormBuilder,
       private claseNominaService : ClaseNominaService,
@@ -37,6 +37,10 @@ export class CreateConceptoNominaComponent implements OnInit {
     ngOnInit(): void {
     
   
+      this.route.params.subscribe((params) => {
+        this.idConcepto = params['id'];
+        console.log(this.idConcepto);
+      });
       this.estados = STATES;
 
       this.conceptoForm = this.formBuilder.group({
@@ -69,6 +73,18 @@ export class CreateConceptoNominaComponent implements OnInit {
 
       );
     
+      this.conceptoNominaService.get(this.idConcepto).subscribe(
+        (data)=>{
+          console.log(data);
+          this.conceptoForm.get('clase').setValue(data.clase);
+          this.conceptoForm.get('concept').setValue(data.concept);
+          this.conceptoForm.get('active').setValue(data.active);
+     
+        },
+        (error)=>{
+          console.log(error);
+        }
+      );
     
     }
   
@@ -76,23 +92,21 @@ export class CreateConceptoNominaComponent implements OnInit {
   
     loadConceptoNomina(){
       
-          
-  
-  
+       
       let conceptoNominac :ConceptoNomina={
-      id:0,
+      id:this.idConcepto,
       enterprise:1,
       clase: this.conceptoForm.get('clase').value,
       concept:this.conceptoForm.get('concept').value, 
       active:this.conceptoForm.get('active').value,
-      user:'usuario'
+      user:localStorage.getItem('user')
       };
     
       this.conceptoNomina =conceptoNominac
      }
     
   
-    add() {
+    edit() {
       
   
   
@@ -107,14 +121,14 @@ export class CreateConceptoNominaComponent implements OnInit {
   this.loadConceptoNomina();
   
       console.log('clae Nomina',this.conceptoNomina);
-      this.conceptoNominaService.save(this.conceptoNomina).subscribe(
+      this.conceptoNominaService.update(this.conceptoNomina).subscribe(
         (data)=> {
-          
-          if(data.conceptoNomina !=null){
-          this.messagesService.showSuccessMessage(Messages.get('insert_success', LABEL.classPayRoll,this.conceptoForm.get('concept').value));
+          console.log(data);
+          if(data.error==null){
+          this.messagesService.showSuccessMessage(Messages.get('edit_success', LABEL.classPayRoll,this.conceptoForm.get('concept').value));
           }else{
             
-            this.messagesService.showErrorMessage(Messages.get('insert_error', LABEL.classPayRoll,this.conceptoForm.get('concept').value));
+            this.messagesService.showErrorMessage(Messages.get('edit_error', LABEL.classPayRoll,data.error));
   
           }
         },
@@ -127,7 +141,5 @@ export class CreateConceptoNominaComponent implements OnInit {
       
     }
   
-
-
 
 }

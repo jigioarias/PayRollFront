@@ -136,6 +136,13 @@ export interface Area {
     user:string;
   }
 
+  export interface ConceptoNominaDTO {
+    conceptoNomina:ConceptoNomina;
+     error:string;
+      
+  }
+
+
   export interface Filter{
     enterprise?:number;
     active?:boolean;

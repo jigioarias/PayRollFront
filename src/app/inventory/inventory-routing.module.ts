@@ -19,6 +19,7 @@ import { LoadEmployeesComponent } from './employees/load-employees/load-employee
 import { EditEmployeeComponent } from './employees/edit-employee/edit-employee.component';
 import { EditClaseNominaComponent } from './claseNomina/edit-clase-nomina/edit-clase-nomina.component';
 import { EditPeriodoClaseComponent } from './periodosClase/edit-periodo-clase/edit-periodo-clase.component';
+import { EditConceptoNominaComponent } from './conceptoNomina/edit-concepto-nomina/edit-concepto-nomina.component';
 
 const routes: Routes = [
   {
@@ -107,6 +108,10 @@ const routes: Routes = [
       {
         path: 'list',
         component: ListConceptoNominaComponent
+      },
+      {
+        path: 'edit/:id',
+        component: EditConceptoNominaComponent
       },
       {
         path: 'add',
