@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { messages } from 'src/app/general/shared/messages';
 import { MessagesService } from 'src/app/general/shared/messages.service';
 import { Employee, EmployeeData, PersonData } from '../../shared/employee';
 import { EmployeeService } from '../../shared/employee.service';
@@ -81,7 +82,7 @@ export class LoadEmployeesComponent implements OnInit {
                     country : datosEmpleado[7],
                     department : datosEmpleado[8],
                     municipality:datosEmpleado[9],
-                    user :localStorage.getItem('user'),
+                    user :localStorage.getItem(messages.variableUserSession),
                     civilState : parseInt(datosEmpleado[10]),
                   };
                   employeeInstance ={
@@ -98,7 +99,7 @@ export class LoadEmployeesComponent implements OnInit {
                     active : (datosEmpleado[20]=="true"),
                     unity: datosEmpleado[21],
                     area:  datosEmpleado[22],
-                    user : localStorage.getItem('user'),
+                    user : localStorage.getItem(messages.variableUserSession),
                     transporteSubsidy:(datosEmpleado[23]=="true"),
 
                   };

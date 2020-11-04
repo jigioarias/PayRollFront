@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ConceptoService } from 'src/app/general/shared/concepto.service';
 import { LABEL } from 'src/app/general/shared/label';
-import { Messages } from 'src/app/general/shared/messages';
+import { messages, Messages } from 'src/app/general/shared/messages';
 import { MessagesService } from 'src/app/general/shared/messages.service';
 import { NovedadNominaService } from 'src/app/general/shared/novedad-nomina.service';
 import { PeriodoclaseService } from 'src/app/general/shared/periodoclase.service';
@@ -133,7 +133,7 @@ export class RegisterComponent implements OnInit {
         hours: this.registerForm.get('hours').value,
         initDate:this.periodSelected.initDate,
         endDate:this.periodSelected.endDate,
-        user : localStorage.getItem('user'),
+        user : localStorage.getItem(messages.variableUserSession),
         noveltyDate: this.registerForm.get('dateRegister').value
       }
       console.log('horas extras',horasExtras);

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/general/shared/login.service';
+import { messages } from 'src/app/general/shared/messages';
 import { User } from 'src/app/general/shared/user';
 
 
@@ -37,9 +38,8 @@ export class LoginComponent implements OnInit {
     if(!this.loginForm.invalid){
         let usuarioLogeado =  
         this.loginService.loginIn(user).subscribe((data)=>{
-          console.log('el usuario es ',data);
           if(data!=null){
-            localStorage.setItem('user',data.email);
+            localStorage.setItem(messages.variableUserSession,data.email);
             this.router.navigate(['/app']);
           }else{
             this.error =  'Usuario no valido';

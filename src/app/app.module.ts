@@ -8,7 +8,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { SecurityModule } from './security/security.module';
 import { GeneralModule } from './general/general.module';
 import { RouterModule } from '@angular/router';
-
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptorService } from './general/shared/auth-interceptor.service';
 
 
 @NgModule({
@@ -24,7 +25,13 @@ import { RouterModule } from '@angular/router';
      SecurityModule,
      RouterModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MessagesService } from 'src/app/general/shared/messages.service';
-import { Messages } from 'src/app/general/shared/messages';
+import { messages, Messages } from 'src/app/general/shared/messages';
 import { LABEL } from 'src/app/general/shared/label';
 import { DOCUMENT_TYPES,DocumentType } from 'src/app/general/shared/document-type';
 import { State, STATES } from 'src/app/general/shared/state';
@@ -169,7 +169,7 @@ export class EmployeeComponent implements OnInit {
       country:this.personForm.get('country').value,
       department:this.personForm.get('departament').value,
       municipality:this.personForm.get('municipality').value,
-      user :'usuario',
+      user :localStorage.getItem(messages.variableUserSession),
       civilState :this.personForm.get('civilState').value
 
     };
@@ -188,7 +188,7 @@ export class EmployeeComponent implements OnInit {
       active : this.employeeForm.get('active').value,
       unity: this.employeeForm.get('unity').value,
       area: this.employeeForm.get('area').value,
-      user : localStorage.getItem('user'),
+      user : localStorage.getItem(messages.variableUserSession),
       transporteSubsidy:this.employeeForm.get('transporteSubsidy').value
     };
 

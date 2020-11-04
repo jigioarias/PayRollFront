@@ -39,7 +39,14 @@ export const messages = {
 
   //tecnical error
   tecnicalError: 'Error tecnico, ingrese de nuevo o comuniquese con el administrador',
-  emptydDataForm: 'Alguno de los datos esta vacio o no tiene el formato '
+  badRequestError: 'Petición mal realizada',
+  unavaibleError: 'El sistema no esta disponible, intente mas tarde',
+  emptydDataForm: 'Alguno de los datos esta vacio o no tiene el formato',
+  urlLogin:'/login',
+  variableUserSession:'userNominardo',
+  statusCode504:504,
+  statusCode400:400
+
 };
 
 export class Messages {

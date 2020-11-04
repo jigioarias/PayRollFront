@@ -6,7 +6,7 @@ import { ClaseNominaService } from 'src/app/general/shared/clase-nomina.service'
 import { MessagesService } from 'src/app/general/shared/messages.service';
 import { ConceptoService } from 'src/app/general/shared/concepto.service';
 import { ConceptoNominaService } from 'src/app/general/shared/concepto-nomina.service';
-import { Messages } from 'src/app/general/shared/messages';
+import { messages, Messages } from 'src/app/general/shared/messages';
 import { LABEL } from 'src/app/general/shared/label';
 import { State, STATES } from 'src/app/general/shared/state';
 
@@ -99,7 +99,7 @@ export class EditConceptoNominaComponent implements OnInit {
       clase: this.conceptoForm.get('clase').value,
       concept:this.conceptoForm.get('concept').value, 
       active:this.conceptoForm.get('active').value,
-      user:localStorage.getItem('user')
+      user:localStorage.getItem(messages.variableUserSession)
       };
     
       this.conceptoNomina =conceptoNominac

@@ -9,7 +9,7 @@ import { PayRollType, PAYROLLTYPES } from 'src/app/general/shared/payRollType';
 import { ClaseNominaService } from 'src/app/general/shared/clase-nomina.service';
 import { ClaseNomina, PeriodoClase } from '../../shared/master';
 import { ClaseNominaComponent } from '../../clase-nomina/clase-nomina.component';
-import { Messages } from 'src/app/general/shared/messages';
+import { messages, Messages } from 'src/app/general/shared/messages';
 import { LABEL } from 'src/app/general/shared/label';
 import { ClassPayRollType, CLASSPAYROLL_TYPES } from 'src/app/general/shared/classPayRollType';
 import { MonthType, MONTH_TYPES } from 'src/app/general/shared/monthType';
@@ -85,7 +85,7 @@ estados :State[];
     period:this.claseForm.get('period').value, 
     year:this.claseForm.get('year').value,
     active:this.claseForm.get('active').value,
-    user:localStorage.getItem('user'),
+    user:localStorage.getItem(messages.variableUserSession),
     month:this.claseForm.get('month').value,
     initDate:this.claseForm.get('initDate').value,
     endDate:this.claseForm.get('endDate').value

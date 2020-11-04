@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Employee, EmployeeData, PersonData } from '../../shared/employee';
-import { Messages } from 'src/app/general/shared/messages';
+import { messages, Messages } from 'src/app/general/shared/messages';
 
 import { MessagesService } from 'src/app/general/shared/messages.service';
 import { LABEL } from 'src/app/general/shared/label';
@@ -136,7 +136,7 @@ checkboxLabel(row?: Employee): string {
          active : this.searchForm.get('active').value,
          unity: null,
          area: null,
-         user : null,
+         user : localStorage.getItem(messages.variableUserSession),
          transporteSubsidy:false
    };
    let personData : PersonData;
@@ -152,7 +152,7 @@ checkboxLabel(row?: Employee): string {
     country :  null,
     department :  null,
     municipality: null,
-    user : null,
+    user : localStorage.getItem(messages.variableUserSession),
     civilState : 0
 
    };

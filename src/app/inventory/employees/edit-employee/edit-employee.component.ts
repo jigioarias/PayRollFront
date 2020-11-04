@@ -15,7 +15,7 @@ import { YESNO, Yesno } from 'src/app/general/shared/yesno';
 import { Employee, EmployeeData, PersonData } from '../../shared/employee';
 import { EmployeeService } from '../../shared/employee.service';
 import { Area, CentroCostos, ClaseNomina, Sucursal } from '../../shared/master';
-import { Messages } from 'src/app/general/shared/messages';
+import { messages, Messages } from 'src/app/general/shared/messages';
 import { LABEL } from 'src/app/general/shared/label';
 import { throwToolbarMixedModesError } from '@angular/material/toolbar';
 
@@ -218,7 +218,7 @@ export class EditEmployeeComponent implements OnInit {
       country:this.personForm.get('country').value,
       department:this.personForm.get('departament').value,
       municipality:this.personForm.get('municipality').value,
-      user :'usuario',
+      user :localStorage.getItem(messages.variableUserSession),
       civilState :this.personForm.get('civilState').value
 
     };
@@ -237,7 +237,7 @@ export class EditEmployeeComponent implements OnInit {
       active : this.employeeForm.get('active').value,
       unity: this.employeeForm.get('unity').value,
       area: this.employeeForm.get('area').value,
-      user : localStorage.getItem('user'),
+      user : localStorage.getItem(messages.variableUserSession),
       transporteSubsidy:this.employeeForm.get('transporteSubsidy').value
     };
 

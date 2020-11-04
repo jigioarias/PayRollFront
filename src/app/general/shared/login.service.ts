@@ -21,15 +21,10 @@ export class LoginService {
 
     const url = environment.apiUrl;
 
-    console.log('usuario a enviaar',usuario);
     return this.http.post<Response<User>>(`${url}user`, usuario).pipe(
       switchMap((data) => of(data.content)),
       catchError((error) => {
-        if (error.status == 400) {
-          return throwError(error.error.message);
-        } else {
-          return throwError(messages.tecnicalError);
-        }
+          return throwError(error);
       })
     );
 
