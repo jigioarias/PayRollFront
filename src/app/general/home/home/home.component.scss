@@ -19,3 +19,11 @@ footer {
   display: flex;
   justify-content: center;
 }
+
+.mat-cell,
+.mat-header-cell {
+  //flex: 1;
+  overflow: hidden;
+  word-wrap: break-word;
+  max-width: 100%;
+}

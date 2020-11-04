@@ -5,8 +5,7 @@
       aria-label="Menu Nomina" (click)="opened = !opened">
               <mat-icon>menu</mat-icon>
       </button>
-
-     
+  
 
 
       <img class="jpg-icon"  src="../../../../assets/nominardo.png" 
@@ -51,7 +50,7 @@
     </mat-toolbar>
   
     <mat-sidenav-container class="app-container">
-      <mat-sidenav #sidenav  mode="over" [(opened)]="opened">
+      <mat-sidenav #sidenav  mode="side" [(opened)]="opened">
 
         <app-menu></app-menu>
        
@@ -64,7 +63,7 @@
         <p></p>
         <footer class="footer">
           <div class="container">
-          <div class="content has-text-centered">
+          <div class="mat-header-cell">
             <p>
               @Derechos reservados <a href="x"> Jinni Arias</a>
             </p>

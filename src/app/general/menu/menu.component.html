@@ -1,18 +1,19 @@
 <!-- <p>menu works!</p> -->
 <div>
     <mat-nav-list>
+
       <button mat-icon-button [matMenuTriggerFor]="menu">Administración
         <mat-icon>more_vert</mat-icon>
       </button>
+
       <mat-menu #menu="matMenu"   >
         <button mat-menu-item routerLink="employees" >Empleado</button>
         <button mat-menu-item routerLink="classPayRolls">Clase de Nomina</button>
         <button mat-menu-item routerLink="periods">Periodos</button>
         <button mat-menu-item routerLink="conceptsPayRoll">Conceptos</button>
+
       </mat-menu>
       
-   
- 
       <mat-list-item routerLink="payroll">Nomina</mat-list-item>
 
       <mat-list-item routerLink="reports">Reportes</mat-list-item>
