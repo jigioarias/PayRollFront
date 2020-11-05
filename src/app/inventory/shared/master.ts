@@ -245,6 +245,31 @@ export interface Area {
     
    }
 
+   export interface Licencia{
+    id : number;
+    enterprise :number;
+    document: string;
+    initDate :string;
+    endDate :string;
+    user  :string;
+    type : string;
+    remuneration:  boolean;
+    employeeId :number;
+    year : string; 
+    registerPeriod : string;
+    clase :number;
+    salary : number;
+    active : boolean;
+    hours : number;
+
+   }
+
+   export interface LicenciaData{
+     person:PersonData;
+     licencia:Licencia;
+
+   }
+
    export interface SolicitudVacacionData{
     solicitud:SolicitudVacacion;
     person:PersonData;
