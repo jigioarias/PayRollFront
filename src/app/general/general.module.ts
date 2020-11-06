@@ -5,12 +5,12 @@ import { HomeComponent } from './home/home/home.component';
 import { AppRoutingModule } from '../app-routing.module';
 import { MenuComponent } from './menu/menu.component';
 import { MaterialModule } from './material/material.module';
-import { PipeSalaryTypePipe } from './shared/pipes/pipe-salary-type.pipe';
+
 
 
 
 @NgModule({
-  declarations: [HomeComponent,MenuComponent, PipeSalaryTypePipe],
+  declarations: [HomeComponent,MenuComponent],
   imports: [
     CommonModule,
     AppRoutingModule,

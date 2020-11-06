@@ -259,7 +259,7 @@ export interface Area {
     registerPeriod : string;
     clase :number;
     salary : number;
-    active : boolean;
+    state : string;
     hours : number;
 
    }

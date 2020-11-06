@@ -25,16 +25,21 @@ import { LoadEmployeesComponent } from './employees/load-employees/load-employee
 import { EditEmployeeComponent } from './employees/edit-employee/edit-employee.component';
 import { EditClaseNominaComponent } from './claseNomina/edit-clase-nomina/edit-clase-nomina.component';
 import { EditConceptoNominaComponent } from './conceptoNomina/edit-concepto-nomina/edit-concepto-nomina.component';
+import { SharingGeneralModule } from '../general/shared/sharing-general/sharing-general.module';
 
 
 
 @NgModule({
   
-  declarations: [ActiveNoActivePipe,EmployeeComponent, ListEmployeesComponent, EmployeesComponent, ClaseNominaComponent, ConceptoComponent, ListClaseNominaComponent, CreateNominaComponent, CreateConceptComponent, ListConceptsComponent, CreateClaseNominaComponent, PeriodoClaseComponent, ListPeriodoClaseComponent, PeriodosClaseComponent, EditPeriodoClaseComponent, ConceptoNominaComponent, CreateConceptoNominaComponent, ListConceptoNominaComponent, LoadEmployeesComponent, EditEmployeeComponent, EditClaseNominaComponent, EditConceptoNominaComponent],
+  declarations: [
+    
+    EmployeeComponent, ListEmployeesComponent, EmployeesComponent, ClaseNominaComponent, ConceptoComponent, ListClaseNominaComponent, CreateNominaComponent, CreateConceptComponent, ListConceptsComponent, CreateClaseNominaComponent, PeriodoClaseComponent, ListPeriodoClaseComponent, PeriodosClaseComponent, EditPeriodoClaseComponent, ConceptoNominaComponent, CreateConceptoNominaComponent, ListConceptoNominaComponent, LoadEmployeesComponent, EditEmployeeComponent, EditClaseNominaComponent, EditConceptoNominaComponent],
 
   imports: [
-    CommonModule, ReactiveFormsModule, MaterialModule, InventoryRoutingModule
+    CommonModule, ReactiveFormsModule, MaterialModule, InventoryRoutingModule,
+    SharingGeneralModule
+
   ],
-  exports: [ActiveNoActivePipe]
+  
 })
 export class InventoryModule { }

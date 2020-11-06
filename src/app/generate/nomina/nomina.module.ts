@@ -13,6 +13,7 @@ import { ListLeavesComponent } from './novedades/leaves/list-leaves/list-leaves.
 import { ListInabilitiesComponent } from './novedades/list-inabilities/list-inabilities.component';
 import { ListLoansComponent } from './novedades/list-loans/list-loans.component';
 import { RegisterComponent } from './novedades/register/register.component';
+import { SharingGeneralModule } from 'src/app/general/shared/sharing-general/sharing-general.module';
 
 
 
@@ -20,7 +21,8 @@ import { RegisterComponent } from './novedades/register/register.component';
   declarations: [NovedadesComponent, NominaComponent,GenerateNominaComponent, VacationsComponent, ListRequestVacationsComponent, LeavesComponent, ListLeavesComponent, ListInabilitiesComponent, ListLoansComponent, RegisterComponent],
   imports: [
     
-    CommonModule, ReactiveFormsModule, MaterialModule, NominaRoutingModule
+    SharingGeneralModule,
+    CommonModule, ReactiveFormsModule, MaterialModule, NominaRoutingModule,
   ]
 })
 export class NominaModule { }

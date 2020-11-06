@@ -12,6 +12,7 @@ import { State, STATES } from 'src/app/general/shared/state';
 import { ClaseNomina, Licencia, LicenciaData } from 'src/app/inventory/shared/master';
 //import { Employee, EmployeeData, PersonData } from 'src/app/inventory/shared/employee';
 import { LicenciaService } from 'src/app/general/shared/licencia.service';
+import { EstadoLicenciaType, ESTADOS_LICENCIA_TYPES } from 'src/app/general/shared/EstadosLicenciaType';
 
 
 const ELEMENT_DATA: LicenciaData[] = [];
@@ -24,16 +25,18 @@ const ELEMENT_DATA: LicenciaData[] = [];
 export class ListLeavesComponent implements OnInit {
 
  
-  displayedColumns: string[] = ['select','document','firstName','lastName','initDate', 'endDate'];
+  displayedColumns: string[] = ['select','document','firstName','lastName','initDate', 'endDate','state'];
   //dataSource = ELEMENT_DATA;
   dataSource = new MatTableDataSource<LicenciaData>(ELEMENT_DATA);
 
-  selection = new SelectionModel<Licencia>(true, []);
+  selection = new SelectionModel<LicenciaData>(true, []);
   searchForm: FormGroup; 
   clases :ClaseNomina[];
   estados: State[];
   //employeeData: EmployeeData; 
   loadImage : boolean;
+  estadosLicencia:EstadoLicenciaType[];
+
 
   
 
@@ -47,10 +50,13 @@ export class ListLeavesComponent implements OnInit {
 
 
 
+
   ngOnInit(): void {
   
    //this.dataSource.data.length
   this.loadImage = true;
+  this.estadosLicencia = ESTADOS_LICENCIA_TYPES;
+
   // var employeeData:EmployeeData ;
    var licencia : Licencia;
   
@@ -68,7 +74,7 @@ export class ListLeavesComponent implements OnInit {
      registerPeriod : null,
      clase : null,
      salary : null,
-     active : true,
+     state : 'S',
      hours :0
     };
 
@@ -88,7 +94,7 @@ export class ListLeavesComponent implements OnInit {
     this.searchForm = this.formBuilder.group({
       document: [null, Validators.required],
       clase: [null, Validators.required],
-      active: [true],
+      state: 'S',
     });
     this.claseNominaService.list().subscribe(
       (data)=>{
@@ -113,7 +119,7 @@ export class ListLeavesComponent implements OnInit {
  masterToggle() {
   this.isAllSelected() ?
       this.selection.clear() :
-      this.dataSource.data.forEach(row => this.selection.select(row.licencia));
+      this.dataSource.data.forEach(row => this.selection.select(row));
       
 }
 
@@ -122,7 +128,7 @@ checkboxLabel(row?: LicenciaData): string {
   if (!row) {
     return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
   }
-  return `${this.selection.isSelected(row.licencia) ? 'deselect' : 'select'} row ${row.licencia.id + 1}`;
+  return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.licencia.id + 1}`;
 }
 
 
@@ -132,41 +138,6 @@ checkboxLabel(row?: LicenciaData): string {
  // var employeeData:EmployeeData ;
   var licencia : Licencia;
   
- /* employeeData = {
-         id:null,
-         enterprise :'1',
-         salary :0,
-         salaryType:null,
-         initDateContract :null,
-         endDateContract : null,
-         costCenter: null,
-         classPayRoll:  this.searchForm.get('clase').value,
-         departament :null,  
-         branchOffice:null,
-         active : this.searchForm.get('active').value,
-         unity: null,
-         area: null,
-         user : localStorage.getItem(messages.variableUserSession),
-         transporteSubsidy:false
-   };
-   let personData : PersonData;
-   personData={
-    id: 0,
-    firstName :null,
-    lastName : null,
-    phone : null,
-    email : null,
-    document : this.searchForm.get('document').value,
-    typeDocument: null, 
-    address :  null,
-    country :  null,
-    department :  null,
-    municipality: null,
-    user : localStorage.getItem(messages.variableUserSession),
-    civilState : 0
-
-   };
-*/
    licencia = {
     id : 0,
     enterprise :1,
@@ -181,7 +152,7 @@ checkboxLabel(row?: LicenciaData): string {
     registerPeriod : null,
     clase : this.searchForm.get('clase').value,
     salary : null,
-    active : true,
+    state : this.searchForm.get('state').value,
     hours :0
    };
  this.licenciaService.list(licencia).subscribe(
@@ -211,6 +182,37 @@ hideLoader(){
   this.loadImage=false;
 }
 
+
+
+
+
+changeState(estado){
+ 
+  if( this.selection.selected.length >0){
+
+    try {
+
+    this.selection.selected.forEach(element => {
+      element.licencia.state =estado;
+      
+    });
+   // console.log('antes de actualizar', this.selection.selected);
+    this.licenciaService.updateMasive(this.selection.selected).subscribe((data)=>{
+     // console.log('actualizados',data);
+      this.find();
+
+    },
+    (error)=>{
+      console.log(error);
+    }
+    );
+
+    
+    } catch (error) {
+      console.log(error);
+    }
+} 
+}
 
 
 }

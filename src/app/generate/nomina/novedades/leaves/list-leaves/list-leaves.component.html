@@ -41,7 +41,19 @@
                  </div>
 
                  <div class="mat-cell" >
-                  <mat-slide-toggle formControlName="active">Activo</mat-slide-toggle>    
+                  <mat-form-field>
+                  <mat-select
+                  formControlName="state"
+                  matInput
+                  placeholder="Estado Licencia"
+                  required
+                  >
+                  <ng-container *ngFor="let estadoLicencia of estadosLicencia">
+                    <mat-option [value]="estadoLicencia.code">{{ estadoLicencia.description }}</mat-option>
+                  </ng-container>
+                </mat-select>
+                  </mat-form-field>
+                  
                 </div>
 
                 <div class="mat-cell">
@@ -88,9 +100,13 @@
 <div class="mat-header-row"  *ngIf="dataSource.data.length == 0">
   <div class="mat-header-cell">No existen registros</div>
 </div>
-<div class="mat-header-row"  *ngIf="dataSource.data.length > 0">
-   
-
+<div class="mat-header-row"  *ngIf="dataSource.data.length > 0 && searchForm.get('state').value=='S'">
+  <button   mat-raised-button color="primary" (click)="changeState('A')">
+      Aprobar
+  </button>   
+  <button   mat-raised-button color="primary" (click)="changeState('R')">
+    Rechazar
+</button>   
 </div>
 
 
@@ -142,7 +158,11 @@
         <th mat-header-cell *matHeaderCellDef>Fin de Licencia</th>
         <td mat-cell *matCellDef="let element">{{ element.licencia.endDate| date: 'dd-MM-yyyy'}}</td>
       </ng-container>
-    
+     
+      <ng-container matColumnDef="state">
+        <th mat-header-cell *matHeaderCellDef>Activo/Inactivo</th>
+        <td mat-cell *matCellDef="let element">{{ element.licencia.state | estadoLicencia }}</td>
+      </ng-container>
       
     
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

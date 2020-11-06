@@ -48,4 +48,20 @@ export class LicenciaService {
   
   }
 
+  updateMasive(licencias: LicenciaData[]): Observable<Licencia> {
+    const url = environment.apiUrl;
+    console.log('servicio masivo',licencias);
+    return this.http.put<Response<Licencia>>(`${url}leaveUpdateMasive`, licencias).pipe(
+      switchMap((data) => of(data.content)),
+      catchError((error) => {
+        if (error.status == 400) {
+          return throwError(error.error.message);
+        } else {
+          return throwError(messages.tecnicalError);
+        }
+      })
+    );
+  }
+ 
+
 }
