@@ -30,7 +30,12 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
 
     this.usuario = localStorage.getItem(messages.variableUserSession);
-    this.licencias = 3;
+    this.updateLicencias();
+    this.updateVacaciones();
+
+  }
+
+  updateVacaciones(){
     let solicitud : SolicitudVacacion={
       id:0,
       enterprise:1,
@@ -54,7 +59,12 @@ export class HomeComponent implements OnInit {
       }
 
     );
-let licencia: Licencia = {
+
+
+  }
+  updateLicencias(){
+
+    let licencia: Licencia = {
       id : 0,
       enterprise :1,
       document: null,
@@ -85,10 +95,14 @@ let licencia: Licencia = {
     );
 
   }
-
   logout(){
     this.logoutService.logout();
     this.router.navigateByUrl(messages.urlLogin);
   }
 
+
+  
 }
+
+
+
