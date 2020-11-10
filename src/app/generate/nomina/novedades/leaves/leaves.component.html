@@ -1,1 +1,144 @@
-<p>leaves works!</p>
+<div>
+
+    <form [formGroup]="registerForm">
+        <div>
+
+
+            <div class="mat-header-row">
+                <div class="mat-header-cell">Empleado</div>
+            </div>
+
+            <div class="mat-table">
+
+
+                <div class="mat-header-row">
+                    
+                
+                    <div class="mat-cell">
+                        <mat-form-field>
+                            <input formControlName="document"  value="0" matInput placeholder="Documento" />
+                        </mat-form-field>
+
+                    </div>
+
+                     
+                    <div class="mat-cell">
+                        <mat-form-field>
+                            <input formControlName="name"  value="0" matInput placeholder="Nombre" readonly="true" />
+                        </mat-form-field>
+
+                    </div>
+                </div>
+
+                <div class="mat-button-center">
+                    <button  mat-stroked-button color="primary" (click)="findEmployee()">Consultar Empleado</button>
+
+                  </div>
+
+                <mat-label>Información Nomina</mat-label>
+                <p><p>
+
+                <div class="mat-header-row">
+                    
+                
+                    <div class="mat-cell">
+                        <mat-form-field>
+                            <input formControlName="classpayroll"  value="0" matInput placeholder="Nomina"  readonly="true" />
+                        </mat-form-field>
+
+                    </div>
+
+                     
+                    <div class="mat-cell">
+                        <mat-form-field>
+                            <mat-select formControlName="period" matInput placeholder="Periodo" 
+                            (selectionChange)="selectPeriod($event.value)"
+                             >
+                                <ng-container *ngFor="let period of periods">
+                                    <mat-option [value]="period.id">{{ period.year}}{{ period.month}}{{ period.period}} </mat-option>
+                                </ng-container>
+                            </mat-select>
+
+                        </mat-form-field>
+
+                       
+
+                    </div>
+                </div>
+
+                
+                <div class="mat-header-row">
+                    
+                
+                    <div class="mat-cell">
+                        <mat-form-field>
+                            <mat-select formControlName="type" matInput placeholder="Tipo" required  (selectionChange)="selectType($event.value)">
+                                <ng-container *ngFor="let leave of leavesTypes">
+                                    <mat-option [value]="leave.code">{{ leave.description }}</mat-option>
+                                </ng-container>
+                            </mat-select>
+                        </mat-form-field>
+
+                    </div>
+
+                    <div class="mat-cell">
+                        <mat-form-field>
+                            <input formControlName="hours"  type="number"  value="0" 
+                            matInput placeholder="Horas" />
+                        </mat-form-field>
+                       
+
+                    </div>
+                </div>
+
+ 
+
+                <div class="mat-row">
+                    <div class="mat-cell">
+                        <mat-form-field>
+                            <input matInput [matDatepicker]="initDate" placeholder="Fecha Inicio" formControlName="initDate" />
+                            <mat-datepicker-toggle matSuffix [for]="initDate"></mat-datepicker-toggle>
+                            <mat-datepicker #initDate></mat-datepicker>
+                          </mat-form-field>
+    
+                    </div>
+                    <div class="mat-cell">
+                    
+
+                        <mat-form-field>
+                            <input matInput [matDatepicker]="endDate" placeholder="Fecha Fin" formControlName="endDate" />
+                            <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
+                            <mat-datepicker #endDate></mat-datepicker>
+                          </mat-form-field>
+  
+                    </div>
+                   
+                  </div>
+
+                  <div class="mat-row">
+                    <div class="mat-cell">
+                        <mat-slide-toggle formControlName="remuneration" (change)="selectRemuneration()">Remunerado</mat-slide-toggle>  
+                       
+
+                    </div>
+                
+                </div>
+
+
+        
+            </div>
+            
+ 
+
+        </div>
+        <p></p>
+
+
+        <div class="mat-button-center">
+            
+            <button  mat-flat-button  color="primary" (click)="guardarLicencia()">Guardar Licencia</button>
+        </div>
+
+    </form>
+
+</div>

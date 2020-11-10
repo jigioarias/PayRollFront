@@ -257,7 +257,7 @@ export interface Area {
     employeeId :number;
     year : string; 
     registerPeriod : string;
-    clase :number;
+    clase :string;
     salary : number;
     state : string;
     hours : number;
@@ -267,7 +267,7 @@ export interface Area {
    export interface LicenciaData{
      person:PersonData;
      licencia:Licencia;
-
+     error?:string;
    }
 
    export interface SolicitudVacacionData{

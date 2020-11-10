@@ -17,9 +17,9 @@ export class LicenciaService {
 
 
 
-  create(licencia: Licencia): Observable<SolicitudVacacion> {
+  create(licencia: Licencia): Observable<LicenciaData> {
     const url = environment.apiUrl;
-    return this.http.post<Response<SolicitudVacacion>>(`${url}leave`, licencia).pipe(
+    return this.http.post<Response<LicenciaData>>(`${url}leave`, licencia).pipe(
       switchMap((data) => of(data.content)),
       catchError((error) => {
         if (error.status == 400) {

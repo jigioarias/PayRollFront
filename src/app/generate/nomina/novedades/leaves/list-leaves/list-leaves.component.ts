@@ -141,7 +141,7 @@ checkboxLabel(row?: LicenciaData): string {
    licencia = {
     id : 0,
     enterprise :1,
-    document: this.searchForm.get('document').value,
+    document: (this.searchForm.get('document').value=="")?null:this.searchForm.get('document').value,
     initDate :null,
     endDate :null,
     user  :null,
@@ -155,6 +155,8 @@ checkboxLabel(row?: LicenciaData): string {
     state : this.searchForm.get('state').value,
     hours :0
    };
+ 
+ console.log('find licencia>>',licencia);
  this.licenciaService.list(licencia).subscribe(
  (data)=>{
    console.log(data);
@@ -174,6 +176,8 @@ checkboxLabel(row?: LicenciaData): string {
 }
 clean(){
   this.searchForm.get('clase').setValue(this.clases); 
+  this.searchForm.get('state').setValue(null); 
+
 }
 
 

@@ -6,5 +6,6 @@ export const LABEL = {
   employee: 'empleado',
   periodClase: 'Periodo',
   vacation :'vacaciones',
-  extraHour : 'Horas extras'
+  extraHour : 'Horas extras',
+  leaves :'Licencias'
 };
