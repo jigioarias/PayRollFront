@@ -1,25 +1,26 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Licencia, LicenciaData } from 'src/app/inventory/shared/master';
 import { Observable, of, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Response,ResponseList } from './response';
 import { switchMap, catchError } from 'rxjs/operators';
 import { messages } from './messages';
+import { Incapacidad, IncapacidadData } from 'src/app/inventory/shared/master';
+
 
 @Injectable({
   providedIn: 'root'
 })
-export class LicenciaService {
+export class IncapacidadService {
 
-  licenciasSinAprobar = 0; 
+   IncapacidadesSinAprobar = 0; 
   constructor(private http:HttpClient) { }
 
 
 
-  create(licencia: Licencia): Observable<LicenciaData> {
+  create( Incapacidad:  Incapacidad): Observable<IncapacidadData> {
     const url = environment.apiUrl;
-    return this.http.post<Response<LicenciaData>>(`${url}leave`, licencia).pipe(
+    return this.http.post<Response<IncapacidadData>>(`${url}inability`,  Incapacidad).pipe(
       switchMap((data) => of(data.content)),
       catchError((error) => {
         if (error.status == 400) {
@@ -31,16 +32,16 @@ export class LicenciaService {
     );
   }
 
-  list(licencia: Licencia): Observable<LicenciaData[]> {
+  list( Incapacidad:  Incapacidad): Observable< IncapacidadData[]> {
   
     const url = environment.apiUrl;
   
     this.listSinAprobar().subscribe((data)=>{
-      this.licenciasSinAprobar = data.length;
+      this. IncapacidadesSinAprobar = data.length;
     });
  
-   if(licencia !=null){ 
-    return this.http.post<ResponseList<LicenciaData>>(`${url}leaveList`, licencia).pipe(
+   if( Incapacidad !=null){ 
+    return this.http.post<ResponseList< IncapacidadData>>(`${url}inabilityList`,  Incapacidad).pipe(
       switchMap((data) => of(data.content)),
       catchError((error) => {
         if (error.status == 400) {
@@ -55,11 +56,11 @@ export class LicenciaService {
     }
   }
 
-  updateMasive(licencias: LicenciaData[]): Observable<Licencia> {
+  updateMasive( Incapacidads:  IncapacidadData[]): Observable< Incapacidad> {
     const url = environment.apiUrl;
     
   
-    return this.http.put<Response<Licencia>>(`${url}leaveUpdateMasive`, licencias).pipe(
+    return this.http.put<Response< Incapacidad>>(`${url}inabilityUpdateMasive`,  Incapacidads).pipe(
       switchMap((data) => of(data.content)),
       catchError((error) => {
         if (error.status == 400) {
@@ -72,29 +73,28 @@ export class LicenciaService {
   }
  
 
-  listSinAprobar(): Observable<LicenciaData[]> {
+  listSinAprobar(): Observable< IncapacidadData[]> {
   
     const url = environment.apiUrl;
-    let licencia: Licencia = {
+    let  Incapacidad:  Incapacidad = {
       id : 0,
-      enterprise :1,
+      enterprise : 1,
       document: null,
       initDate :null,
-      endDate :null,
-      user  :null,
+      endDate : null,
+      user : null,
       type : null,
-      remuneration:  false,
-      employeeId :null,
-      year : null,
+      employeeId : 0,
+      year : null, 
       registerPeriod : null,
       clase : null,
-      salary : null,
+      salary : 0,
       state : 'S',
-      hours :0
-     };
+      percentage : 0
+      };
 
     
-    return this.http.post<ResponseList<LicenciaData>>(`${url}leaveList`, licencia).pipe(
+    return this.http.post<ResponseList< IncapacidadData>>(`${url}inabilityList`,  Incapacidad).pipe(
       switchMap((data) => of(data.content)),
       catchError((error) => {
         if (error.status == 400) {
@@ -106,7 +106,4 @@ export class LicenciaService {
     );
   
   }
-  
-
-
 }

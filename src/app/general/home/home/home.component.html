@@ -12,15 +12,24 @@
       style="max-width:5%; min-width: 5%;">
       <span class="home-spacer"></span>
 
+
     <button mat-icon-button class="home-icon notifications-icon" 
         matTooltip="Licencias"  
-        matBadge="{{licencias}}" aria-label="Solicitudes de Licencias"  [matMenuTriggerFor]="licencia">
+        matBadge="{{getLicenciasSinAprobar() | async}}" aria-label="Solicitudes de Licencias"  [matMenuTriggerFor]="licencia">
         <mat-icon>note</mat-icon>
       </button>
       <mat-menu #licencia="matMenu"   >
         <button mat-menu-item routerLink="payroll/listLeaves">Listar Licencias</button>
       </mat-menu>
 
+      <button mat-icon-button class="home-icon notifications-icon" 
+      matTooltip="Incapacidades"  
+      matBadge="{{getIncapacidadesSinAprobar() | async}}" aria-label="Solicitudes de Incapacidades"  [matMenuTriggerFor]="incapacidad">
+      <mat-icon>insert_comment</mat-icon>
+    </button>
+    <mat-menu #incapacidad="matMenu"   >
+      <button mat-menu-item routerLink="payroll/listInabilities">Listar Incapacidades</button>
+    </mat-menu>
 
   <button mat-icon-button class="home-icon notifications-icon" 
   matTooltip="Solicitud de vacaciones"  

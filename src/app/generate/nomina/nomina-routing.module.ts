@@ -9,6 +9,7 @@ import { ListInabilitiesComponent } from './novedades/list-inabilities/list-inab
 import { ListLoansComponent } from './novedades/list-loans/list-loans.component';
 import { RegisterComponent } from './novedades/register/register.component';
 import { LeavesComponent } from './novedades/leaves/leaves.component';
+import { InabilityComponent } from './novedades/inabilities/inability/inability.component';
 
 const routes: Routes = [
   {
@@ -41,6 +42,10 @@ const routes: Routes = [
         component: ListInabilitiesComponent
        // component: VacationsComponent
       }, 
+      {
+        path: 'createInabilities',
+        component: InabilityComponent
+      },
       {
         path: 'listLoans', 
         component: ListLoansComponent

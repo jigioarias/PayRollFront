@@ -1,16 +1,11 @@
 .nomina-container {
     display: flex;
     flex-direction: column;
-    width: 95%;
+    width: 75%;
     margin: auto;
   }
-
-  .activar {
-    margin-right: 0px;
-  }
-
-
- .mat-table {
+  
+  .mat-table {
     display: block;
     font-family: Tahoma, Verdana;
   }
@@ -29,12 +24,10 @@
   
   .mat-cell,
   .mat-header-cell {
-    //flex: 1;
+    flex: 1;
     overflow: hidden;
     word-wrap: break-word;
-    max-width: 100%;
   }
-
   .mat-content-center {
     margin: auto;
     width: 100%;
@@ -44,12 +37,3 @@
     width: 50%;
   }
   
-
-  th, td {
-     width: 100px;
-      }
-  table {
-    width: 100%;
-  }
-
-

@@ -1,31 +1,34 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { APROBADO } from 'src/app/general/shared/EstadosLicenciaType';
+import { APROBADO } from 'src/app/general/shared/EstadosIncapacidadType';
+import { INABILITIES_TYPES, InabilityType, Maternidad, Paternidad } from 'src/app/general/shared/inabilitiesType';
 import { LABEL } from 'src/app/general/shared/label';
-import { LEAVES_TYPES, LeaveType } from 'src/app/general/shared/leavesType';
-import { LicenciaService } from 'src/app/general/shared/licencia.service';
+import { IncapacidadService } from 'src/app/general/shared/incapacidad.service';
 import { messages, Messages } from 'src/app/general/shared/messages';
 import { MessagesService } from 'src/app/general/shared/messages.service';
 import { PeriodoclaseService } from 'src/app/general/shared/periodoclase.service';
 import { Employee } from 'src/app/inventory/shared/employee';
 import { EmployeeService } from 'src/app/inventory/shared/employee.service';
-import { Filter, Licencia, PeriodoClase } from 'src/app/inventory/shared/master';
+import { Filter, Incapacidad, PeriodoClase } from 'src/app/inventory/shared/master';
+import { CIEN, InabilityPercentageType,PERCENTAGES_INABILITY_TYPES } from 'src/app/general/shared/inabiltyPercentageType';
+
 
 
 @Component({
-  selector: 'app-leaves',
-  templateUrl: './leaves.component.html',
-  styleUrls: ['./leaves.component.scss']
+  selector: 'app-inability',
+  templateUrl: './inability.component.html',
+  styleUrls: ['./inability.component.scss']
 })
-export class LeavesComponent implements OnInit {
+export class InabilityComponent implements OnInit {
 
   registerForm: FormGroup;
   empleado: Employee;
   periods: PeriodoClase[];
   periodSelected: PeriodoClase;
-  typeSelect: LeaveType;
+  typeSelect: InabilityType;
   valorCalculado: number;
-  leavesTypes: LeaveType[];
+  inabilitiesTypes: InabilityType[];
+  percentagesType:InabilityPercentageType[];
 
 
 
@@ -35,7 +38,7 @@ export class LeavesComponent implements OnInit {
     private employeeService: EmployeeService,
     private periodoClaseService: PeriodoclaseService,
     private messagesService: MessagesService,
-    private licenciaService: LicenciaService
+    private incapacidadService: IncapacidadService
 
 
 
@@ -50,9 +53,8 @@ export class LeavesComponent implements OnInit {
       name: [null, Validators.required],
       classpayroll: [null, Validators.required],
       type: [null, Validators.required],
-      hours: [null, Validators.required],
       period: [null, Validators.required],
-      remuneration: [false, Validators.required],
+      percentage: [CIEN.value, Validators.required],
       initDate: [null, Validators.required],
       endDate: [null, Validators.required],
       periodoInfo: null,
@@ -106,21 +108,14 @@ export class LeavesComponent implements OnInit {
       }
     );
 
-    this.leavesTypes = LEAVES_TYPES;
+    this.inabilitiesTypes = INABILITIES_TYPES;
+    this.percentagesType =PERCENTAGES_INABILITY_TYPES;
 
 
   }
 
 
-  selectType(idType) {
 
-    if (idType == 'M' || idType == 'T') {
-      this.registerForm.get('remuneration').setValue(true);
-      this.registerForm.get('hours').setValue(0);
-
-    }
-
-  }
 
   selectPeriod(IdPeriod) {
 
@@ -134,39 +129,44 @@ export class LeavesComponent implements OnInit {
 
   }
 
+  selectType(idType) {
 
-  guardarLicencia() {
-
-
-    if (this.registerForm.get('type').value == 'M' || this.registerForm.get('type').value == 'T') {
-      this.registerForm.get('remuneration').setValue(true);
-      this.registerForm.get('hours').setValue(0);
+  
+    if (idType == Maternidad.code || idType == Paternidad.code) {
+      this.registerForm.get('percentage').setValue(CIEN.value);
 
     }
 
-    let fechaRegistro = new Date();
-    let licencia: Licencia = {
+  }
+  guardarIncapacidad() {
+
+
+    if (this.registerForm.get('type').value == Maternidad.code || this.registerForm.get('type').value == Paternidad.code) {
+      this.registerForm.get('percentage').setValue(true);
+
+    }
+
+    let incapacidad: Incapacidad = {
       id: 0,
-      clase: this.empleado.employee.classPayRoll,
+      clase: parseInt(this.empleado.employee.classPayRoll),
       document: this.registerForm.get('document').value,
       employeeId: this.empleado.employee.id,
       endDate: this.registerForm.get('endDate').value,
       initDate: this.registerForm.get('initDate').value,
       enterprise: 1,
-      hours: this.registerForm.get('hours').value,
       registerPeriod: this.registerForm.get('periodoInfo').value,
       salary: this.empleado.employee.salary,
-      remuneration: this.registerForm.get('remuneration').value,
+      percentage: this.registerForm.get('percentage').value,
       state: APROBADO.code,
       type: this.registerForm.get('type').value,
       user: localStorage.getItem(messages.variableUserSession),
       year: this.periodSelected.year.toString()
     };
 
-    //console.log(licencia);
-    this.licenciaService.create(licencia).subscribe(
+    console.log(incapacidad);
+    this.incapacidadService.create(incapacidad).subscribe(
       (data) => {
-        console.log('data:::', data);
+
         if (data.error != null) {
           this.messagesService.showErrorMessage(Messages.get('insert_error', data.error, ''));
         } else {
@@ -192,5 +192,6 @@ export class LeavesComponent implements OnInit {
     }
 
   }
+
 
 }

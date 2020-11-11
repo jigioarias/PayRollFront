@@ -1,5 +1,6 @@
 import { Employee, PersonData } from './employee';
 import { EmployeeComponent } from '../employees/employee/employee.component';
+import { ExecSyncOptionsWithBufferEncoding } from 'child_process';
 
 export interface Area {
    
@@ -263,6 +264,30 @@ export interface Area {
     hours : number;
 
    }
+
+   export interface Incapacidad{
+     id : number;
+     enterprise : number;
+     document: string;
+     initDate : string;
+     endDate : ExecSyncOptionsWithBufferEncoding;
+     user : string;
+     type : string;
+     employeeId : number;
+     year : string; 
+     registerPeriod : string;
+     clase : number;
+     salary : number;
+     state : string;
+     percentage : number;
+
+   }
+
+   export interface IncapacidadData{
+    person:PersonData;
+    incapacidad:Incapacidad;
+    error?:string;
+  }
 
    export interface LicenciaData{
      person:PersonData;

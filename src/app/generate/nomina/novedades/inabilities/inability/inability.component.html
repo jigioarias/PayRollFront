@@ -5,7 +5,7 @@
 
 
             <div class="mat-header-row">
-                <div class="mat-header-cell">Empleado</div>
+                <div class="mat-header-cell">Incapacidades Empleado</div>
             </div>
 
             <div class="mat-table">
@@ -73,21 +73,21 @@
                     <div class="mat-cell">
                         <mat-form-field>
                             <mat-select formControlName="type" matInput placeholder="Tipo" required  (selectionChange)="selectType($event.value)">
-                                <ng-container *ngFor="let leave of leavesTypes">
-                                    <mat-option [value]="leave.code">{{ leave.description }}</mat-option>
+                                <ng-container *ngFor="let inability of inabilitiesTypes">
+                                    <mat-option [value]="inability.code">{{ inability.description }}</mat-option>
                                 </ng-container>
                             </mat-select>
                         </mat-form-field>
-
                     </div>
 
                     <div class="mat-cell">
                         <mat-form-field>
-                            <input formControlName="hours"  type="number"  value="0" 
-                            matInput placeholder="Horas" />
+                            <mat-select formControlName="percentage" matInput placeholder="Porcentage" required >
+                                <ng-container *ngFor="let percentageType of percentagesType">
+                                    <mat-option [value]="percentageType.code">{{ percentageType.value }}</mat-option>
+                                </ng-container>
+                            </mat-select>
                         </mat-form-field>
-                       
-
                     </div>
                 </div>
 
@@ -115,14 +115,7 @@
                    
                   </div>
 
-                  <div class="mat-row">
-                    <div class="mat-cell">
-                        <mat-slide-toggle formControlName="remuneration" (change)="selectRemuneration()">Remunerado</mat-slide-toggle>  
-                       
-
-                    </div>
-                
-                </div>
+            
 
 
         
@@ -136,7 +129,7 @@
 
         <div class="mat-button-center">
             
-            <button  mat-flat-button  color="primary" (click)="guardarLicencia()">Guardar Licencia</button>
+            <button  mat-flat-button  color="primary" (click)="guardarIncapacidad()">Guardar Licencia</button>
         </div>
 
     </form>
