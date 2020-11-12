@@ -66,19 +66,25 @@ export class RegisterComponent implements OnInit {
   findEmployee(){
     let document = this.registerForm.get('document').value;
 
-    this.employeeService.find(document).subscribe(
+   let filter :Filter={
+    enterprise: parseInt(localStorage.getItem(messages.variableUserEmpresa)),
+    document:document,
+        active:true
+   };
+
+  this.employeeService.get(filter).subscribe(
 
       (data)=>{
-
-        if(data!=null){
-         console.log(data);
+        console.log(data);
+          if(data!=null){
+         
           this.empleado =data;
           this.registerForm.get('name').setValue(this.empleado.person.firstName+' '+ this.empleado.person.lastName);
           this.registerForm.get('classpayroll').setValue(this.empleado.classPayRoll.description);
 
           let filter:Filter ={
             classPayRoll: this.empleado.classPayRoll,
-            enterprise:1,
+            enterprise: parseInt(localStorage.getItem(messages.variableUserEmpresa)),
             active:true
           }
           
@@ -123,7 +129,7 @@ export class RegisterComponent implements OnInit {
     if(this.registerForm.valid &&  this.registerForm.get('hours').value >0){    
       let horasExtras : NovedadNomina ={
         id:0,
-        enterprise:1,
+        enterprise: parseInt(localStorage.getItem(messages.variableUserEmpresa)),
         document :this.registerForm.get('document').value,
         idClassPayRoll:this.empleado.classPayRoll.id,
         employee:this.empleado.employee.id,

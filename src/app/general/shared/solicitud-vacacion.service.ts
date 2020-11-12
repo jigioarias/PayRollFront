@@ -60,7 +60,7 @@ export class SolicitudVacacionService {
 
     let solicitud: SolicitudVacacion = {
       id: 0,
-      enterprise: 1,
+      enterprise: parseInt(localStorage.getItem(messages.variableUserEmpresa)),
       document: null,
       enjoyInitDate: null,
       enjoyEndDate: null,

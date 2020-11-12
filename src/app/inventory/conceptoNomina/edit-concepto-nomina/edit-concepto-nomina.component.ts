@@ -95,7 +95,7 @@ export class EditConceptoNominaComponent implements OnInit {
        
       let conceptoNominac :ConceptoNomina={
       id:this.idConcepto,
-      enterprise:1,
+      enterprise: parseInt(localStorage.getItem(messages.variableUserEmpresa)),
       clase: this.conceptoForm.get('clase').value,
       concept:this.conceptoForm.get('concept').value, 
       active:this.conceptoForm.get('active').value,

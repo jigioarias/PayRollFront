@@ -1,11 +1,11 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'estadoVacaciones'
+  name: 'estadoSolicitudVacacioPipe'
 })
-export class EstadoVacacionesPipe implements PipeTransform {
+export class EstadoSolicitudVacacionPipe implements PipeTransform {
 
-  transform(value: any, ...args: any[]): any {
+  transform(value: unknown, ...args: unknown[]): unknown {
     if (value=='A'){
       return 'Aprobado';
     }
@@ -16,7 +16,6 @@ export class EstadoVacacionesPipe implements PipeTransform {
       return 'Pendiente';
     }
     return '';
-
   }
 
 }

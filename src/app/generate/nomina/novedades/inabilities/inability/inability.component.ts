@@ -70,8 +70,12 @@ export class InabilityComponent implements OnInit {
   //consultar empleado
   findEmployee() {
     let document = this.registerForm.get('document').value;
-
-    this.employeeService.find(document).subscribe(
+    let filter :Filter={
+      enterprise: parseInt(localStorage.getItem(messages.variableUserEmpresa)),
+      document:document,
+      active:true
+ };      
+    this.employeeService.get(filter).subscribe(
 
       (data) => {
 
@@ -83,7 +87,7 @@ export class InabilityComponent implements OnInit {
 
           let filter: Filter = {
             classPayRoll: this.empleado.classPayRoll,
-            enterprise: 1,
+            enterprise: parseInt(localStorage.getItem(messages.variableUserEmpresa)),
             active: true
           }
 
@@ -153,7 +157,7 @@ export class InabilityComponent implements OnInit {
       employeeId: this.empleado.employee.id,
       endDate: this.registerForm.get('endDate').value,
       initDate: this.registerForm.get('initDate').value,
-      enterprise: 1,
+      enterprise: parseInt(localStorage.getItem(messages.variableUserEmpresa)),
       registerPeriod: this.registerForm.get('periodoInfo').value,
       salary: this.empleado.employee.salary,
       percentage: this.registerForm.get('percentage').value,

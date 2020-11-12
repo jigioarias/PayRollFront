@@ -124,7 +124,7 @@ checkboxLabel(row?: Employee): string {
   
   employeeData = {
          id:null,
-         enterprise :'1',
+         enterprise: localStorage.getItem(messages.variableUserEmpresa),
          salary :0,
          salaryType:null,
          initDateContract :null,

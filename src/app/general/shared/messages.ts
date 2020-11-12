@@ -44,6 +44,8 @@ export const messages = {
   emptydDataForm: 'Alguno de los datos esta vacio o no tiene el formato',
   urlLogin:'/login',
   variableUserSession:'userNominardo',
+  variableUserEmpresa:'enterpriseNominardo',
+
   statusCode504:504,
   statusCode400:400
 

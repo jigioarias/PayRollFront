@@ -8,6 +8,7 @@ import { ClaseNomina, Concepto, Filter, HoraExtra, HoraExtraData } from 'src/app
 import { HoraExtraType, HORAS_EXTRAS_TYPES } from 'src/app/general/shared/horasExtrasType';
 import { HorasExtrasService } from 'src/app/general/shared/horas-extras.service';
 import { ConceptoService } from 'src/app/general/shared/concepto.service';
+import { messages } from 'src/app/general/shared/messages';
 
 
 const ELEMENT_DATA: HoraExtraData[] = [];
@@ -46,7 +47,7 @@ export class ListExtrahoursComponent implements OnInit {
 
     var  horaExtra: HoraExtra = {
       id: 0,
-      enterprise: 1,
+      enterprise: parseInt(localStorage.getItem(messages.variableUserEmpresa)),
       document: null,
       noveltyDate: null,
       hours: null,
@@ -93,7 +94,7 @@ export class ListExtrahoursComponent implements OnInit {
 
 
     let  filter: Filter = {
-      enterprise: 1,
+      enterprise: parseInt(localStorage.getItem(messages.variableUserEmpresa)),
       listConcepts :[8,9,10]
     }
 
@@ -117,7 +118,7 @@ export class ListExtrahoursComponent implements OnInit {
 
     var  horaExtra: HoraExtra = {
       id: 0,
-      enterprise: 1,
+      enterprise: parseInt(localStorage.getItem(messages.variableUserEmpresa)),
       document: (this.searchForm.get('document').value == "") ? null : this.searchForm.get('document').value,
       noveltyDate: null,
       hours: null,

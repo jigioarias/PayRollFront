@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { Licencia, SolicitudVacacion,Incapacidad } from 'src/app/inventory/shared/master';
+import { PENDIENTE } from '../../shared/EstadosSolicitudVacacionType';
 import { IncapacidadService } from '../../shared/incapacidad.service';
 import { LicenciaService } from '../../shared/licencia.service';
 import { LogoutServiceService } from '../../shared/logout-service.service';
@@ -37,7 +38,7 @@ export class HomeComponent implements OnInit {
    
     let licencia: Licencia = {
       id: 0,
-      enterprise: 1,
+      enterprise: parseInt(localStorage.getItem(messages.variableUserEmpresa)),
       document: null,
       initDate: null,
       endDate: null,
@@ -87,12 +88,12 @@ export class HomeComponent implements OnInit {
   updateVacaciones() {
     let solicitud: SolicitudVacacion = {
       id: 0,
-      enterprise: 1,
+      enterprise: parseInt(localStorage.getItem(messages.variableUserEmpresa)),
       document: null,
       enjoyInitDate: null,
       enjoyEndDate: null,
       moneyDays: null,
-      state: 'P',
+      state: PENDIENTE.code,
       remuneration: false,
       user: null
 

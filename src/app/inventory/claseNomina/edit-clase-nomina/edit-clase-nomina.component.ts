@@ -5,7 +5,7 @@ import { BankType, BANK_TYPES } from 'src/app/general/shared/bankType';
 import { ClaseNominaService } from 'src/app/general/shared/clase-nomina.service';
 import { ClassPayRollType, CLASSPAYROLL_TYPES } from 'src/app/general/shared/classPayRollType';
 import { LABEL } from 'src/app/general/shared/label';
-import { Messages } from 'src/app/general/shared/messages';
+import { messages, Messages } from 'src/app/general/shared/messages';
 import { MessagesService } from 'src/app/general/shared/messages.service';
 import { PayRollType, PAYROLLTYPES } from 'src/app/general/shared/payRollType';
 import { PeriodClase, PERIODOSCLASES } from 'src/app/general/shared/periodoClase';
@@ -117,7 +117,7 @@ periodClases : PeriodClase[];
   
     let claseNominac :ClaseNomina={
     id:this.idClaseNomina,
-    enterprise:1,
+    enterprise: parseInt(localStorage.getItem(messages.variableUserEmpresa)),
     clase: this.claseForm.get('clase').value,
     description:this.claseForm.get('description').value, 
     vacationdays:this.claseForm.get('vacationdays').value,

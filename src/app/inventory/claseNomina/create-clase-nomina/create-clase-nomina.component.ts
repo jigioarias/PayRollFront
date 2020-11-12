@@ -9,7 +9,7 @@ import { PayRollType, PAYROLLTYPES } from 'src/app/general/shared/payRollType';
 import { ClaseNominaService } from 'src/app/general/shared/clase-nomina.service';
 import { ClaseNomina, SemanaLaboral, PeriodoClase } from '../../shared/master';
 import { ClaseNominaComponent } from '../../clase-nomina/clase-nomina.component';
-import { Messages } from 'src/app/general/shared/messages';
+import { messages, Messages } from 'src/app/general/shared/messages';
 import { LABEL } from 'src/app/general/shared/label';
 import { ClassPayRollType, CLASSPAYROLL_TYPES } from 'src/app/general/shared/classPayRollType';
 import { SemanaLaboralService } from 'src/app/general/shared/semana-laboral.service';
@@ -87,7 +87,7 @@ periodClases : PeriodClase[];
   
     let claseNominac :ClaseNomina={
     id:0,
-    enterprise:1,
+    enterprise: parseInt(localStorage.getItem(messages.variableUserEmpresa)),
     clase: this.claseForm.get('clase').value,
     description:this.claseForm.get('description').value, 
     vacationdays:this.claseForm.get('vacationdays').value,

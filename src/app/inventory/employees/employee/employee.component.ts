@@ -176,7 +176,7 @@ export class EmployeeComponent implements OnInit {
   
     let empleadodatac :EmployeeData ={    
       id:0,
-      enterprise :'1',
+      enterprise: localStorage.getItem(messages.variableUserEmpresa),
       salary :this.employeeForm.get('salary').value,
       salaryType:this.employeeForm.get('salaryType').value,
       initDateContract :this.employeeForm.get('initDateContract').value,

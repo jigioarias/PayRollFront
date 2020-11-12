@@ -14,7 +14,7 @@ import { SucursalService } from 'src/app/general/shared/sucursal.service';
 import { YESNO, Yesno } from 'src/app/general/shared/yesno';
 import { Employee, EmployeeData, PersonData } from '../../shared/employee';
 import { EmployeeService } from '../../shared/employee.service';
-import { Area, CentroCostos, ClaseNomina, Sucursal } from '../../shared/master';
+import { Area, CentroCostos, ClaseNomina, Filter, Sucursal } from '../../shared/master';
 import { messages, Messages } from 'src/app/general/shared/messages';
 import { LABEL } from 'src/app/general/shared/label';
 import { throwToolbarMixedModesError } from '@angular/material/toolbar';
@@ -156,7 +156,13 @@ export class EditEmployeeComponent implements OnInit {
 
     );
 
-    this.employeeService.get(this.idEmployee).subscribe((data)=>{
+    let filter :Filter={
+      enterprise: parseInt(localStorage.getItem(messages.variableUserEmpresa)),
+      document:this.idEmployee,
+      active:true
+    };
+
+    this.employeeService.get(filter).subscribe((data)=>{
 
       this.personForm.get('document').setValue(data.person.document);
       this.personaConsultada = data.person;
@@ -225,7 +231,7 @@ export class EditEmployeeComponent implements OnInit {
   
     let empleadodatac :EmployeeData ={    
       id:this.empleadoConsultado.id,
-      enterprise :'1',
+      enterprise: localStorage.getItem(messages.variableUserEmpresa),
       salary :this.employeeForm.get('salary').value,
       salaryType:this.employeeForm.get('salaryType').value,
       initDateContract :this.employeeForm.get('initDateContract').value,

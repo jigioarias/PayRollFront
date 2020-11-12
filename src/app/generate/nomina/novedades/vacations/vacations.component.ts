@@ -6,7 +6,7 @@ import { ClaseNominaService } from 'src/app/general/shared/clase-nomina.service'
 import { MessagesService } from 'src/app/general/shared/messages.service';
 import { EmployeeService } from 'src/app/inventory/shared/employee.service';
 import { Employee } from 'src/app/inventory/shared/employee';
-import { Messages } from 'src/app/general/shared/messages';
+import { messages, Messages } from 'src/app/general/shared/messages';
 import { LABEL } from 'src/app/general/shared/label';
 import { WorkCalendarService } from 'src/app/general/shared/work-calendar.service';
 import { error } from 'protractor';
@@ -70,8 +70,13 @@ export class VacationsComponent implements OnInit {
   
     findEmployee(){
       let document = (this.vacationsForm.get('document').value==null)?this.document:this.vacationsForm.get('document').value;
-      console.log(document);      
-      this.employeeService.find(document).subscribe(
+      console.log(document);
+      let filter :Filter={
+        enterprise: parseInt(localStorage.getItem(messages.variableUserEmpresa)),
+        document:document,
+        active:true
+   };      
+      this.employeeService.get(filter).subscribe(
 
         (data)=>{
 
@@ -126,8 +131,8 @@ export class VacationsComponent implements OnInit {
         enjoyDays: this.vacationsForm.get('enjoyDays').value,
         //remuneration:this.vacationsForm.get('remuneration').value,
         remuneration:true,
-        enterprise: 1,
-        user:'usuario',
+        enterprise: parseInt(localStorage.getItem(messages.variableUserEmpresa)),
+        user:localStorage.getItem(messages.variableUserSession),
         period :this.empleado.period[0],
         salary:this.empleado.employee.salary,
         dayHours:this.empleado.classPayRoll.dayshours

@@ -8,7 +8,7 @@ import { PeriodoclaseService } from 'src/app/general/shared/periodoclase.service
 import { ClaseNominaService } from 'src/app/general/shared/clase-nomina.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
-import { Messages } from 'src/app/general/shared/messages';
+import { messages, Messages } from 'src/app/general/shared/messages';
 import { LABEL } from 'src/app/general/shared/label';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 
@@ -89,7 +89,7 @@ export class GenerateNominaComponent implements OnInit {
     
     let filter:Filter ={
       classPayRoll: this.claeSelected,
-      enterprise:1,
+      enterprise: parseInt(localStorage.getItem(messages.variableUserEmpresa)),
       active:true
     }
     

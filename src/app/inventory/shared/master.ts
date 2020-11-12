@@ -154,7 +154,8 @@ export interface Area {
     clase?:number;
     fechaInicioLaboral?:FechaCalendarioLaboral,
     fechaFinLaboral?:FechaCalendarioLaboral,
-    listConcepts?:number[]
+    listConcepts?:number[],
+    document?:string;
 
   }
 

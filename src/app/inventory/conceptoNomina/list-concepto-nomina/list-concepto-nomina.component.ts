@@ -5,6 +5,7 @@ import { ClaseNominaService } from 'src/app/general/shared/clase-nomina.service'
 import { ConceptoService } from 'src/app/general/shared/concepto.service';
 import { ConceptoNominaService } from 'src/app/general/shared/concepto-nomina.service';
 import { ClaseNomina,ConceptoNomina, Concepto, Filter } from '../../shared/master';
+import { messages } from 'src/app/general/shared/messages';
 
 const ELEMENT_DATA: ConceptoNomina[] = [];
 
@@ -30,7 +31,7 @@ export class ListConceptoNominaComponent implements OnInit {
   ngOnInit(): void {
 
   let  filter: Filter ={
-    enterprise:1,
+    enterprise: parseInt(localStorage.getItem(messages.variableUserEmpresa)),
     active:true
 
     }

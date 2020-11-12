@@ -7,6 +7,7 @@ import { Response, ResponseList } from 'src/app/general/shared/response';
 import { messages } from 'src/app/general/shared/messages';
 import { Employee, EmployeeData, EmployeeDTO } from './employee';
 import { environment } from 'src/environments/environment';
+import { Filter } from './master';
 
 
 @Injectable({
@@ -78,9 +79,9 @@ updateMasive(employees: Employee[]): Observable<Employee> {
     );
   }
 
-  find(id: string): Observable<Employee> {
+  find(filter: Filter): Observable<Employee> {
     const url = environment.apiUrl;
-    return this.http.get<Response<Employee>>(`${url}employees/` + id).pipe(
+    return this.http.post<Response<Employee>>(`${url}employeeInfo`,filter).pipe(
       switchMap((data) => of(data.content)),
       catchError((error) => {
         if (error.status == 400) {
@@ -91,11 +92,13 @@ updateMasive(employees: Employee[]): Observable<Employee> {
       })
     );
   }
-  get(id: string): Observable<Employee> {
+
+  get(filter: Filter): Observable<Employee> {
     const url = environment.apiUrl;
-    return this.http.get<Response<Employee>>(`${url}employee/` + id).pipe(
+    return this.http.post<Response<Employee>>(`${url}employee`,filter).pipe(
       switchMap((data) => of(data.content)),
       catchError((error) => {
+        
         if (error.status == 400) {
           return throwError(error.error.message);
         } else {

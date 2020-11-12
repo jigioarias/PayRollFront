@@ -63,7 +63,7 @@ export class ListLeavesComponent implements OnInit {
 
     licencia = {
       id: 0,
-      enterprise: 1,
+      enterprise: parseInt(localStorage.getItem(messages.variableUserEmpresa)),
       document: null,
       initDate: null,
       endDate: null,
@@ -141,7 +141,7 @@ export class ListLeavesComponent implements OnInit {
 
     licencia = {
       id: 0,
-      enterprise: 1,
+      enterprise: parseInt(localStorage.getItem(messages.variableUserEmpresa)),
       document: (this.searchForm.get('document').value == "") ? null : this.searchForm.get('document').value,
       initDate: null,
       endDate: null,
@@ -157,8 +157,7 @@ export class ListLeavesComponent implements OnInit {
       hours: 0
     };
 
-    console.log('find licencia>>', licencia);
-    this.licenciaService.list(licencia).subscribe(
+     this.licenciaService.list(licencia).subscribe(
       (data) => {
         console.log(data);
         this.dataSource = new MatTableDataSource<LicenciaData>(data);

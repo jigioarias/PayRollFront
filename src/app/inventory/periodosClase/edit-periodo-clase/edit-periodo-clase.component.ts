@@ -99,7 +99,7 @@ estados :State[];
   
     let periodoClaseC :PeriodoClase={
     id:this.idPeriodo,
-    enterprise:1,
+    enterprise: parseInt(localStorage.getItem(messages.variableUserEmpresa)),
     clase: this.claseForm.get('clase').value,
     period:this.claseForm.get('period').value, 
     year:this.claseForm.get('year').value,

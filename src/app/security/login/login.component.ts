@@ -39,7 +39,10 @@ export class LoginComponent implements OnInit {
         let usuarioLogeado =  
         this.loginService.loginIn(user).subscribe((data)=>{
           if(data!=null){
+          
             localStorage.setItem(messages.variableUserSession,data.email);
+            localStorage.setItem(messages.variableUserEmpresa,data.enterprise+'');
+
             this.router.navigate(['/app']);
           }else{
             this.error =  'Usuario no valido';

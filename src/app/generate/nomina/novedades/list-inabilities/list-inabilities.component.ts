@@ -8,6 +8,7 @@ import { State, STATES } from 'src/app/general/shared/state';
 import { ClaseNomina, Incapacidad, IncapacidadData } from 'src/app/inventory/shared/master';
 import { IncapacidadService } from 'src/app/general/shared/incapacidad.service';
 import { EstadoIncapacidadType, ESTADOS_INCAPACIDAD_TYPES } from 'src/app/general/shared/EstadosIncapacidadType';
+import { messages } from 'src/app/general/shared/messages';
 
 
 const ELEMENT_DATA: IncapacidadData[] = [];
@@ -48,7 +49,7 @@ export class ListInabilitiesComponent implements OnInit {
 
     Incapacidad: Incapacidad = {
       id: 0,
-      enterprise: 1,
+      enterprise: parseInt(localStorage.getItem(messages.variableUserEmpresa)),
       document: null,
       initDate: null,
       endDate: null,
@@ -124,7 +125,7 @@ export class ListInabilitiesComponent implements OnInit {
 
     Incapacidad: Incapacidad = {
       id: 0,
-      enterprise: 1,
+      enterprise: parseInt(localStorage.getItem(messages.variableUserEmpresa)),
       document: (this.searchForm.get('document').value == "") ? null : this.searchForm.get('document').value,
       initDate: null,
       endDate: null,
