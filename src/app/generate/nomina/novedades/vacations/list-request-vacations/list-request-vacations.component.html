@@ -1,34 +1,109 @@
 <div class="nomina-container">
     
-    <div class="activar">Lista de Solicitudes de Vacaciones</div>
-   
-    
+
+    <form [formGroup]="searchForm">
+      <div>
+
+
+          <div class="mat-header-row">
+              <div class="mat-header-cell">Buscar Solicitudes de vacaciones de Empleado</div>
+          </div>
+
+          <div class="mat-table">
+
+              <div class="mat-header-row">
+
+              <div class="mat-cell">
+                  <mat-form-field>
+                    <mat-select formControlName="clase" matInput placeholder="Clase de Nomina" required   >
+                        <ng-container *ngFor="let clase of clases">
+                            <mat-option [value]="clase.id">{{ clase.description }}</mat-option>
+                        </ng-container>
+                    </mat-select>
+                </mat-form-field>
+                  </div>
+
+
+              <div class="mat-cell">
+                      <mat-form-field>
+                          <input formControlName="document"  value="0" matInput placeholder="Documento"
+                          (blur)="clean()" />
+                      </mat-form-field>
+
+               </div>
+
+               <div class="mat-cell" >
+                <mat-form-field>
+                <mat-select
+                formControlName="state"
+                matInput
+                placeholder="Estado"
+                required
+                >
+                <ng-container *ngFor="let estadoSolicitudVacacion of estadosSolicitudVacacion">
+                  <mat-option [value]="estadoSolicitudVacacion.code">{{ estadoSolicitudVacacion.description }}</mat-option>
+                </ng-container>
+              </mat-select>
+                </mat-form-field>
+                
+              </div>
+
+              <div class="mat-cell">
+
+                <div class="mat-button-center">
+
+                  
+                </div>
+              </div>
+
+            </div>
+            
+            <div class="mat-header-row">
+
+
+              <div class="mat-cell">
+              
+                <button   mat-raised-button color="primary" (click)="find()">Consultar</button>
+
+            </div>
+
+          </div>
+          </div>
+
+             
+
+        </div>
+
+            
+  </form>
+  
+
+
+
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
-
-
-
-
-
-    <ng-container matColumnDef="document">
+   <ng-container matColumnDef="document">
       <th mat-header-cell *matHeaderCellDef>Documento</th>
       <td mat-cell *matCellDef="let element">{{ element.solicitud.document }}</td>
     </ng-container>
 
-    <ng-container matColumnDef="name">
+    <ng-container matColumnDef="firstName">
       <th mat-header-cell *matHeaderCellDef>Nombre</th>
-      <td mat-cell *matCellDef="let element">{{ element.person.firstName }}{{ element.person.lastName }} </td>
+      <td mat-cell *matCellDef="let element">{{ element.person.firstName }} </td>
     </ng-container>
-  
+    <ng-container matColumnDef="lastName">
+      <th mat-header-cell *matHeaderCellDef>Apellidos</th>
+      <td mat-cell *matCellDef="let element">{{ element.person.lastName }} </td>
+    </ng-container>
   
     <ng-container matColumnDef="initDate">
       <th mat-header-cell *matHeaderCellDef>Inicio de Vacaciones</th>
-      <td mat-cell *matCellDef="let element">{{ element.solicitud.enjoyInitDate }}</td>
+      <td mat-cell *matCellDef="let element">{{ element.solicitud.enjoyInitDate | date: 'dd-MM-yyyy' }}</td>
     </ng-container>
   
     <ng-container matColumnDef="endDate">
       <th mat-header-cell *matHeaderCellDef>Fin de Vacaciones</th>
-      <td mat-cell *matCellDef="let element">{{ element.solicitud.enjoyEndDate }}</td>
+      <td mat-cell *matCellDef="let element">{{ element.solicitud.enjoyEndDate | date: 'dd-MM-yyyy' }}</td>
     </ng-container>
 
     <ng-container matColumnDef="moneyDays">

@@ -6,12 +6,14 @@ import { environment } from 'src/environments/environment';
 import { Response,ResponseList } from './response';
 import { switchMap, catchError } from 'rxjs/operators';
 import { messages } from './messages';
+import { PENDIENTE } from './EstadosSolicitudVacacionType';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SolicitudVacacionService {
 
+  solicitudesVacacionesSinAprobar = 0; 
 
   constructor(private http:HttpClient) { }
 
@@ -33,7 +35,12 @@ export class SolicitudVacacionService {
 
   list(solicitud: SolicitudVacacion): Observable<SolicitudVacacionData[]> {
     const url = environment.apiUrl;
-  
+
+    this.listSinAprobar().subscribe((data)=>{
+      this.solicitudesVacacionesSinAprobar = data.length;
+    });
+ 
+
     return this.http.post<ResponseList<SolicitudVacacionData>>(`${url}vacationRequestList`, solicitud).pipe(
       switchMap((data) => of(data.content)),
       catchError((error) => {
@@ -47,6 +54,35 @@ export class SolicitudVacacionService {
   
   }
 
+  listSinAprobar(): Observable<SolicitudVacacionData[]> {
+  
+    const url = environment.apiUrl;
+
+    let solicitud: SolicitudVacacion = {
+      id: 0,
+      enterprise: 1,
+      document: null,
+      enjoyInitDate: null,
+      enjoyEndDate: null,
+      moneyDays: null,
+      state: PENDIENTE.code,
+      remuneration: false,
+      user: null
+
+    }
+    
+    return this.http.post<ResponseList<SolicitudVacacionData>>(`${url}vacationRequestList`, solicitud).pipe(
+      switchMap((data) => of(data.content)),
+      catchError((error) => {
+        if (error.status == 400) {
+          return throwError(error.error.message);
+        } else {
+          return throwError(messages.tecnicalError);
+        }
+      })
+    );
+  
+  }
 
 
 }

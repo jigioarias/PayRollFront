@@ -10,6 +10,7 @@ import { ListLoansComponent } from './novedades/list-loans/list-loans.component'
 import { RegisterComponent } from './novedades/register/register.component';
 import { LeavesComponent } from './novedades/leaves/leaves.component';
 import { InabilityComponent } from './novedades/inabilities/inability/inability.component';
+import { ListExtrahoursComponent } from './novedades/extraHours/list-extrahours/list-extrahours.component';
 
 const routes: Routes = [
   {
@@ -55,6 +56,11 @@ const routes: Routes = [
       {
         path: 'extraHours', 
         component: RegisterComponent
+       // component: VacationsComponent
+      }, 
+      {
+        path: 'listExtraHours', 
+        component:ListExtrahoursComponent
        // component: VacationsComponent
       }, 
       {

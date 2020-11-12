@@ -1,0 +1,150 @@
+<p>
+</p> 
+
+
+
+
+
+<div class="nomina-container">
+    
+          
+
+      <form [formGroup]="searchForm">
+        <div>
+
+
+            <div class="mat-header-row">
+                <div class="mat-header-cell">Buscar Horas Extras de Empleado</div>
+            </div>
+
+            <div class="mat-table">
+
+                <div class="mat-header-row">
+
+                <div class="mat-cell">
+                    <mat-form-field>
+                      <mat-select formControlName="clase" matInput placeholder="Clase de Nomina" required >
+                          <ng-container *ngFor="let clase of clases">
+                              <mat-option [value]="clase.id">{{ clase.description }}</mat-option>
+                          </ng-container>
+                      </mat-select>
+                  </mat-form-field>
+                    </div>
+
+
+                <div class="mat-cell">
+                        <mat-form-field>
+                            <input formControlName="document"  value="0" matInput placeholder="Documento"
+                            (blur)="clean()" />
+                        </mat-form-field>
+
+                 </div>
+
+                 <div class="mat-cell" >
+                  <mat-form-field>
+                  <mat-select 
+                  formControlName="concept"
+                  matInput
+                  placeholder="Concepto"
+                  required
+                  >
+                  <ng-container *ngFor="let horaExtraType of horaExtraTypes">
+                    <mat-option [value]="horaExtraType.id">{{ horaExtraType.description }}</mat-option>
+                  </ng-container>
+                </mat-select>
+                  </mat-form-field>
+                  
+                </div>
+
+                <div class="mat-cell">
+
+                  <div class="mat-button-center">
+
+                    
+                  </div>
+                </div>
+
+              </div>
+              
+              <div class="mat-header-row">
+
+
+                <div class="mat-cell">
+                
+                  <button   mat-raised-button color="primary" (click)="find()">Consultar</button>
+
+              </div>
+
+            </div>
+            </div>
+
+               
+
+          </div>
+
+              
+    </form>
+
+
+<p></p>
+
+
+<div>
+<mat-progress-bar mode="indeterminate" value="10" *ngIf="loadImage == true"></mat-progress-bar>
+<P></P>
+</div>
+
+  
+<div class="mat-header-row"  *ngIf="dataSource.data.length == 0">
+  <div class="mat-header-cell">No existen registros</div>
+</div>
+
+
+
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" *ngIf="dataSource.data.length > 0" >
+
+      <ng-container matColumnDef="document">
+        <th mat-header-cell *matHeaderCellDef>Documento</th>
+        <td mat-cell *matCellDef="let element">{{ element.person.typeDocument }} - {{ element.person.document }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="firstName">
+        <th mat-header-cell *matHeaderCellDef>Nombre</th>
+        <td mat-cell *matCellDef="let element">{{ element.person.firstName}}  </td>
+      </ng-container>
+
+      
+      <ng-container matColumnDef="lastName">
+        <th mat-header-cell *matHeaderCellDef>Apellido</th>
+        <td mat-cell *matCellDef="let element">{{ element.person.lastName }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="period">
+        <th mat-header-cell *matHeaderCellDef>Periodo</th>
+        <td mat-cell *matCellDef="let element">{{ element.horasExtras.period }}</td>
+      </ng-container>
+    
+      <ng-container matColumnDef="concept">
+        <th mat-header-cell *matHeaderCellDef>Concepto      </th>
+        <td mat-cell *matCellDef="let element">{{ element.concept.description }}</td>
+      </ng-container>
+      <ng-container matColumnDef="noveltyDate">
+        <th mat-header-cell *matHeaderCellDef>Fecha de Novedad</th>
+        <td mat-cell *matCellDef="let element">{{ element.horasExtras.noveltyDate | date: 'dd-MM-yyyy'}}</td>
+      </ng-container>       
+      <ng-container matColumnDef="hours">
+        <th mat-header-cell *matHeaderCellDef>Horas</th>
+        <td mat-cell *matCellDef="let element">{{ element.horasExtras.hours }}</td>
+      </ng-container>    
+      <ng-container matColumnDef="valor">
+        <th mat-header-cell *matHeaderCellDef>Valor</th>
+        <td mat-cell *matCellDef="let element">{{ element.horasExtras.valor }}</td>
+      </ng-container>    
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  
+
+  </div>
+  

@@ -25,7 +25,8 @@ export class HomeComponent implements OnInit {
     private logoutService: LogoutServiceService,
     private solicitudVacationService: SolicitudVacacionService,
     private licenciaService: LicenciaService,
-    private incapacidadServive:IncapacidadService
+    private incapacidadServive:IncapacidadService,
+    private solicitudVacacionService :SolicitudVacacionService
 
 
   ) { }
@@ -78,7 +79,8 @@ export class HomeComponent implements OnInit {
       });
      
    
-    this.updateVacaciones();
+    //this.updateVacaciones();
+
 
   }
 
@@ -124,7 +126,9 @@ export class HomeComponent implements OnInit {
   getIncapacidadesSinAprobar(): Observable<number> {
     return of(this.incapacidadServive.IncapacidadesSinAprobar);
   }
-
+  getSolicitudesSinAprobar(): Observable<number> {
+    return of(this.solicitudVacacionService.solicitudesVacacionesSinAprobar);
+  }
 
 }
 

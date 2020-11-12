@@ -33,7 +33,7 @@
 
   <button mat-icon-button class="home-icon notifications-icon" 
   matTooltip="Solicitud de vacaciones"  
-    matBadge="{{solicitudVacaciones}}" aria-label="Solicitudes de Vacaciones"  [matMenuTriggerFor]="solicitudVacacion">
+    matBadge="{{getSolicitudesSinAprobar() | async}}" aria-label="Solicitudes de Vacaciones"  [matMenuTriggerFor]="solicitudVacacion">
     <mat-icon>notifications</mat-icon>
   </button>
   <mat-menu #solicitudVacacion="matMenu"   >

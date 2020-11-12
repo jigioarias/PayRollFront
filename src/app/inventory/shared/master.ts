@@ -153,7 +153,8 @@ export interface Area {
     classPayRoll?:ClaseNomina;
     clase?:number;
     fechaInicioLaboral?:FechaCalendarioLaboral,
-    fechaFinLaboral?:FechaCalendarioLaboral
+    fechaFinLaboral?:FechaCalendarioLaboral,
+    listConcepts?:number[]
 
   }
 
@@ -339,6 +340,27 @@ export interface Area {
    
    }
 
-   
+   export interface HoraExtra{
+     id  : number;
+     enterprise  : number;
+     clase : number;
+     employeeId  : number;
+     document  : string;
+     concept  : number;    
+     period  : string;
+     valor  : number;
+     hours  : number;
+     InitDayPay : string;
+     endDayPay  : string; 
+     user  : string;
+     type  :string;
+     noveltyDate  : string;
 
-   
+   }
+
+  export interface HoraExtraData{
+    person:PersonData;
+    horasExtra:HoraExtra;
+    error?:string;
+    concept?:Concepto;
+  }   

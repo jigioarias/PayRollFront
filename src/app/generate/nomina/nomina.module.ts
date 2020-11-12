@@ -15,11 +15,12 @@ import { ListLoansComponent } from './novedades/list-loans/list-loans.component'
 import { RegisterComponent } from './novedades/register/register.component';
 import { SharingGeneralModule } from 'src/app/general/shared/sharing-general/sharing-general.module';
 import { InabilityComponent } from './novedades/inabilities/inability/inability.component';
+import { ListExtrahoursComponent } from './novedades/extraHours/list-extrahours/list-extrahours.component';
 
 
 
 @NgModule({
-  declarations: [NovedadesComponent, NominaComponent,GenerateNominaComponent, VacationsComponent, ListRequestVacationsComponent, LeavesComponent, ListLeavesComponent, ListInabilitiesComponent, ListLoansComponent, RegisterComponent, InabilityComponent],
+  declarations: [NovedadesComponent, NominaComponent,GenerateNominaComponent, VacationsComponent, ListRequestVacationsComponent, LeavesComponent, ListLeavesComponent, ListInabilitiesComponent, ListLoansComponent, RegisterComponent, InabilityComponent, ListExtrahoursComponent],
   imports: [
     
     SharingGeneralModule,

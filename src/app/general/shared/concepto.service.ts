@@ -54,6 +54,22 @@ export class ConceptoService {
       })
     );
   }
+ 
+ 
+  listConceptosXIds(filter:Filter): Observable<Concepto[]> {
+    const url = environment.apiUrl;
+   
 
+    return this.http.post<ResponseList<Concepto>>(`${url}conceptsXIds`,filter).pipe(
+      switchMap((data) => of(data.content)),
+      catchError((error) => {
+        if (error.status == 400) {
+          return throwError(error.error.message);
+        } else {
+          return throwError(messages.tecnicalError);
+        }
+      })
+    );
+    }
 
 }

@@ -1,99 +1,94 @@
-
 <p></p>
 <span>Novedades</span>
 
 <mat-toolbar color="primary">
-  <button mat-button  [matMenuTriggerFor]="extrahour">
+  <button mat-button [matMenuTriggerFor]="extrahour">
     <mat-icon>add_comment</mat-icon>
     Horas extras
   </button>
-  <mat-menu #extrahour="matMenu"   >
+  <mat-menu #extrahour="matMenu">
     <button mat-menu-item routerLink="extraHours">
       <mat-icon>add</mat-icon>
-      Registras Horas Extras</button>
-      <button mat-menu-item routerLink="listExtraHours">
-        <mat-icon>list_alt</mat-icon>
-        Listar Horas Extras por periodo</button>
-    </mat-menu>
-
-
-
-    <button mat-button  [matMenuTriggerFor]="solicitud">
-      <mat-icon>how_to_reg</mat-icon>
-       Solicitudes de Vacaciones
+      Registras Horas Extras
     </button>
-    <mat-menu #solicitud="matMenu"   >
-      <button mat-menu-item routerLink="listVacations">
-        <mat-icon>list_alt</mat-icon>
-         Listar por Clase Nomina
-        </button>
-        <button mat-menu-item routerLink="/">
-          <mat-icon>list</mat-icon>
-           Listar Vacaciones Aprobadas
-          </button>
-          <button mat-menu-item routerLink="/">
-            <mat-icon>edit</mat-icon>
-            Registrar Vacaciones
-            </button>
-      </mat-menu>
-
-      <button mat-button  [matMenuTriggerFor]="licencia">
-        <mat-icon>receipt</mat-icon>
-         Licencias
-      </button>
-      <mat-menu #licencia="matMenu"   >
-        <button mat-menu-item routerLink="listLeaves">
-          <mat-icon>list_alt</mat-icon>
-           Listar
-           </button>
-           <button mat-menu-item routerLink="createLeaves">
-            <mat-icon>insert_drive_file</mat-icon>
-             Registrar Licencia
-             </button>
-    </mat-menu>
-  
-    <button mat-button  [matMenuTriggerFor]="incapacidad">
-      <mat-icon>face</mat-icon>
-       Incapacidades
+    <button mat-menu-item routerLink="listExtraHours">
+      <mat-icon>list_alt</mat-icon>
+      Listar Horas Extras por periodo
     </button>
-    <mat-menu #incapacidad="matMenu"   >
-      <button mat-menu-item routerLink="listInabilities">
-        <mat-icon>list_alt</mat-icon>
-         Listar
-         </button>
-         <button mat-menu-item routerLink="createInabilities">
-          <mat-icon>insert_drive_file</mat-icon>
-           Registrar Incapacidad
-           </button>
   </mat-menu>
 
 
- 
-  <button mat-button  [matMenuTriggerFor]="prestamo">
+
+  <button mat-button [matMenuTriggerFor]="solicitud">
+    <mat-icon>how_to_reg</mat-icon>
+    Solicitudes de Vacaciones
+  </button>
+  <mat-menu #solicitud="matMenu">
+    <button mat-menu-item routerLink="listVacations">
+      <mat-icon>list_alt</mat-icon>
+      Listar solicitudes
+    </button>
+    <button mat-menu-item routerLink="createVacations">
+      <mat-icon>edit</mat-icon>
+      Registrar Vacaciones
+    </button>
+  </mat-menu>
+
+  <button mat-button [matMenuTriggerFor]="licencia">
+    <mat-icon>receipt</mat-icon>
+    Licencias
+  </button>
+  <mat-menu #licencia="matMenu">
+    <button mat-menu-item routerLink="listLeaves">
+      <mat-icon>list_alt</mat-icon>
+      Listar
+    </button>
+    <button mat-menu-item routerLink="createLeaves">
+      <mat-icon>insert_drive_file</mat-icon>
+      Registrar Licencia
+    </button>
+  </mat-menu>
+
+  <button mat-button [matMenuTriggerFor]="incapacidad">
+    <mat-icon>face</mat-icon>
+    Incapacidades
+  </button>
+  <mat-menu #incapacidad="matMenu">
+    <button mat-menu-item routerLink="listInabilities">
+      <mat-icon>list_alt</mat-icon>
+      Listar
+    </button>
+    <button mat-menu-item routerLink="createInabilities">
+      <mat-icon>insert_drive_file</mat-icon>
+      Registrar Incapacidad
+    </button>
+  </mat-menu>
+
+
+
+  <button mat-button [matMenuTriggerFor]="prestamo">
     <mat-icon>attach_money</mat-icon>
     Prestamos
   </button>
-  <mat-menu #prestamo="matMenu" >
-<button mat-button routerLink="/">
-  <mat-icon>edit</mat-icon>
-  Registrar Prestamos 
-</button>
-<button mat-button routerLink="/">
-  <mat-icon>search</mat-icon>
-  Buscar Prestamos 
-</button>
-<button mat-button routerLink="listLoans">
-  <mat-icon>list</mat-icon>
-  Listar 
-</button>
-</mat-menu>
+  <mat-menu #prestamo="matMenu">
+    <button mat-button routerLink="/">
+      <mat-icon>edit</mat-icon>
+      Registrar Prestamos
+    </button>
+    <button mat-button routerLink="/">
+      <mat-icon>search</mat-icon>
+      Buscar Prestamos
+    </button>
+    <button mat-button routerLink="listLoans">
+      <mat-icon>list</mat-icon>
+      Listar
+    </button>
+  </mat-menu>
 
-<button mat-button routerLink="generate">
-  <mat-icon>shop</mat-icon>
-  Generar Nomina 
-</button>
+  <button mat-button routerLink="generate">
+    <mat-icon>shop</mat-icon>
+    Generar Nomina
+  </button>
 </mat-toolbar>
 
-  <router-outlet></router-outlet>
- 
- 
+<router-outlet></router-outlet>
