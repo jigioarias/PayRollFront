@@ -21,168 +21,166 @@ import { Rechazada, Aprobada } from 'src/app/general/shared/vacationRequestType'
 })
 export class VacationsComponent implements OnInit {
   vacationsForm: FormGroup;
-  periodClase : PeriodoClase;
-  empleado :Employee;
-  vacationDays :number;
+  periodClase: PeriodoClase;
+  empleado: Employee;
+  vacationDays: number;
   document: string;
-    
-   constructor(
-      private router: Router,
-      private route: ActivatedRoute,
-      private formBuilder: FormBuilder,
-      private employeeService :EmployeeService,
-      private calensarioService : WorkCalendarService,
-      private nominaService :GenerateNominaService,
-      private solicitudVacationService : SolicitudVacacionService,
-      private messagesService:MessagesService
-    ) { }
-    
-    ngOnInit(): void {
-    
 
-      
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private formBuilder: FormBuilder,
+    private employeeService: EmployeeService,
+    private calensarioService: WorkCalendarService,
+    private nominaService: GenerateNominaService,
+    private solicitudVacationService: SolicitudVacacionService,
+    private messagesService: MessagesService
+  ) { }
+
+  ngOnInit(): void {
+
+
+
     this.route.params.subscribe((params) => {
       this.document = params['id'];
     });
-      
 
-      this.vacationsForm = this.formBuilder.group({
-        document: [null, Validators.required],
-        name: [null, Validators.required],
-        classpayroll: [null, Validators.required],
-        initDate: [null, Validators.required],
-        vacationDays : [null, Validators.required],
-        enjoyDays :  [0],
-        enjoyInitDate :[null, Validators.required],
-        enjoyEndDate: [null, Validators.required],
-        payInitDate: [null, Validators.required],
-        payEndDate: [null, Validators.required],
-        payDays: [0],
-          });
-  
-      this.vacationsForm.get('document').setValue(this.document);
-      this.findEmployee();
-    
-    
+
+    this.vacationsForm = this.formBuilder.group({
+      document: [null, Validators.required],
+      name: [null, Validators.required],
+      classpayroll: [null, Validators.required],
+      initDate: [null, Validators.required],
+      vacationDays: [null, Validators.required],
+      enjoyDays: [0],
+      enjoyInitDate: [null, Validators.required],
+      enjoyEndDate: [null, Validators.required],
+      payInitDate: [null, Validators.required],
+      payEndDate: [null, Validators.required],
+      payDays: [0],
+    });
+
+    this.vacationsForm.get('document').setValue(this.document);
+    this.findEmployee();
+
+
+  }
+
+
+
+  findEmployee() {
+    let document = (this.vacationsForm.get('document').value == null) ? this.document : this.vacationsForm.get('document').value;
+    console.log(document);
+    let filter: Filter = {
+      enterprise: parseInt(localStorage.getItem(messages.variableUserEmpresa)),
+      document: document,
+      retrieveALL: true,
+      active: true
+    };
+    this.employeeService.find(filter).subscribe(
+
+      (data) => {
+        console.log('DATOS:::',data); 
+        if (data.vacationRequest != null) {
+          console.log(data);
+          this.empleado = data;
+          this.vacationsForm.get('name').setValue(this.empleado.person.firstName);
+          this.vacationsForm.get('classpayroll').setValue(this.empleado.classPayRoll.description);
+          this.vacationsForm.get('initDate').setValue(this.empleado.period[0].initDate);
+          this.vacationsForm.get('vacationDays').setValue(this.empleado.vacationdays);
+          this.vacationsForm.get('enjoyInitDate').setValue(this.empleado.vacationRequest.enjoyInitDate);
+          this.vacationsForm.get('enjoyEndDate').setValue(this.empleado.vacationRequest.enjoyEndDate);
+          this.vacationsForm.get('payDays').setValue(this.empleado.vacationRequest.moneyDays);
+          this.vacationsForm.get('enjoyDays').setValue(this.empleado.requestDays);
+        } else {
+
+          this.vacationsForm.get('name').setValue(null);
+          this.vacationsForm.get('classpayroll').setValue(null);
+          this.vacationsForm.get('initDate').setValue(null);
+          this.vacationsForm.get('vacationDays').setValue(null);
+          this.vacationsForm.get('enjoyInitDate').setValue(null);
+          this.vacationsForm.get('enjoyEndDate').setValue(null);
+          this.vacationsForm.get('payDays').setValue(null);
+          this.vacationsForm.get('enjoyDays').setValue(null);
+          this.messagesService.showErrorMessage(Messages.get('sin_solicitud_vacaciones'));
+
+        }
+
+      }, (error) => {
+        console.log(error);
+
+      }
+    );
+
+
+  }
+
+  vacationRequest() {
+
+    this.empleado.vacationRequest.state = Aprobada.code;
+    let vacaciones: Vacacion = {
+      id: 0,
+      employee: this.empleado.employee.id,
+      document: this.empleado.person.document,
+      vacationRequest: this.empleado.vacationRequest,
+      classPayRoll: this.empleado.classPayRoll,
+      enjoyInitDate: this.vacationsForm.get('enjoyInitDate').value,
+      enjoyEndDate: this.vacationsForm.get('enjoyEndDate').value,
+      moneyDays: this.vacationsForm.get('payDays').value,
+      enjoyDays: this.vacationsForm.get('enjoyDays').value,
+      //remuneration:this.vacationsForm.get('remuneration').value,
+      remuneration: true,
+      enterprise: parseInt(localStorage.getItem(messages.variableUserEmpresa)),
+      user: localStorage.getItem(messages.variableUserSession),
+      period: this.empleado.period[0],
+      salary: this.empleado.employee.salary,
+      dayHours: this.empleado.classPayRoll.dayshours
     }
-  
-  
-  
-    findEmployee(){
-      let document = (this.vacationsForm.get('document').value==null)?this.document:this.vacationsForm.get('document').value;
-      console.log(document);
-      let filter :Filter={
-        enterprise: parseInt(localStorage.getItem(messages.variableUserEmpresa)),
-        document:document,
-        active:true
-   };      
-      this.employeeService.get(filter).subscribe(
 
-        (data)=>{
+    console.log(vacaciones);
+    this.nominaService.insertVacation(vacaciones).subscribe(
+      (data) => {
 
-          if(data!=null){
-           console.log(data);
-            this.empleado =data;
-            this.vacationsForm.get('name').setValue(this.empleado.person.firstName);
-            this.vacationsForm.get('classpayroll').setValue(this.empleado.classPayRoll.description);
-            this.vacationsForm.get('initDate').setValue(this.empleado.period[0].initDate);
-            this.vacationsForm.get('vacationDays').setValue(this.empleado.vacationdays);
-            this.vacationsForm.get('enjoyInitDate').setValue(this.empleado.vacationRequest.enjoyInitDate);
-            this.vacationsForm.get('enjoyEndDate').setValue(this.empleado.vacationRequest.enjoyEndDate);    
-            this.vacationsForm.get('payDays').setValue(this.empleado.vacationRequest.moneyDays);    
-            this.vacationsForm.get('enjoyDays').setValue(this.empleado.requestDays);    
-          }else{
+        if (data != null) {
 
-            this.vacationsForm.get('name').setValue(null);
-            this.vacationsForm.get('classpayroll').setValue(null);
-            this.vacationsForm.get('initDate').setValue(null);
-            this.vacationsForm.get('vacationDays').setValue(null);
-            this.vacationsForm.get('enjoyInitDate').setValue(null);
-            this.vacationsForm.get('enjoyEndDate').setValue(null);    
-            this.vacationsForm.get('payDays').setValue(null);    
-            this.vacationsForm.get('enjoyDays').setValue(null);  
-            this.messagesService.showErrorMessage(Messages.get('sin_solicitud_vacaciones'));
+          this.messagesService.showErrorMessage(Messages.get('vacation_days_dates'));
 
-          }
 
-        },(error)=>{
-          console.log(error);
+        }
 
-         }
-      );
-     
-  
-     }
-
-     vacationRequest(){
-
-        
-      this.empleado.vacationRequest.state = Aprobada.code;
-                
-      let vacaciones : Vacacion={
-        id:0,
-        employee:this.empleado.employee.id,
-        document:this.empleado.person.document,
-        vacationRequest : this.empleado.vacationRequest,
-        classPayRoll:this.empleado.classPayRoll,
-        enjoyInitDate:this.vacationsForm.get('enjoyInitDate').value,
-        enjoyEndDate:this.vacationsForm.get('enjoyEndDate').value,
-        moneyDays: this.vacationsForm.get('payDays').value,
-        enjoyDays: this.vacationsForm.get('enjoyDays').value,
-        //remuneration:this.vacationsForm.get('remuneration').value,
-        remuneration:true,
-        enterprise: parseInt(localStorage.getItem(messages.variableUserEmpresa)),
-        user:localStorage.getItem(messages.variableUserSession),
-        period :this.empleado.period[0],
-        salary:this.empleado.employee.salary,
-        dayHours:this.empleado.classPayRoll.dayshours
+        this.vacationsForm.get('name').setValue(null);
+        this.vacationsForm.get('classpayroll').setValue(null);
+        this.vacationsForm.get('initDate').setValue(null);
+        this.vacationsForm.get('vacationDays').setValue(null);
+        this.vacationsForm.get('enjoyInitDate').setValue(null);
+        this.vacationsForm.get('enjoyEndDate').setValue(null);
+        this.vacationsForm.get('payDays').setValue(null);
+        this.vacationsForm.get('enjoyDays').setValue(null);
+      },
+      (error) => {
+        console.log(error);
       }
 
-      console.log(vacaciones);
-      this.nominaService.insertVacation(vacaciones).subscribe(
-        (data)=>{
-          
-            console.log(data);
-            if(data!= null){
+    );
 
-              this.messagesService.showErrorMessage(Messages.get('vacation_days_dates'));
+  }
 
-           
-            }
 
-            this.vacationsForm.get('name').setValue(null);
-            this.vacationsForm.get('classpayroll').setValue(null);
-            this.vacationsForm.get('initDate').setValue(null);
-            this.vacationsForm.get('vacationDays').setValue(null);
-            this.vacationsForm.get('enjoyInitDate').setValue(null);
-            this.vacationsForm.get('enjoyEndDate').setValue(null);    
-            this.vacationsForm.get('payDays').setValue(null);    
-            this.vacationsForm.get('enjoyDays').setValue(null); 
-        },
-        (error)=>{
-            console.log(error);
-        }
+  cancelVacationRequest() {
 
-      );
+    this.empleado.vacationRequest.state = Rechazada.code;
 
-     }
-    
+    this.solicitudVacationService.update(this.empleado.vacationRequest).subscribe(
+      (data) => {
+        console.log(data,);
+      }, (error) => {
+        console.log(error);
+      }
 
-     cancelVacationRequest(){
+    );
 
-      this.empleado.vacationRequest.state = Rechazada.code;
-      
-      this.solicitudVacationService.update(this.empleado.vacationRequest).subscribe(
-        (data) =>{
-            console.log(data,);
-        },(error)=>{
-          console.log(error);
-        }
-  
-      );
-  
-      
-    }    
-    
+
+  }
+
 
 }

@@ -66,7 +66,7 @@ estados :State[];
 
     });
 
-   this.claseNominaService.list().subscribe(
+   this.claseNominaService.list(null).subscribe(
       (data)=>{
         console.log(data);
          this.clases = data;

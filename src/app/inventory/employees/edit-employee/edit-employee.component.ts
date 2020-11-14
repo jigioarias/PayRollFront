@@ -145,7 +145,7 @@ export class EditEmployeeComponent implements OnInit {
 
     );
 
-    this.claseNominaService.list().subscribe(
+    this.claseNominaService.list(null).subscribe(
       (data)=>{
 
         this.classPayRolls = data;

@@ -66,7 +66,7 @@ export class GenerateNominaComponent implements OnInit {
       month:[null, Validators.required],
     })
     
-    this.claseNominaService.list().subscribe(
+    this.claseNominaService.list(null).subscribe(
         (data)=>{
             this.clases = data;
         },(error)=>{

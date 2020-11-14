@@ -16,11 +16,13 @@ import { RegisterComponent } from './novedades/register/register.component';
 import { SharingGeneralModule } from 'src/app/general/shared/sharing-general/sharing-general.module';
 import { InabilityComponent } from './novedades/inabilities/inability/inability.component';
 import { ListExtrahoursComponent } from './novedades/extraHours/list-extrahours/list-extrahours.component';
+import { CreateVacationsComponent } from './novedaades/vacations/create-vacations/create-vacations.component';
+import { CreateVacationsMasiveComponent } from './novedaades/vacations/create-vacations-masive/create-vacations-masive.component';
 
 
 
 @NgModule({
-  declarations: [NovedadesComponent, NominaComponent,GenerateNominaComponent, VacationsComponent, ListRequestVacationsComponent, LeavesComponent, ListLeavesComponent, ListInabilitiesComponent, ListLoansComponent, RegisterComponent, InabilityComponent, ListExtrahoursComponent],
+  declarations: [NovedadesComponent, NominaComponent,GenerateNominaComponent, VacationsComponent, ListRequestVacationsComponent, LeavesComponent, ListLeavesComponent, ListInabilitiesComponent, ListLoansComponent, RegisterComponent, InabilityComponent, ListExtrahoursComponent, CreateVacationsComponent, CreateVacationsMasiveComponent],
   imports: [
     
     SharingGeneralModule,

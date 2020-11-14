@@ -56,7 +56,7 @@ export class ListEmployeesComponent implements OnInit {
       clase: [null, Validators.required],
       active: [true],
     });
-    this.claseNominaService.list().subscribe(
+    this.claseNominaService.list(null).subscribe(
       (data)=>{
           this.clases = data;
       },(error)=>{

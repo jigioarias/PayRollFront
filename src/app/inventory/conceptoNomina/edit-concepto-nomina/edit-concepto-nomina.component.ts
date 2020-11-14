@@ -62,7 +62,7 @@ export class EditConceptoNominaComponent implements OnInit {
     
 
       
-      this.claseNominaService.list().subscribe(
+      this.claseNominaService.list(null).subscribe(
         (data)=>{
 
           this.clases = data;

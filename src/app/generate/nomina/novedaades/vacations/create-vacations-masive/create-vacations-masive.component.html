@@ -1,0 +1,30 @@
+
+
+Lista de clases de Nomina para generar Vacaciones Masivas
+<form [formGroup]="searchForm">
+
+<mat-form-field appearance="fill">
+    <mat-label>Clase de Nomina</mat-label>
+    <mat-select [formControl]="clase" multiple (selectionChange)="select($event.value)" >
+      <mat-option *ngFor="let claseO of clases" [value]="claseO.id">{{claseO.description}}</mat-option>
+    </mat-select>
+</mat-form-field>
+
+<mat-form-field>
+    <input matInput  placeholder="Fecha Inicial a Disfrutar" formControlName="enjoyInitDate"   />
+    <input matInput [matDatepicker]="initDate" placeholder="Fecha Inicial a Disfrutar" formControlName="enjoyInitDate" />
+    <mat-datepicker-toggle matSuffix [for]="initDate"></mat-datepicker-toggle>
+    <mat-datepicker #initDate></mat-datepicker>
+
+</mat-form-field>
+<mat-form-field>
+    <input matInput [matDatepicker]="endDate" placeholder="Fecha Final  a Disfrutar" formControlName="enjoyEndDate" />
+    <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
+    <mat-datepicker #endDate></mat-datepicker>
+</mat-form-field>
+
+
+<div class="mat-button-center">
+    <button  mat-stroked-button color="primary" (click)="load()">Cargar Vacaciones Clase de Nomina</button>
+  </div>
+</form>

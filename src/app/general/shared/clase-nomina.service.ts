@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ClaseNomina, ClaseNominaDTO } from 'src/app/inventory/shared/master';
+import { ClaseNomina, ClaseNominaDTO, Filter } from 'src/app/inventory/shared/master';
 import { Observable, of, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Response,ResponseList } from './response';
@@ -45,11 +45,11 @@ export class ClaseNominaService {
 
 
 
-  list(): Observable<ClaseNomina[]> {
+  list(filter:Filter=null): Observable<ClaseNomina[]> {
     const url = environment.apiUrl;
-    return this.http.get<ResponseList<ClaseNomina>>(`${url}classPayRolls`).pipe(
+    return this.http.post<ResponseList<ClaseNomina>>(`${url}classPayRollsList`,filter).pipe(
       switchMap((data) => of(data.content)),
-      catchError((error) => {
+      catchError((error) => { 
         if (error.status == 400) {
           return throwError(error.error.message);
         } else {

@@ -38,7 +38,7 @@ export class ListConceptoNominaComponent implements OnInit {
   
     this.conceptoNominaService.list(filter).subscribe(
       (data)=>{
-        this.claseNominaService.list().subscribe((dataClases)=>{
+        this.claseNominaService.list(null).subscribe((dataClases)=>{
         
           this.dataSource = data;
 

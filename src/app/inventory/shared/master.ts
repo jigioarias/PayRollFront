@@ -152,10 +152,12 @@ export interface Area {
     period?:PeriodoClase;
     classPayRoll?:ClaseNomina;
     clase?:number;
-    fechaInicioLaboral?:FechaCalendarioLaboral,
-    fechaFinLaboral?:FechaCalendarioLaboral,
-    listConcepts?:number[],
+    fechaInicioLaboral?:FechaCalendarioLaboral;
+    fechaFinLaboral?:FechaCalendarioLaboral;
+    listConcepts?:number[];
     document?:string;
+    retrieveALL?:boolean
+
 
   }
 

@@ -1,5 +1,5 @@
 <p></p>
-<span>Novedades</span>
+<span>Novedades de Nomina</span>
 
 <mat-toolbar color="primary">
   <button mat-button [matMenuTriggerFor]="extrahour">
@@ -28,10 +28,22 @@
       <mat-icon>list_alt</mat-icon>
       Listar solicitudes
     </button>
-    <button mat-menu-item routerLink="createVacations">
-      <mat-icon>edit</mat-icon>
+
+    <!--button mat-menu-item routerLink="requestVacation">
+      <mat-icon>perm_contact_calendar</mat-icon>
+      Aprobar Solicitud
+    </button-->
+    
+    <button mat-menu-item routerLink="createVacation">
+      <mat-icon>perm_contact_calendar</mat-icon>
       Registrar Vacaciones
     </button>
+    <button mat-menu-item routerLink="createVacationsMasive">
+      <mat-icon>supervised_user_circle</mat-icon>
+      Registrar Vacaciones Masivas
+    </button>
+    
+
   </mat-menu>
 
   <button mat-button [matMenuTriggerFor]="licencia">

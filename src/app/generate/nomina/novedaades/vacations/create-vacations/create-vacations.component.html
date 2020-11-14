@@ -1,0 +1,116 @@
+<div>
+
+    <form [formGroup]="vacationsForm">
+        <div>
+
+
+            <div class="mat-header-row">
+                <div class="mat-header-cell">Empleado</div>
+            </div>
+
+            <div class="mat-table">
+
+
+                <div class="mat-header-row">
+                    
+                
+                    <div class="mat-cell">
+                        <mat-form-field>
+                            <input formControlName="document"  value="0" matInput placeholder="Documento" />
+                        </mat-form-field>
+
+                    </div>
+
+                     
+                    <div class="mat-cell">
+                        <mat-form-field>
+                            <input formControlName="name"  value="0" matInput placeholder="Nombre" readonly="true"  size="100" />
+                        </mat-form-field>
+
+                    </div>
+                </div>
+
+                <div class="mat-button-center">
+                    <button  mat-stroked-button color="primary" (click)="findEmployee()">Consultar Empleado</button>
+
+                  </div>
+
+                <mat-label>Información Nomina</mat-label>
+                <p><p>
+
+                <div class="mat-header-row">
+                    
+                
+                    <div class="mat-cell">
+                        <mat-form-field>
+                            <input formControlName="classpayroll"  value="0" matInput placeholder="Nomina"  readonly="true" />
+                        </mat-form-field>
+
+                    </div>
+
+                     
+                    <div class="mat-cell">
+                        <mat-form-field>
+                            <input formControlName="vacationDays"  value="0" matInput placeholder="Dias de Vacaciones Disponibles" readonly="true" />
+                        </mat-form-field>
+
+                    </div>
+          
+                    
+                
+                    <div class="mat-cell">
+                        <mat-form-field>
+                            <input formControlName="enjoyDays"  type="number"  value="1" matInput placeholder="Dias a Disfrutar"  />
+                        </mat-form-field>
+
+                    </div>
+
+    
+                                      
+                    <div class="mat-cell">
+                        <mat-form-field>
+                            <input formControlName="payDays"  type="number"  value="0" matInput placeholder="Dias en dinero"  />
+                        </mat-form-field>
+
+                    </div>
+    
+                </div>
+         
+
+                <div class="mat-header-row">
+
+                    <div class="mat-cell">
+                      <mat-form-field>
+                        <input matInput  placeholder="Fecha Inicial a Disfrutar" formControlName="enjoyInitDate"   />
+                        <input matInput [matDatepicker]="initDate" placeholder="Fecha Inicial a Disfrutar" formControlName="enjoyInitDate" />
+                        <mat-datepicker-toggle matSuffix [for]="initDate"></mat-datepicker-toggle>
+                        <mat-datepicker #initDate></mat-datepicker>
+                    
+                    </mat-form-field>
+
+                    </div>
+                    <div class="mat-cell">
+                        <mat-form-field>
+                            <input matInput [matDatepicker]="endDate" placeholder="Fecha Final  a Disfrutar" formControlName="enjoyEndDate" />
+                            <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
+                            <mat-datepicker #endDate></mat-datepicker>
+                        </mat-form-field>
+
+    
+                    </div>
+                   
+                  </div>
+             
+        
+            </div>
+ 
+        </div>
+        <p></p>
+
+        <div class="mat-button-center">
+            <button  mat-stroked-button color="primary" (click)="vacationRequest()">Crear Vacaciones</button>
+          </div>
+
+    </form>
+
+</div>

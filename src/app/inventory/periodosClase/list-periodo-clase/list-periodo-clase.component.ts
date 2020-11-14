@@ -32,7 +32,7 @@ export class ListPeriodoClaseComponent implements OnInit {
     this.periodoClaseService.list().subscribe(
       (data)=>{
 
-        this.claseNominaService.list().subscribe((dataNomina)=>{
+        this.claseNominaService.list(null).subscribe((dataNomina)=>{
           this.dataSource = data;
 
           
