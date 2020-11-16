@@ -41,7 +41,7 @@ export class IncapacidadService {
     });
  
    if( Incapacidad !=null){ 
-    return this.http.post<ResponseList< IncapacidadData>>(`${url}inabilityList`,  Incapacidad).pipe(
+    return this.http.post<ResponseList< IncapacidadData>>(`${url}inability/list`,  Incapacidad).pipe(
       switchMap((data) => of(data.content)),
       catchError((error) => {
         if (error.status == 400) {
@@ -60,7 +60,7 @@ export class IncapacidadService {
     const url = environment.apiUrl;
     
   
-    return this.http.put<Response< Incapacidad>>(`${url}inabilityUpdateMasive`,  Incapacidads).pipe(
+    return this.http.put<Response< Incapacidad>>(`${url}inability/inabilityUpdateMasive`,  Incapacidads).pipe(
       switchMap((data) => of(data.content)),
       catchError((error) => {
         if (error.status == 400) {
@@ -94,7 +94,7 @@ export class IncapacidadService {
       };
 
     
-    return this.http.post<ResponseList< IncapacidadData>>(`${url}inabilityList`,  Incapacidad).pipe(
+    return this.http.post<ResponseList< IncapacidadData>>(`${url}inability/inabilityList`,  Incapacidad).pipe(
       switchMap((data) => of(data.content)),
       catchError((error) => {
         if (error.status == 400) {

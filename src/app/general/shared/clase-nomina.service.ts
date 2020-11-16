@@ -47,7 +47,7 @@ export class ClaseNominaService {
 
   list(filter:Filter=null): Observable<ClaseNomina[]> {
     const url = environment.apiUrl;
-    return this.http.post<ResponseList<ClaseNomina>>(`${url}classPayRollsList`,filter).pipe(
+    return this.http.post<ResponseList<ClaseNomina>>(`${url}classPayRolls/list`,filter).pipe(
       switchMap((data) => of(data.content)),
       catchError((error) => { 
         if (error.status == 400) {
@@ -61,7 +61,7 @@ export class ClaseNominaService {
 
   get(id:number): Observable<ClaseNomina> {
     const url = environment.apiUrl;
-    return this.http.get<Response<ClaseNomina>>(`${url}classPayRoll/`+id).pipe(
+    return this.http.get<Response<ClaseNomina>>(`${url}classPayRolls/`+id).pipe(
       switchMap((data) => of(data.content)),
       catchError((error) => {
         if (error.status == 400) {

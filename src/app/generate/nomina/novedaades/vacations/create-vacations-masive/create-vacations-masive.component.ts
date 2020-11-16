@@ -25,7 +25,7 @@ export class CreateVacationsMasiveComponent implements OnInit {
   ngOnInit(): void {
 
     this.searchForm = this.formBuilder.group({
-      clase: [null, Validators.required],
+      classpayroll: [null, Validators.required],
       enjoyInitDate: [null, Validators.required],
       enjoyEndDate: [null, Validators.required],
 

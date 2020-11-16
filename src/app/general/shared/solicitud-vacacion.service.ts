@@ -41,7 +41,7 @@ export class SolicitudVacacionService {
     });
  
 
-    return this.http.post<ResponseList<SolicitudVacacionData>>(`${url}vacationRequestList`, solicitud).pipe(
+    return this.http.post<ResponseList<SolicitudVacacionData>>(`${url}vacationRequest/list`, solicitud).pipe(
       switchMap((data) => of(data.content)),
       catchError((error) => {
         if (error.status == 400) {
@@ -71,7 +71,7 @@ export class SolicitudVacacionService {
 
     }
     
-    return this.http.post<ResponseList<SolicitudVacacionData>>(`${url}vacationRequestList`, solicitud).pipe(
+    return this.http.post<ResponseList<SolicitudVacacionData>>(`${url}vacationRequest/list`, solicitud).pipe(
       switchMap((data) => of(data.content)),
       catchError((error) => {
         if (error.status == 400) {

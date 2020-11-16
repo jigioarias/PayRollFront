@@ -22,7 +22,7 @@ export class GenerateNominaService {
 
 
     console.log(filter);
-    return this.http.post<ResponseList<EmployeePayRoll>>(`${url}generateClassPayRoll`,filter).pipe(
+    return this.http.post<ResponseList<EmployeePayRoll>>(`${url}payRoll/generate`,filter).pipe(
       switchMap((data) => of(data.content)),
       catchError((error) => {
         if (error.status == 400) {

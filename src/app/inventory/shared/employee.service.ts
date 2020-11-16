@@ -18,7 +18,7 @@ export class EmployeeService {
 
   save(employee: Employee): Observable<EmployeeDTO> {
     const url = environment.apiUrl;
-    return this.http.post<Response<EmployeeDTO>>(`${url}employees`, employee).pipe(
+    return this.http.post<Response<EmployeeDTO>>(`${url}employee/employees`, employee).pipe(
       switchMap((data) => of(data.content)),
       catchError((error) => {
         if (error.status == 400) {
@@ -34,7 +34,7 @@ export class EmployeeService {
   
   saveMasive(employees: Employee[]): Observable<Employee> {
     const url = environment.apiUrl;
-    return this.http.post<Response<Employee>>(`${url}employeesMasive`, employees).pipe(
+    return this.http.post<Response<Employee>>(`${url}employee/employeesMasive`, employees).pipe(
       switchMap((data) => of(data.content)),
       catchError((error) => {
         if (error.status == 400) {
@@ -49,7 +49,7 @@ export class EmployeeService {
 //
 updateMasive(employees: Employee[]): Observable<Employee> {
   const url = environment.apiUrl;
-  return this.http.put<Response<Employee>>(`${url}employeesUpdateMasive`, employees).pipe(
+  return this.http.put<Response<Employee>>(`${url}employee/employeesUpdateMasive`, employees).pipe(
     switchMap((data) => of(data.content)),
     catchError((error) => {
       if (error.status == 400) {
@@ -67,7 +67,7 @@ updateMasive(employees: Employee[]): Observable<Employee> {
     const url = environment.apiUrl;
 
     
-    return this.http.post<ResponseList<Employee>>(`${url}listEmployees`,empleado).pipe(
+    return this.http.post<ResponseList<Employee>>(`${url}employee/listEmployees`,empleado).pipe(
       switchMap((data) => of(data.content)),
       catchError((error) => {
         if (error.status == 400) {
@@ -81,7 +81,7 @@ updateMasive(employees: Employee[]): Observable<Employee> {
 
   find(filter: Filter): Observable<Employee> {
     const url = environment.apiUrl;
-    return this.http.post<Response<Employee>>(`${url}employeeInfo`,filter).pipe(
+    return this.http.post<Response<Employee>>(`${url}employee/employeeInfo`,filter).pipe(
       switchMap((data) => of(data.content)),
       catchError((error) => {
         if (error.status == 400) {
@@ -111,7 +111,7 @@ updateMasive(employees: Employee[]): Observable<Employee> {
 
   update(employee: Employee): Observable<EmployeeDTO> {
     const url = environment.apiUrl;
-    return this.http.put<Response<EmployeeDTO>>(`${url}employees`, employee).pipe(
+    return this.http.put<Response<EmployeeDTO>>(`${url}employee/employees`, employee).pipe(
       switchMap((data) => of(data.content)),
       catchError((error) => {
         if (error.status == 400) {

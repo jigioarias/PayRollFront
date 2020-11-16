@@ -40,7 +40,7 @@ export class LicenciaService {
     });
  
    if(licencia !=null){ 
-    return this.http.post<ResponseList<LicenciaData>>(`${url}leaveList`, licencia).pipe(
+    return this.http.post<ResponseList<LicenciaData>>(`${url}leave/leaveList`, licencia).pipe(
       switchMap((data) => of(data.content)),
       catchError((error) => {
         if (error.status == 400) {
@@ -59,7 +59,7 @@ export class LicenciaService {
     const url = environment.apiUrl;
     
   
-    return this.http.put<Response<Licencia>>(`${url}leaveUpdateMasive`, licencias).pipe(
+    return this.http.put<Response<Licencia>>(`${url}leave/leaveUpdateMasive`, licencias).pipe(
       switchMap((data) => of(data.content)),
       catchError((error) => {
         if (error.status == 400) {
@@ -94,7 +94,7 @@ export class LicenciaService {
      };
 
     
-    return this.http.post<ResponseList<LicenciaData>>(`${url}leaveList`, licencia).pipe(
+    return this.http.post<ResponseList<LicenciaData>>(`${url}leave/leaveList`, licencia).pipe(
       switchMap((data) => of(data.content)),
       catchError((error) => {
         if (error.status == 400) {

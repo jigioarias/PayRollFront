@@ -43,7 +43,7 @@ export class ConceptoService {
 
     };
 
-    return this.http.post<ResponseList<Concepto>>(`${url}conceptByType`,filter).pipe(
+    return this.http.post<ResponseList<Concepto>>(`${url}concept/conceptByType`,filter).pipe(
       switchMap((data) => of(data.content)),
       catchError((error) => {
         if (error.status == 400) {
@@ -60,7 +60,7 @@ export class ConceptoService {
     const url = environment.apiUrl;
    
 
-    return this.http.post<ResponseList<Concepto>>(`${url}conceptsXIds`,filter).pipe(
+    return this.http.post<ResponseList<Concepto>>(`${url}concept/conceptsXIds`,filter).pipe(
       switchMap((data) => of(data.content)),
       catchError((error) => {
         if (error.status == 400) {

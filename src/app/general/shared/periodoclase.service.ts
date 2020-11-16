@@ -47,7 +47,10 @@ export class PeriodoclaseService {
 
   list(): Observable<PeriodoClase[]> {
     const url = environment.apiUrl;
-    return this.http.get<ResponseList<PeriodoClase>>(`${url}period`).pipe(
+    let filter:Filter={
+      enterprise :parseInt(localStorage.getItem(messages.variableUserEmpresa))  
+    };
+    return this.http.post<ResponseList<PeriodoClase>>(`${url}period/list`,filter).pipe(
       switchMap((data) => of(data.content)),
       catchError((error) => {
         if (error.status == 400) {
@@ -75,7 +78,7 @@ export class PeriodoclaseService {
 
   listByClassPayRoll(filter:Filter):Observable<PeriodoClase[]> {
     const url = environment.apiUrl;
-    return this.http.post<ResponseList<PeriodoClase>>(`${url}periodClassPayRoll`, filter).pipe(
+    return this.http.post<ResponseList<PeriodoClase>>(`${url}period/periodClassPayRoll`, filter).pipe(
       switchMap((data) => of(data.content)),
       catchError((error) => {
         if (error.status == 400) {
