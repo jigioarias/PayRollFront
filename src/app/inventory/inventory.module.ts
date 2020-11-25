@@ -26,6 +26,8 @@ import { EditEmployeeComponent } from './employees/edit-employee/edit-employee.c
 import { EditClaseNominaComponent } from './claseNomina/edit-clase-nomina/edit-clase-nomina.component';
 import { EditConceptoNominaComponent } from './conceptoNomina/edit-concepto-nomina/edit-concepto-nomina.component';
 import { SharingGeneralModule } from '../general/shared/sharing-general/sharing-general.module';
+import { AdmonReconocimientoComponent } from './reconocimiento/admon-reconocimiento/admon-reconocimiento.component';
+import { ReconocimientoComponent } from './reconocimiento/reconocimiento/reconocimiento.component';
 
 
 
@@ -33,7 +35,7 @@ import { SharingGeneralModule } from '../general/shared/sharing-general/sharing-
   
   declarations: [
     
-    EmployeeComponent, ListEmployeesComponent, EmployeesComponent, ClaseNominaComponent, ConceptoComponent, ListClaseNominaComponent, CreateNominaComponent, CreateConceptComponent, ListConceptsComponent, CreateClaseNominaComponent, PeriodoClaseComponent, ListPeriodoClaseComponent, PeriodosClaseComponent, EditPeriodoClaseComponent, ConceptoNominaComponent, CreateConceptoNominaComponent, ListConceptoNominaComponent, LoadEmployeesComponent, EditEmployeeComponent, EditClaseNominaComponent, EditConceptoNominaComponent],
+    EmployeeComponent, ListEmployeesComponent, EmployeesComponent, ClaseNominaComponent, ConceptoComponent, ListClaseNominaComponent, CreateNominaComponent, CreateConceptComponent, ListConceptsComponent, CreateClaseNominaComponent, PeriodoClaseComponent, ListPeriodoClaseComponent, PeriodosClaseComponent, EditPeriodoClaseComponent, ConceptoNominaComponent, CreateConceptoNominaComponent, ListConceptoNominaComponent, LoadEmployeesComponent, EditEmployeeComponent, EditClaseNominaComponent, EditConceptoNominaComponent, AdmonReconocimientoComponent, ReconocimientoComponent],
 
   imports: [
     CommonModule, ReactiveFormsModule, MaterialModule, InventoryRoutingModule,

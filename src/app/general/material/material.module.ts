@@ -23,6 +23,7 @@ import {MatBadgeModule} from '@angular/material/badge';
 import {MatTooltipModule} from '@angular/material/tooltip'; 
 import { MaterialFileInputModule } from 'ngx-material-file-input';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatTabsModule} from '@angular/material/tabs';
 
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {ScrollingModule} from '@angular/cdk/scrolling';
@@ -64,8 +65,8 @@ import {CdkTreeModule} from '@angular/cdk/tree';
     MatCheckboxModule,
     MatNativeDateModule,
     MatPaginatorModule,
-    MatDialogModule
-
+    MatDialogModule,
+    MatTabsModule
 
   ],
   exports: [
@@ -96,7 +97,8 @@ import {CdkTreeModule} from '@angular/cdk/tree';
     MatCheckboxModule,
     MatNativeDateModule,
     MatPaginatorModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTabsModule
 
   ],
 })

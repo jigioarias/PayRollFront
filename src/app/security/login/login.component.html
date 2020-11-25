@@ -1,24 +1,24 @@
-<div class="login-container">
-  <div>
-    
-    <img class="jpg-icon"  src="../../../../assets/nominardo.png" 
-    style="max-width:70%; max-height: 70%;">
-  </div>
-  <div>
-    <form [formGroup]="loginForm">
-      <div>
-        <span class="mensajeError">{{ error }}</span>
-      </div>
-
+  <div class="login-container">
+    <div>
       
-      <mat-form-field>
-        <input formControlName="user" matInput placeholder="Usuario" required />
-      </mat-form-field>
-      <mat-form-field>
-        <input formControlName="password" type="password" matInput placeholder="Password" required maxlength="15" />
-      </mat-form-field>
-       <button mat-raised-button color="primary" (click)="login()">Ingresar</button>
-     
-    </form>
+      <img class="jpg-icon"  src="../../../../assets/rostro.png" 
+      style="max-width:70%; max-height: 70%;">
+    </div>
+    <div>
+      <form [formGroup]="loginForm">
+        <div>
+          <span class="mensajeError">{{ error }}</span>
+        </div>
+
+        
+        <mat-form-field>
+          <input formControlName="user" matInput placeholder="Usuario" required />
+        </mat-form-field>
+        <mat-form-field>
+          <input formControlName="password" type="password" matInput placeholder="Password" required maxlength="15" />
+        </mat-form-field>
+        <button mat-raised-button color="primary" (click)="login()">Ingresar</button>
+      
+      </form>
+    </div>
   </div>
-</div>

@@ -20,6 +20,8 @@ import { EditEmployeeComponent } from './employees/edit-employee/edit-employee.c
 import { EditClaseNominaComponent } from './claseNomina/edit-clase-nomina/edit-clase-nomina.component';
 import { EditPeriodoClaseComponent } from './periodosClase/edit-periodo-clase/edit-periodo-clase.component';
 import { EditConceptoNominaComponent } from './conceptoNomina/edit-concepto-nomina/edit-concepto-nomina.component';
+import { AdmonReconocimientoComponent } from './reconocimiento/admon-reconocimiento/admon-reconocimiento.component';
+import { ReconocimientoComponent } from './reconocimiento/reconocimiento/reconocimiento.component';
 
 const routes: Routes = [
   {
@@ -119,7 +121,20 @@ const routes: Routes = [
       },
      { path: '', redirectTo: 'list', pathMatch: 'full' }
     ]
-  }
+  },
+  {
+    path: 'reconocimiento',
+    component: AdmonReconocimientoComponent,
+    children: [
+      {
+        path: 'admonReconocimiento',
+        component: ReconocimientoComponent
+      },
+     
+     { path: '', redirectTo: 'admonReconocimiento', pathMatch: 'full' }
+    ]
+  },
+
 
 ];
 

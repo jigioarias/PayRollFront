@@ -68,6 +68,7 @@ export class Messages {
     setEmailtoLogin: '¿Desea colocar el email %0 como usuario?',
     dataFormError: ' Falta diligenciar uno de los datos para %0 ',
     retrieve_data_error:' Debe ingresar los datos de %0',
+    not_data_found :' No existen datos para %0',
     confirm_logout: 'Desea salir del sistema?',
 
     sin_solicitud_vacaciones: 'El empleado no tiene solicitudes de vacación pendientes',

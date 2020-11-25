@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs';
 import { Licencia, SolicitudVacacion,Incapacidad } from 'src/app/inventory/shared/master';
 import { PENDIENTE } from '../../shared/EstadosSolicitudVacacionType';
 import { IncapacidadService } from '../../shared/incapacidad.service';
-import { LicenciaService } from '../../shared/licencia.service';
+import { LicenciaService } from '../../shared/licencia.service';  
 import { LogoutServiceService } from '../../shared/logout-service.service';
 import { messages } from '../../shared/messages';
 import { SolicitudVacacionService } from '../../shared/solicitud-vacacion.service';

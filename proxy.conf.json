@@ -6,5 +6,15 @@
     "pathRewrite": {
       "^/api": ""
     }
+  },
+  "/reconocimiento/*": {
+    "target": "https://bj275e25ea.execute-api.us-east-1.amazonaws.com/test2/",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "pathRewrite": {
+      "^/reconocimiento": ""
+    }
+    
   }
 }

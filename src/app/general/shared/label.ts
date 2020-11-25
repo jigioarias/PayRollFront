@@ -7,5 +7,8 @@ export const LABEL = {
   periodClase: 'Periodo',
   vacation :'vacaciones',
   extraHour : 'Horas extras',
-  leaves :'Licencias'
+  leaves :'Licencias',
+  colection :'colección',
+  imagenColeccion :'imagen colección'
+ 
 };
