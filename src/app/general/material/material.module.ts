@@ -6,7 +6,6 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatRadioModule } from '@angular/material/radio';
 import { MatListModule } from '@angular/material/list';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
@@ -50,7 +49,6 @@ import {CdkTreeModule} from '@angular/cdk/tree';
     MatSlideToggleModule,
     MatToolbarModule,
     MatFormFieldModule,
-    MatRadioModule,
     MatSidenavModule,
     MatListModule,
     MatInputModule,
@@ -82,7 +80,6 @@ import {CdkTreeModule} from '@angular/cdk/tree';
     MatSlideToggleModule,
     MatToolbarModule,
     MatFormFieldModule,
-    MatRadioModule,
     MatSidenavModule,
     MatListModule,
     MatInputModule,
