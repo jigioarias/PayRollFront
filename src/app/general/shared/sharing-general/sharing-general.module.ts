@@ -5,16 +5,17 @@ import { EstadoLicenciaPipe } from '../estado-licencia.pipe';
 import { PipeSalaryTypePipe } from '../pipes/pipe-salary-type.pipe';
 import { EstadoVacacionesPipe } from '../estado-vacaciones.pipe';
 import { EstadoSolicitudVacacionPipe } from '../pipes/estado-solicitud-vacacion.pipe';
+import { MesesPipe } from '../pipes/meses.pipe';
 
 
 
 
 @NgModule({
-  declarations: [ActiveNoActivePipe,EstadoVacacionesPipe,EstadoLicenciaPipe,PipeSalaryTypePipe,EstadoSolicitudVacacionPipe],
+  declarations: [ActiveNoActivePipe,MesesPipe, EstadoVacacionesPipe,EstadoLicenciaPipe,PipeSalaryTypePipe,EstadoSolicitudVacacionPipe],
   imports: [
     CommonModule
   ],
-  exports: [ActiveNoActivePipe,EstadoVacacionesPipe,EstadoLicenciaPipe,PipeSalaryTypePipe,EstadoLicenciaPipe]
+  exports: [ActiveNoActivePipe,MesesPipe,EstadoVacacionesPipe,EstadoLicenciaPipe,PipeSalaryTypePipe,EstadoLicenciaPipe]
 
 })
 export class SharingGeneralModule { }

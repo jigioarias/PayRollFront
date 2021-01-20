@@ -124,18 +124,13 @@ const routes: Routes = [
   },
   {
     path: 'reconocimiento',
-    component: AdmonReconocimientoComponent,
-    children: [
-      {
-        path: 'admonReconocimiento',
-        component: ReconocimientoComponent
-      },
-     
-     { path: '', redirectTo: 'admonReconocimiento', pathMatch: 'full' }
-    ]
+    component: AdmonReconocimientoComponent
   },
 
-
+  {
+    path: 'entradas',
+    component: ReconocimientoComponent
+  },
 ];
 
 @NgModule({

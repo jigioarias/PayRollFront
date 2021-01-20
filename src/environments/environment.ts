@@ -6,6 +6,8 @@ export const environment = {
   production: false,
   apiUrl: 'api/',
   apiReconocimiento:'reconocimiento/',
+  apiEntrada:'entradas/',
+
   suscriptionKey :'404040402d'
 };
 

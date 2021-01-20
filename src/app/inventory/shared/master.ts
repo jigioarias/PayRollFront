@@ -156,7 +156,9 @@ export interface Area {
     fechaFinLaboral?:FechaCalendarioLaboral;
     listConcepts?:number[];
     document?:string;
-    retrieveALL?:boolean
+    retrieveALL?:boolean;
+    fecha?:string;
+
 
 
   }
@@ -367,3 +369,17 @@ export interface Area {
     error?:string;
     concept?:Concepto;
   }   
+
+  export interface Entrada{
+    Items:DataEntrada[];
+    Count:number;
+    ScannedCount:number;
+   
+  }   
+   
+  export interface DataEntrada{
+    fechaCompleta:string;
+    puerta:string;
+    empleado:string;
+    foto?:string;
+  } 

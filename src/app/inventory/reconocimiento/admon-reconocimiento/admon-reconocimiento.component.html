@@ -93,7 +93,7 @@
 
             <div class="mat-cell">
 
-              <button mat-raised-button color="primary" (click)="loadColeccion()">Creacr Coleccion</button>
+              <button mat-raised-button color="primary" (click)="loadColeccion()">Crear Coleccion</button>
 
             </div>
 
@@ -137,7 +137,7 @@
 
             <div class="mat-cell">
 
-              <button mat-raised-button color="primary" (click)="findDocumentDelete()">consultar</button>
+              <button mat-raised-button color="primary" (click)="findDocumentDelete()">Borrar Rostro</button>
 
             </div>
 
@@ -183,11 +183,42 @@
 
   </mat-tab>
   <mat-tab label="Indexar Imagenes Masivas">
-   
-    <button mat-button color="warn" (click)="onClick()">
-      <mat-icon>file_upload</mat-icon>
-      {{text}}
-</button>
+    
+    
+    <div class="mat-header-row">
+      <div class="mat-header-cell">Cargar Imagenes Masivamente</div>
+    </div>
+    
+    <form [formGroup]="loadMasiveForm">
+
+    
+    <div class="mat-table">
+
+      <div class="mat-header-row">
+
+        <div class="mat-cell">
+          <mat-form-field>
+            <mat-select formControlName="coleccionMasiva" matInput placeholder=" Colección para la carga" required>
+              <ng-container *ngFor="let coleccion of listaColeccciones">
+                  <mat-option [value]="coleccion">{{ coleccion }}</mat-option>
+              </ng-container>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="mat-header-row">
+        <div class="mat-cell">
+              <button mat-button color="warn" (click)="onClick()">
+                <mat-icon>file_upload</mat-icon>
+                {{text}}
+          </button>
+
+        </div>
+      </div>
+
+
+</div>
+
 <br/>
 <ul>
       <li *ngFor="let file of files" [@fadeInOut]="file.state">
@@ -205,6 +236,8 @@
 
  accept="{{accept}}" style="display:none;"/>
 
+
+    </form>
 
   </mat-tab>
 

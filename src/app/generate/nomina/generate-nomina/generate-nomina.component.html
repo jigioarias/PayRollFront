@@ -25,39 +25,42 @@
 
 
                     </div>
+
+  
+
                     <div class="mat-cell">
                         <mat-form-field>
-                            <mat-select formControlName="period" matInput placeholder="Periodo" required (selectionChange)="selectData($event.value)" >
+                            <mat-select formControlName="period" matInput placeholder="Periodo" required  (selectionChange)="selectData($event.value)">
                                 <ng-container *ngFor="let period of periods">
-                                    <mat-option [value]="period.id">{{ period.period}}</mat-option>
+                                    <mat-option [value]="period.id">{{ period.year}}-{{ period.month}}-{{ period.period}}</mat-option>  
                                 </ng-container>
                             </mat-select>
                         </mat-form-field>
                     </div>
             
                     <div class="mat-cell">
-                        <mat-form-field>
-                            <input formControlName="year"  value="0" matInput placeholder="Año" readonly="true" />
-                             
-                        </mat-form-field>
-                    </div>
+                      <mat-form-field>
+                          <input formControlName="initDate"  value="{{inicioSeleccionado | date: 'dd-MM-yyyy'}}" matInput  readonly="true"/>
+                      </mat-form-field>
+                    </div>   
+  
                     <div class="mat-cell">
-                        <mat-form-field>
-                            <input formControlName="month"  value="0" matInput placeholder="Mes" readonly="true" />
-                             
-                        </mat-form-field>
-                    </div> 
+                      <mat-form-field>
+                          <input formControlName="endDate"  value="{{finSeleccionado | date: 'dd-MM-yyyy'}}" matInput  readonly="true"/>
+                      </mat-form-field>
+                    </div>  
                 </div>
       
-          
+                  
 
      
             </div>
             
             <div class="mat-button-center">
-                <button   color="primary" (click)="generate()">Generate</button>
+                <button   mat-flat-button color="primary" (click)="generate()">Generate</button>
               </div>
 
+       
         </div>
     </form>
 

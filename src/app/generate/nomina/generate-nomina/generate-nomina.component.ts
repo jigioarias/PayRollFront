@@ -42,6 +42,8 @@ export class GenerateNominaComponent implements OnInit {
   periods:PeriodoClase[];
   claeSelected :ClaseNomina;
   periodSelected : PeriodoClase;
+  inicioSeleccionado :string;
+  finSeleccionado :string;
   listaNomina : EmployeePayRoll[];
  
   constructor(
@@ -62,8 +64,8 @@ export class GenerateNominaComponent implements OnInit {
     this.nominaForm = this.formBuilder.group({
       clase: [null, Validators.required],
       period: [null, Validators.required],
-      year: [null, Validators.required],
-      month:[null, Validators.required],
+      initDate: [null, Validators.required],
+      endDate:[null, Validators.required],
     })
     
     this.claseNominaService.list(null).subscribe(
@@ -95,7 +97,9 @@ export class GenerateNominaComponent implements OnInit {
     
 
      this.periodoClaseService.listByClassPayRoll(filter).subscribe((data)=>{
+      
       this.periods = data;
+    
     },(error)=>{
       console.log(error);
     }
@@ -106,12 +110,12 @@ export class GenerateNominaComponent implements OnInit {
 
   selectData(period){
 
-     console.log('periodo',period);
     this.periods.forEach(element => {
           if(period==element.id){
-            this.nominaForm.get('year').setValue(element.year);
-            this.nominaForm.get('month').setValue(element.month);
 
+            this.inicioSeleccionado = element.initDate;
+            this.finSeleccionado = element.endDate;
+   
           }       
       }); 
   
@@ -121,16 +125,17 @@ export class GenerateNominaComponent implements OnInit {
 
   generate(){
 
+
+
    this.periods.forEach(element => {
         if(this.nominaForm.get('period').value==element.id){
           this.periodSelected = element;
         }
     });
 
-    
 
     let filter :Filter={
-      enterprise : 1,
+      enterprise: parseInt(localStorage.getItem(messages.variableUserEmpresa)),
       classPayRoll: this.claeSelected,
       period: this.periodSelected,
       active:true

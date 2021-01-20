@@ -21,23 +21,24 @@ export class AdmonReconocimientoComponent implements OnInit {
 
   coleccionForm: FormGroup;
   loadImageForm: FormGroup;
+  loadMasiveForm: FormGroup;
   deleteImagenForm : FormGroup;
   listaColeccciones: string[];
   existDocumentToDelete :boolean;
 
  /** Link text */
- @Input() text = 'Upload';
+ @Input() text = 'Cargar Imagenes';
  /** Name used in form which will be sent in HTTP request. */
  @Input() param = 'file';
  /** Target URL for file uploading. */
- @Input() target = 'https://file.io';
+ @Input() target = 'http://localhost:3000/imagenColeccion/load';
  /** File extension that accepted, same as 'accept' of <input type="file" />. 
      By the default, it's set to 'image/*'. */
  @Input() accept = 'image/*';
  /** Allow you to add handler after its completion. Bubble up response text from remote. */
  @Output() complete = new EventEmitter<string>();
 
- private files: Array<FileUploadModel> = [];
+  files: Array<FileUploadModel> = [];
 
 
 
@@ -73,6 +74,10 @@ export class AdmonReconocimientoComponent implements OnInit {
 
     });
 
+    this.loadMasiveForm = this.formBuilder.group({
+      coleccionMasiva: [null, Validators.required],
+    });
+
     this.reconocimientoService.listColecciones().subscribe(
       (data)=>{
         this.listaColeccciones = data.CollectionIds;
@@ -82,6 +87,12 @@ export class AdmonReconocimientoComponent implements OnInit {
   }
 
   loadColeccion() {
+
+
+    if(this.coleccionForm.invalid){
+      this.messagesService.showErrorMessage(Messages.get('not_selected', LABEL.colection, ''));
+      return;
+    }
 
     let coleccion: Coleccion = {
       coleccion: this.coleccionForm.get("coleccion").value,
@@ -125,6 +136,8 @@ export class AdmonReconocimientoComponent implements OnInit {
 
  findDocumentDelete(){
 
+
+
   let imagenColeccionRequest: ImagenColeccion = {
     
     documento: this.deleteImagenForm.get('documentoDelete').value,
@@ -152,10 +165,17 @@ export class AdmonReconocimientoComponent implements OnInit {
 
   deleteImagen() {
 
+  
+    if(this.deleteImagenForm.invalid){
+      this.messagesService.showErrorMessage(Messages.get('not_selected', LABEL.faceId, ''));
+      return;
+    }
+    if(this.deleteImagenForm.invalid){
+
+    }
+
     let valor = this.deleteImagenForm.get('faceId').value;
     let faces :string[]= [valor];
-    console.log('faceIds:::',faces[0]);
-    //faces[0]=this.deleteImagenForm.get('faceId').value;
 
     let deleteFace: DeleteFace = {
       coleccion: this.deleteImagenForm.get("coleccionDeleteFace").value,
@@ -208,71 +228,29 @@ export class AdmonReconocimientoComponent implements OnInit {
 
   async fotoInputChange(fileInputEvent: any) {
 
-
-
+    if(this.loadImageForm.invalid){
+      this.messagesService.showErrorMessage(Messages.get('dataFormError', LABEL.form, ''));
+      return;
+    }
     var file: File = fileInputEvent.target.files[0];
-    var self = this;
-    var myReader: FileReader = new FileReader();
-    myReader.readAsDataURL(file);
-    console.log(myReader)
-
-
-    myReader.onloadend = await function (e) {
-
-      let archivo = myReader.result as string;
-      archivo = archivo.replace(/^data:image\/(jpeg|png|jpg);base64,/, "");
-
-      let imagenColeccionRequest: ImagenColeccion = {
-        coleccion: self.loadImageForm.get('coleccionFoto').value,
-        documento: self.loadImageForm.get('documento').value,
-        imagen: archivo
-      };
-
-      self.reconocimientoService.loadImage(imagenColeccionRequest).subscribe((data) => {
-        console.log(data);
-        if (data.FaceRecords != null && data.FaceRecords.length > 0) {
-
-          let registroFace = data.FaceRecords[0];
-          imagenColeccionRequest.faceId = registroFace.Face.FaceId;
-          imagenColeccionRequest.imagenId = registroFace.Face.ImageId;
-          imagenColeccionRequest.imagen = null;
-          imagenColeccionRequest.active = true;
-          imagenColeccionRequest.enterprise = parseInt(localStorage.getItem(messages.variableUserEmpresa));
-          imagenColeccionRequest.user = localStorage.getItem(messages.variableUserSession);
-          console.log(imagenColeccionRequest);
-
-          self.imagenColeccionService.save(imagenColeccionRequest).subscribe(
-            (data2) => {
-              console.log('data2', data2);
-              self.messagesService.showSuccessMessage(Messages.get('insert_success', LABEL.imagenColeccion, ''));
-            },
-            (error) => {
-              self.messagesService.showErrorMessage(Messages.get('insert_error', LABEL.imagenColeccion, ''));
-            }
-          );
-
-
-
-        }
-      },
-        (error) => {
-          console.log(error);
-        }
-      )
-
-
-    };
-
+    this.saveBucket(file, this.loadImageForm.get('coleccionFoto').value,this.loadImageForm.get('documento').value,true);
 
   }
 
 //aca archivos
 
 onClick() {
+  
+  if(this.loadMasiveForm.invalid){
+    this.messagesService.showErrorMessage(Messages.get('not_selected', LABEL.colection, ''));
+    return;
+  }
+  
   const fileUpload = document.getElementById('fileUpload') as HTMLInputElement;
   fileUpload.onchange = () => {
         for (let index = 0; index < fileUpload.files.length; index++) {
               const file = fileUpload.files[index];
+           
               this.files.push({ data: file, state: 'in', 
                 inProgress: false, progress: 0, canRetry: false, canCancel: true });
         }
@@ -307,10 +285,12 @@ private uploadFile(file: FileUploadModel) {
                           file.progress = Math.round(event.loaded * 100 / event.total);
                           break;
                     case HttpEventType.Response:
+                          console.log(event);
+                          this.saveBucket(file.data, this.loadMasiveForm.get('coleccionMasiva').value,file.data.name,false);
                           return event;
               }
         }),
-        tap(message => { }),
+        tap(message => { console.log(message) }),
         last(),
         catchError((error: HttpErrorResponse) => {
               file.inProgress = false;
@@ -319,6 +299,7 @@ private uploadFile(file: FileUploadModel) {
         })
   ).subscribe(
         (event: any) => {
+          console.log('event suscribe::',event);
               if (typeof (event) === 'object') {
                     this.removeFileFromArray(file);
                     this.complete.emit(event.body);
@@ -341,6 +322,62 @@ private removeFileFromArray(file: FileUploadModel) {
   if (index > -1) {
         this.files.splice(index, 1);
   }
+}
+
+async saveBucket(file: File,bucket:string,documento:string,showAlert:boolean) {
+
+
+  var self = this;
+  var myReader: FileReader = new FileReader();
+  myReader.readAsDataURL(file);
+
+
+  myReader.onloadend = await function (e) {
+
+    let archivo = myReader.result as string;
+    archivo = archivo.replace(/^data:image\/(jpeg|png|jpg);base64,/, "");
+
+    let imagenColeccionRequest: ImagenColeccion = {
+      coleccion:bucket,
+      documento: documento,
+      imagen: archivo
+    };
+
+    self.reconocimientoService.loadImage(imagenColeccionRequest).subscribe((data) => {
+      console.log(data);
+      if (data.FaceRecords != null && data.FaceRecords.length > 0) {
+
+        let registroFace = data.FaceRecords[0];
+        imagenColeccionRequest.faceId = registroFace.Face.FaceId;
+        imagenColeccionRequest.imagenId = registroFace.Face.ImageId;
+        imagenColeccionRequest.imagen = null;
+        imagenColeccionRequest.active = true;
+        imagenColeccionRequest.enterprise = parseInt(localStorage.getItem(messages.variableUserEmpresa));
+        imagenColeccionRequest.user = localStorage.getItem(messages.variableUserSession);
+        console.log(imagenColeccionRequest);
+
+        self.imagenColeccionService.save(imagenColeccionRequest).subscribe(
+          (data2) => {
+            console.log('data2', data2);
+            if(showAlert)
+              self.messagesService.showSuccessMessage(Messages.get('insert_success', LABEL.imagenColeccion, ''));
+          },
+          (error) => {
+            self.messagesService.showErrorMessage(Messages.get('insert_error', LABEL.imagenColeccion, ''));
+          }
+        );
+
+
+
+      }
+    },
+      (error) => {
+        console.log(error);
+      }
+    )
+  };
+
+
 }
 
 

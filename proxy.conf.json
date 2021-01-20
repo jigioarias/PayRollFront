@@ -8,12 +8,22 @@
     }
   },
   "/reconocimiento/*": {
-    "target": "https://bj275e25ea.execute-api.us-east-1.amazonaws.com/test2/",
+    "target": "https://41dqqzi3t2.execute-api.us-east-1.amazonaws.com/integral/",
     "secure": false,
     "changeOrigin": true,
     "logLevel": "debug",
     "pathRewrite": {
       "^/reconocimiento": ""
+    }
+    
+  },
+  "/entradas/*": {
+    "target": "https://veht90ydsg.execute-api.us-east-1.amazonaws.com/entrada/",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "pathRewrite": {
+      "^/entradas": ""
     }
     
   }

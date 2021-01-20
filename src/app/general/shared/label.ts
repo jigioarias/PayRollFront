@@ -9,6 +9,8 @@ export const LABEL = {
   extraHour : 'Horas extras',
   leaves :'Licencias',
   colection :'colección',
-  imagenColeccion :'imagen colección'
- 
+  imagenColeccion :'imagen colección',
+  faceId : 'Face ID',
+  form : 'Formulario'
+
 };

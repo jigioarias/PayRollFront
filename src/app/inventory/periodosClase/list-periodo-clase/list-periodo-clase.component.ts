@@ -15,7 +15,7 @@ const ELEMENT_DATA: PeriodoClase[] = [];
 })
 export class ListPeriodoClaseComponent implements OnInit {
 
-  displayedColumns: string[] = ['period','class','year','active','edit'];
+  displayedColumns: string[] = ['period','class','year','month','active','edit'];
 
   //dataSource = ELEMENT_DATA;
   dataSource = ELEMENT_DATA;
